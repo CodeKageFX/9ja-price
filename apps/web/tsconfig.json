@@ -6,7 +6,11 @@
         "name": "next"
       }
     ],
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "jsx": "react-jsx",
+    "paths": {
+      "@web/*": ["./src/*"]
+    }
   },
   "include": [
     "**/*.ts",

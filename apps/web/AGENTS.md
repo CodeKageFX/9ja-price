@@ -65,37 +65,3 @@ When implementing any screen from Stitch:
 
 7. **Placeholder Data**: Use the exact placeholder text/content from the Stitch design. Do not replace it with "Lorem ipsum" or generic data.
 <!-- END:stitch-fidelity-rules -->   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-[✓] Install NPM dependencies
-[✓] Initialize shadcn/ui + add all required components
-[✓] Setup globals.css with design tokens
-[✓] Create shared layout components
-[✓] Configure TypeScript types and lib files
-[•] Build shared feature components (PriceTicker, SearchInput, FilterDropdown, StatCard, StatusBadge)
-[ ] Build chart components (PriceHistoryChart, RequestAnalyticsChart, PriceChangeIndicator)
-[ ] Build data table components (DataTable<T>, PriceTable, ApiKeyTable, RequestLogTable)
-[ ] Build code display components (CodeBlock, CodeTabs, CopyButton)
-[ ] Build form components (CreateApiKeyForm, ObservationForm, PlaygroundForm)
-[ ] Build Landing Page
-[ ] Build Price Explorer page
-[ ] Build Commodity Detail page
-[ ] Build Developer Portal pages
-[ ] Build API Documentation pages
-[ ] Build Admin pages

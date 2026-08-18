@@ -1,102 +1,123 @@
-import Image, { type ImageProps } from "next/image";
-import { Button } from "@repo/ui/button";
-import styles from "./page.module.css";
+import { Header } from "@/components/layout/PageHeader"
+import { PriceTicker } from "@/components/shared/PriceTicker"
+import { SearchInput } from "@/components/shared/SearchInput"
+import { FilterDropdown } from "@/components/shared/FilterDropdown"
+import { StatCard } from "@/components/shared/StatCard"
+import { StatusBadge } from "@/components/shared/StatusBadge"
+import { DataTable } from "@/components/tables/DataTable"
+import { PriceTable } from "@/components/tables/PriceTable"
+import { CodeBlock } from "@/components/code/CodeBlock"
+import { CodeTabs } from "@/components/code/CodeTabs"
+import { CopyButton } from "@/components/code/CopyButton"
+import { cn } from "@/lib/utils"
 
-type Props = Omit<ImageProps, "src"> & {
-  srcLight: string;
-  srcDark: string;
-};
+export default function HomePage() {
+  const priceData = [
+    { commodity: "Rice", market: "Lagos", price: 500, date: "2024-01-15" },
+    { commodity: "Beans", market: "Kano", price: 350, date: "2024-01-15" },
+    { commodity: "Maize", market: "Kumasi", price: 300, date: "2024-01-15" },
+  ]
 
-const ThemeImage = (props: Props) => {
-  const { srcLight, srcDark, ...rest } = props;
+  const codeExample = `// Fetch prices from PriceNaija API
+import { useAsyncChunk } from "stunk/query"
+
+const pricesChunk = asyncChunk(
+  async () => fetch("/api/prices").then(res => res.json()),
+  { key: "prices", staleTime: 30000 }
+)
+
+export function PriceComponent() {
+  const { data } = useAsyncChunk(pricesChunk)
+  return <div>{JSON.stringify(data)}</div>
+}`
+
+  const features = [
+    { title: "Live Price Ticker", description: "Real-time price updates across markets" },
+    { title: "Price Explorer", description: "Filter and search commodity prices" },
+    { title: "API Documentation", description: "Full API reference and guides" },
+    { title: "Developer Portal", description: "Manage API keys and monitor usage" },
+  ]
 
   return (
-    <>
-      <Image {...rest} src={srcLight} className="imgLight" />
-      <Image {...rest} src={srcDark} className="imgDark" />
-    </>
-  );
-};
+    <main className="min-h-screen bg-background">
+      <Header
+        title="PriceNaija"
+        description="Nigerian food price tracking and analytics platform"
+        showBreadcrumb={false}
+      />
 
-export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <ThemeImage
-          className={styles.logo}
-          srcLight="turborepo-dark.svg"
-          srcDark="turborepo-light.svg"
-          alt="Turborepo logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>apps/web/app/page.tsx</code>
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+      <section className="py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <div>
+              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-ink-primary">
+                Track Naija Food Prices
+              </h1>
+              <p className="text-ink-secondary text-lg mb-6 max-w-xl">
+                Real-time price tracking across Nigerian markets. Monitor prices for rice, beans, maize, and other commodities.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <Button className="px-4 py-2 rounded">Get Started</Button>
+                <Button variant="outline" className="px-4 py-2 rounded">
+                  View Docs
+                </Button>
+              </div>
+            </div>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new/clone?demo-description=Learn+to+implement+a+monorepo+with+a+two+Next.js+sites+that+has+installed+three+local+packages.&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F4K8ZISWAzJ8X1504ca0zmC%2F0b21a1c6246add355e55816278ef54bc%2FBasic.png&demo-title=Monorepo+with+Turborepo&demo-url=https%3A%2F%2Fexamples-basic-web.vercel.sh%2F&from=templates&project-name=Monorepo+with+Turborepo&repository-name=monorepo-turborepo&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fturborepo%2Ftree%2Fmain%2Fexamples%2Fbasic&root-directory=apps%2Fdocs&skippable-integrations=1&teamSlug=vercel&utm_source=create-turbo"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://turborepo.dev/docs?utm_source"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+            <PriceTicker />
+          </div>
         </div>
-        <Button appName="web" className={styles.secondary}>
-          Open alert
-        </Button>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com/templates?search=turborepo&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+      </section>
+
+      <section className="py-12 bg-background/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="font-display text-3xl sm:text-4xl font-bold text-ink-primary mb-8">
+            Features
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {features.map((feature) => (
+              <StatCard
+                key={feature.title}
+                title={feature.title}
+                value={feature.description}
+                change={0}
+                icon={<svg className="h-5 w-5 text-primary" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 5v14M5 12h14" />
+                </svg>}
+                variant="neutral"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="font-display text-3xl sm:text-4xl font-bold text-ink-primary mb-8">
+            API Code Examples
+          </h2>
+          <CodeTabs
+            tabs={[
+              {
+                label: "Fetch Prices",
+                language: "bash",
+                code: `curl -X GET "https://api.pricenaija.ng/v1/prices"`,
+              },
+              {
+                label: "JSON Response",
+                language: "json",
+                code: `{
+  "commodity": "Rice",
+  "market": "Lagos",
+  "price": 500,
+  "date": "2024-01-15"
+}`,
+              },
+            ]}
           />
-          Examples
-        </a>
-        <a
-          href="https://turborepo.dev?utm_source=create-turbo"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to turborepo.dev →
-        </a>
-      </footer>
-    </div>
-  );
+          <CopyButton text={codeExample} />
+        </div>
+      </section>
+    </main>
+  )
 }
