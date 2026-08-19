@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PriceNaija - Know What Food Costs in Nigeria</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#6e7a70",
+                    "on-tertiary-container": "#fdfff8",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#70db9d",
+                    "on-secondary-fixed": "#131b2e",
+                    "primary-container": "#008751",
+                    "on-surface-variant": "#3e4a41",
+                    "on-surface": "#191c1e",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed": "#002110",
+                    "on-background": "#191c1e",
+                    "tertiary": "#006c2e",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-tertiary-fixed": "#002109",
+                    "on-secondary-container": "#5c647a",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#f2f4f6",
+                    "surface-container-high": "#e6e8ea",
+                    "tertiary-container": "#00883c",
+                    "on-secondary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "primary-fixed": "#8df8b7",
+                    "on-tertiary-fixed-variant": "#005321",
+                    "surface-container": "#eceef0",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-tint": "#006d40",
+                    "tertiary-fixed-dim": "#4ae176",
+                    "surface-dim": "#d8dadc",
+                    "surface": "#f7f9fb",
+                    "error-container": "#ffdad6",
+                    "inverse-primary": "#70db9d",
+                    "on-primary-fixed-variant": "#00522f",
+                    "secondary-container": "#dae2fd",
+                    "surface-variant": "#e0e3e5",
+                    "primary": "#006b3f",
+                    "on-primary-container": "#fdfff9",
+                    "tertiary-fixed": "#6bff8f",
+                    "secondary": "#565e74",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "background": "#f7f9fb",
+                    "secondary-fixed": "#dae2fd",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#f7f9fb",
+                    "outline-variant": "#bdcabe",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#2d3133"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "16px",
+                    "margin-mobile": "16px",
+                    "base": "4px",
+                    "md": "24px",
+                    "xl": "64px",
+                    "margin-desktop": "32px",
+                    "lg": "40px",
+                    "xs": "8px",
+                    "gutter": "20px"
+            },
+            "fontFamily": {
+                    "headline-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "label-caps": [
+                            "Geist"
+                    ],
+                    "headline-lg-mobile": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "display-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "data-mono": [
+                            "Geist"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "title-md": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "body-sm": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "label-caps": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "data-mono": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "body-lg": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "title-md": [
+                            "20px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+        },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-lg antialiased">
+<!-- Navigation Shell (TopNavBar) -->
+<header class="bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline flat no shadows docked full-width top-0 sticky z-50">
+<nav class="flex justify-between items-center w-full px-margin-desktop max-w-[1440px] mx-auto h-16">
+<!-- Brand -->
+<div class="flex items-center gap-md">
+<a class="text-title-md font-headline-lg text-primary dark:text-primary-fixed flex items-center gap-xs" href="#">
+<span class="material-symbols-outlined text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">dataset</span>
+                    PriceNaija
+                </a>
+<!-- Desktop Links -->
+<div class="hidden md:flex items-center gap-lg ml-xl">
+<!-- Explorer is active since this is the main landing/exploration page -->
+<a class="text-primary dark:text-primary-fixed border-b-2 border-primary dark:border-primary-fixed pb-1 opacity-80 scale-95 transition-all text-body-lg font-body-lg" href="#">Explorer</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors text-body-lg font-body-lg" href="#">Developers</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors text-body-lg font-body-lg" href="#">Markets</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors text-body-lg font-body-lg" href="#">About</a>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-sm">
+<button class="hidden md:block text-on-surface-variant text-body-lg font-body-lg hover:text-primary transition-colors">Sign In</button>
+<button class="bg-primary-container text-on-primary rounded-lg px-sm py-xs font-body-lg text-body-sm hover:opacity-90 transition-opacity flex items-center gap-xs">
+                    Get API Key
+                </button>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-on-surface-variant">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative pt-xl pb-xl px-margin-desktop md:px-margin-desktop max-w-[1440px] mx-auto overflow-hidden">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-center relative z-10">
+<!-- Hero Content -->
+<div class="lg:col-span-7 flex flex-col gap-lg">
+<div class="flex flex-col gap-sm">
+<span class="inline-flex items-center gap-xs bg-tertiary-container/10 text-tertiary-container rounded-full px-sm py-base text-label-caps font-label-caps w-max">
+<span class="w-2 h-2 rounded-full bg-tertiary-container"></span>
+                            Live Market Data
+                        </span>
+<h1 class="text-display-lg font-display-lg text-on-surface tracking-tight leading-tight md:text-[56px] md:leading-[64px]">
+                            Know What Food Costs in Nigeria.
+                        </h1>
+<p class="text-title-md font-body-lg text-on-surface-variant max-w-2xl">
+                            Reliable, structured Nigerian food-price data for people, businesses and developers.
+                        </p>
+</div>
+<!-- Search Bar -->
+<div class="flex flex-col gap-sm max-w-2xl relative">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors z-10">search</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl py-sm pl-xl pr-sm text-body-lg font-body-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary shadow-sm transition-all" placeholder="How much is rice in Abuja?" type="text"/>
+<button class="absolute right-xs top-1/2 -translate-y-1/2 bg-primary-container text-on-primary rounded-lg px-sm py-xs text-body-sm font-body-sm hover:opacity-90">Search</button>
+</div>
+<!-- Quick Results -->
+<div class="flex flex-wrap items-center gap-sm">
+<span class="text-label-caps font-label-caps text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined" style="font-size: 16px;">update</span>
+                                Updated 2 mins ago:
+                            </span>
+<div class="flex flex-wrap gap-xs">
+<span class="bg-surface-container-highest rounded-full px-sm py-base text-body-sm font-body-sm text-on-surface border border-outline-variant/30 flex items-center gap-xs">
+                                    Rice <span class="text-on-surface-variant font-data-mono">₦2,200/kg</span>
+</span>
+<span class="bg-surface-container-highest rounded-full px-sm py-base text-body-sm font-body-sm text-on-surface border border-outline-variant/30 flex items-center gap-xs">
+                                    Egg <span class="text-on-surface-variant font-data-mono">₦250/piece</span>
+</span>
+<span class="bg-surface-container-highest rounded-full px-sm py-base text-body-sm font-body-sm text-on-surface border border-outline-variant/30 flex items-center gap-xs">
+                                    Beans <span class="text-on-surface-variant font-data-mono">₦1,800/kg</span>
+</span>
+</div>
+</div>
+</div>
+<!-- CTAs -->
+<div class="flex flex-wrap items-center gap-sm mt-sm">
+<button class="bg-primary-container text-on-primary rounded-lg px-md py-sm text-body-lg font-body-lg hover:opacity-90 transition-opacity flex items-center gap-xs font-medium shadow-sm">
+                            Explore Prices
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="bg-surface-container-low text-on-surface border border-outline-variant rounded-lg px-md py-sm text-body-lg font-body-lg hover:bg-surface-container-high transition-colors flex items-center gap-xs font-medium">
+                            Build With Our API
+                            <span class="material-symbols-outlined">code</span>
+</button>
+</div>
+</div>
+<!-- Hero Visual -->
+<div class="lg:col-span-5 relative hidden md:block">
+<!-- Abstract Background Pattern -->
+<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-container/10 via-surface to-surface w-full h-full rounded-full blur-3xl -z-10"></div>
+<!-- Main Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-md shadow-lg shadow-on-surface/5 relative overflow-hidden group hover:border-primary/50 transition-colors">
+<!-- Decorative top accent -->
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-container to-tertiary-container"></div>
+<div class="flex justify-between items-start mb-md mt-xs">
+<div class="flex items-center gap-sm">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center border border-outline-variant/30">
+<span class="material-symbols-outlined text-primary-container" data-weight="fill" style="font-variation-settings: 'FILL' 1;">rice_bowl</span>
+</div>
+<div>
+<h3 class="text-title-md font-headline-lg text-on-surface">Rice (Local)</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined" style="font-size: 16px;">location_on</span>
+                                        Wuse Market, Abuja
+                                    </p>
+</div>
+</div>
+<span class="bg-error-container/20 text-error rounded-full px-xs py-base text-label-caps font-label-caps flex items-center gap-xs border border-error-container">
+<span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span>
+                                8.4%
+                            </span>
+</div>
+<div class="grid grid-cols-2 gap-sm mb-md">
+<div class="bg-surface-container-low rounded-lg p-sm border border-outline-variant/30">
+<span class="text-label-caps font-label-caps text-on-surface-variant block mb-xs">CURRENT PRICE</span>
+<div class="text-headline-lg font-headline-lg text-on-surface font-data-mono">₦2,200 <span class="text-body-sm text-on-surface-variant font-body-sm">/ kg</span></div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-sm border border-outline-variant/30">
+<span class="text-label-caps font-label-caps text-on-surface-variant block mb-xs">7-DAY AVG</span>
+<div class="text-headline-lg-mobile font-headline-lg-mobile text-on-surface font-data-mono">₦2,030 <span class="text-body-sm text-on-surface-variant font-body-sm">/ kg</span></div>
+</div>
+</div>
+<!-- Mini Chart representation -->
+<div class="h-16 w-full flex items-end gap-1 px-xs">
+<div class="w-full bg-surface-container-high rounded-t-sm h-[40%] hover:bg-primary-container/40 transition-colors"></div>
+<div class="w-full bg-surface-container-high rounded-t-sm h-[45%] hover:bg-primary-container/40 transition-colors"></div>
+<div class="w-full bg-surface-container-high rounded-t-sm h-[35%] hover:bg-primary-container/40 transition-colors"></div>
+<div class="w-full bg-surface-container-high rounded-t-sm h-[50%] hover:bg-primary-container/40 transition-colors"></div>
+<div class="w-full bg-surface-container-high rounded-t-sm h-[65%] hover:bg-primary-container/40 transition-colors"></div>
+<div class="w-full bg-surface-container-high rounded-t-sm h-[80%] hover:bg-primary-container/40 transition-colors"></div>
+<div class="w-full bg-primary-container/80 rounded-t-sm h-[100%] border-t-2 border-primary-container"></div>
+</div>
+</div>
+<!-- Floating contextual element -->
+<div class="absolute -right-md -bottom-md bg-surface-container-lowest rounded-lg border border-outline-variant p-sm shadow-md flex items-center gap-sm animate-bounce" style="animation-duration: 3s;">
+<span class="material-symbols-outlined text-tertiary-container">verified_user</span>
+<div class="flex flex-col">
+<span class="text-label-caps font-label-caps text-on-surface">VERIFIED SOURCE</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Market Agent #442</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Live Price Table Section -->
+<section class="py-xl px-margin-desktop md:px-margin-desktop max-w-[1440px] mx-auto bg-surface-container-lowest rounded-3xl border border-outline-variant/50 my-xl shadow-sm">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-lg gap-sm">
+<div>
+<h2 class="text-headline-lg font-headline-lg text-on-surface">Live Market Prices</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Real-time observations from major markets across the country.</p>
+</div>
+<button class="text-primary font-medium hover:text-primary-container transition-colors flex items-center gap-xs">
+                    View all prices <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[800px]">
+<thead>
+<tr class="bg-surface-container-low text-label-caps font-label-caps text-on-surface-variant border-y border-outline-variant/50">
+<th class="py-sm px-sm font-semibold">FOOD ITEM</th>
+<th class="py-sm px-sm font-semibold">CATEGORY</th>
+<th class="py-sm px-sm font-semibold">LOCATION</th>
+<th class="py-sm px-sm font-semibold text-right">PRICE (NGN)</th>
+<th class="py-sm px-sm font-semibold text-right">CHANGE</th>
+<th class="py-sm px-sm font-semibold text-right">LAST UPDATED</th>
+</tr>
+</thead>
+<tbody class="text-body-sm font-body-sm text-on-surface divide-y divide-outline-variant/30">
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="py-md px-sm font-medium flex items-center gap-sm">
+<span class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary-container/10 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary" style="font-size: 16px;">rice_bowl</span>
+</span>
+                                Rice (Local)
+                            </td>
+<td class="py-md px-sm"><span class="bg-surface-container-highest px-xs py-base rounded-md text-label-caps font-label-caps">Grains</span></td>
+<td class="py-md px-sm">Abuja, Wuse</td>
+<td class="py-md px-sm text-right font-data-mono font-medium">₦2,200<span class="text-on-surface-variant font-normal text-xs ml-1">/kg</span></td>
+<td class="py-md px-sm text-right text-error font-data-mono bg-error-container/10">+8.4%</td>
+<td class="py-md px-sm text-right text-on-surface-variant">2 mins ago</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="py-md px-sm font-medium flex items-center gap-sm">
+<span class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary-container/10 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary" style="font-size: 16px;">eco</span>
+</span>
+                                Beans (Oloyin)
+                            </td>
+<td class="py-md px-sm"><span class="bg-surface-container-highest px-xs py-base rounded-md text-label-caps font-label-caps">Grains</span></td>
+<td class="py-md px-sm">Lagos, Mile 12</td>
+<td class="py-md px-sm text-right font-data-mono font-medium">₦2,000<span class="text-on-surface-variant font-normal text-xs ml-1">/kg</span></td>
+<td class="py-md px-sm text-right text-error font-data-mono bg-error-container/10">+3.2%</td>
+<td class="py-md px-sm text-right text-on-surface-variant">15 mins ago</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="py-md px-sm font-medium flex items-center gap-sm">
+<span class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary-container/10 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary" style="font-size: 16px;">nutrition</span>
+</span>
+                                Tomato
+                            </td>
+<td class="py-md px-sm"><span class="bg-surface-container-highest px-xs py-base rounded-md text-label-caps font-label-caps">Vegetables</span></td>
+<td class="py-md px-sm">Kano, Dawanau</td>
+<td class="py-md px-sm text-right font-data-mono font-medium">₦120<span class="text-on-surface-variant font-normal text-xs ml-1">/piece</span></td>
+<td class="py-md px-sm text-right text-error font-data-mono bg-error-container/10">+12.5%</td>
+<td class="py-md px-sm text-right text-on-surface-variant">1 hr ago</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="py-md px-sm font-medium flex items-center gap-sm">
+<span class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary-container/10 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary" style="font-size: 16px;">egg</span>
+</span>
+                                Eggs (Crate)
+                            </td>
+<td class="py-md px-sm"><span class="bg-surface-container-highest px-xs py-base rounded-md text-label-caps font-label-caps">Protein</span></td>
+<td class="py-md px-sm">Ibadan, Bodija</td>
+<td class="py-md px-sm text-right font-data-mono font-medium">₦4,500<span class="text-on-surface-variant font-normal text-xs ml-1">/crate</span></td>
+<td class="py-md px-sm text-right text-primary-container font-data-mono bg-primary-container/10">-1.2%</td>
+<td class="py-md px-sm text-right text-on-surface-variant">2 hrs ago</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Developer Section (Bento Grid Style) -->
+<section class="py-xl px-margin-desktop md:px-margin-desktop max-w-[1440px] mx-auto">
+<div class="mb-lg text-center max-w-2xl mx-auto">
+<h2 class="text-headline-lg font-headline-lg text-on-surface mb-xs">Build with Nigerian food-price data.</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Integrate reliable pricing intelligence directly into your applications with our robust REST API.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-md">
+<!-- API Snippet Card -->
+<div class="lg:col-span-2 bg-on-surface rounded-xl p-md border border-outline-variant/20 shadow-lg relative overflow-hidden group">
+<div class="flex justify-between items-center mb-sm border-b border-surface-variant/20 pb-sm">
+<div class="flex items-center gap-sm">
+<span class="bg-primary-container/20 text-primary-fixed-dim rounded px-xs py-base text-label-caps font-label-caps font-data-mono">GET</span>
+<span class="text-surface-variant font-data-mono text-body-sm">/api/v1/prices?food=rice&amp;location=abuja</span>
+</div>
+<button class="text-surface-variant hover:text-primary-fixed transition-colors" title="Copy code">
+<span class="material-symbols-outlined" style="font-size: 18px;">content_copy</span>
+</button>
+</div>
+<pre class="text-surface-variant font-data-mono text-sm overflow-x-auto p-sm bg-[#1e1e1e] rounded-lg"><code>{
+  "status": "success",
+  "data": {
+    "item": "Rice (Local)",
+    "location": {
+      "city": "Abuja",
+      "market": "Wuse Market"
+    },
+    "current_price": {
+      "amount": 2200,
+      "currency": "NGN",
+      "unit": "kg"
+    },
+    "historical_trends": {
+      "7_day_change_pct": 8.4,
+      "30_day_avg": 2050
+    },
+    "last_updated": "2024-05-20T14:32:00Z"
+  }
+}</code></pre>
+</div>
+<!-- Feature/CTA Cards -->
+<div class="flex flex-col gap-md">
+<div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant hover:border-primary/50 transition-colors flex-1 flex flex-col justify-center">
+<span class="material-symbols-outlined text-primary-container mb-sm" style="font-size: 32px;">bolt</span>
+<h3 class="text-title-md font-headline-lg text-on-surface mb-xs">Fast &amp; Reliable</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-md">99.9% uptime with sub-100ms response times for critical applications.</p>
+<a class="text-primary font-medium flex items-center gap-xs hover:underline mt-auto" href="#">
+                            Explore API Documentation <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+</a>
+</div>
+<div class="bg-primary-container text-on-primary rounded-xl p-md shadow-md flex-1 flex flex-col justify-center relative overflow-hidden">
+<div class="absolute top-0 right-0 p-sm opacity-20">
+<span class="material-symbols-outlined" style="font-size: 64px;">vpn_key</span>
+</div>
+<h3 class="text-title-md font-headline-lg mb-xs relative z-10">Start Building Today</h3>
+<p class="text-body-sm font-body-sm opacity-90 mb-md relative z-10">Get a free developer key and make up to 1,000 requests per month.</p>
+<button class="bg-on-primary text-primary-container rounded-lg px-md py-sm text-body-sm font-medium hover:bg-surface-container-lowest transition-colors w-max relative z-10">
+                            Get API Key
+                        </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="bg-surface-container-highest dark:bg-inverse-surface border-t border-outline-variant full-width bottom mt-xl">
+<div class="w-full py-xl px-margin-desktop flex flex-col md:flex-row justify-between items-start md:items-center max-w-[1440px] mx-auto gap-lg">
+<div class="flex flex-col gap-sm">
+<a class="text-title-md font-headline-lg text-primary flex items-center gap-xs" href="#">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">dataset</span>
+                    PriceNaija
+                </a>
+<p class="text-body-sm font-body-sm text-on-surface-variant max-w-sm">Making Nigerian food-price data accessible.</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant opacity-70 mt-sm">© 2024 PriceNaija. Data-driven food security for Nigeria.</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-lg md:gap-xl">
+<div class="flex flex-col gap-sm text-body-sm font-body-sm">
+<span class="text-label-caps font-label-caps text-on-surface font-semibold mb-xs">Product</span>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">API Docs</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Pricing</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Explorer</a>
+</div>
+<div class="flex flex-col gap-sm text-body-sm font-body-sm">
+<span class="text-label-caps font-label-caps text-on-surface font-semibold mb-xs">Legal &amp; Support</span>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Terms of Service</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

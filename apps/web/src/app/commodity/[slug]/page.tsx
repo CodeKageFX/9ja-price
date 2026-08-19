@@ -1,3 +1,5 @@
+"use client";
+
 import { Header } from "@/components/layout/PageHeader"
 import { PriceHistoryChart } from "@/components/charts/PriceHistoryChart"
 import { StatusBadge } from "@/components/shared/StatusBadge"

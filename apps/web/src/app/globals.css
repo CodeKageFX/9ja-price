@@ -1,30 +1,132 @@
-@import "tailwindcss";   
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500&family=Geist:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap");
+@import "tailwindcss";
 
+@theme {
+  --color-outline: #6e7a70;
+  --color-on-tertiary-container: #fdfff8;
+  --color-on-primary: #ffffff;
+  --color-primary-fixed-dim: #70db9d;
+  --color-on-secondary-fixed: #131b2e;
+  --color-primary-container: #008751;
+  --color-on-surface-variant: #3e4a41;
+  --color-on-surface: #191c1e;
+  --color-on-error-container: #93000a;
+  --color-on-primary-fixed: #002110;
+  --color-on-background: #191c1e;
+  --color-tertiary: #006c2e;
+  --color-surface-container-highest: #e0e3e5;
+  --color-on-tertiary-fixed: #002109;
+  --color-on-secondary-container: #5c647a;
+  --color-on-secondary-fixed-variant: #3f465c;
+  --color-error: #ba1a1a;
+  --color-surface-container-low: #f2f4f6;
+  --color-surface-container-high: #e6e8ea;
+  --color-tertiary-container: #00883c;
+  --color-on-secondary: #ffffff;
+  --color-on-error: #ffffff;
+  --color-primary-fixed: #8df8b7;
+  --color-on-tertiary-fixed-variant: #005321;
+  --color-surface-container: #eceef0;
+  --color-inverse-on-surface: #eff1f3;
+  --color-surface-tint: #006d40;
+  --color-tertiary-fixed-dim: #4ae176;
+  --color-surface-dim: #d8dadc;
+  --color-surface: #f7f9fb;
+  --color-error-container: #ffdad6;
+  --color-inverse-primary: #70db9d;
+  --color-on-primary-fixed-variant: #00522f;
+  --color-secondary-container: #dae2fd;
+  --color-surface-variant: #e0e3e5;
+  --color-primary: #006b3f;
+  --color-on-primary-container: #fdfff9;
+  --color-tertiary-fixed: #6bff8f;
+  --color-secondary: #565e74;
+  --color-secondary-fixed-dim: #bec6e0;
+  --color-background: #f7f9fb;
+  --color-secondary-fixed: #dae2fd;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-bright: #f7f9fb;
+  --color-outline-variant: #bdcabe;
+  --color-on-tertiary: #ffffff;
+  --color-inverse-surface: #2d3133;
 
-:root {
-  --background: #f8fafc;
-  --foreground: #1e293b;
-  --primary: #008751;
-  --secondary: #0f172a;
-  --tertiary: #22c55e;
-  --surface: #ffffff;
-  --border: #e2e8f0;
-  --ink-primary: #1e293b;
-  --ink-secondary: #64748b;
-  --error: #ef4444;
+  --spacing-sm: 16px;
+  --spacing-margin-mobile: 16px;
+  --spacing-base: 4px;
+  --spacing-md: 24px;
+  --spacing-xl: 64px;
+  --spacing-margin-desktop: 32px;
+  --spacing-lg: 40px;
+  --spacing-xs: 8px;
+  --spacing-gutter: 20px;
+
+  --font-headline-lg: "Plus Jakarta Sans", sans-serif;
+  --font-label-caps: "Geist", monospace;
+  --font-headline-lg-mobile: "Plus Jakarta Sans", sans-serif;
+  --font-display-lg: "Plus Jakarta Sans", sans-serif;
+  --font-data-mono: "Geist", monospace;
+  --font-body-lg: "Inter", sans-serif;
+  --font-title-md: "Plus Jakarta Sans", sans-serif;
+  --font-body-sm: "Inter", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --primary: #008751;
-    --secondary: #0f172a;
-    --tertiary: #22c55e;
-    --surface: #1e293b;
-    --border: #374151;
-    --ink-primary: #f1f5f9;
-    --ink-secondary: #94a3b8;
-    --error: #f87171;
-  }
+.text-display-lg {
+  font-size: 48px;
+  line-height: 56px;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+.text-headline-lg {
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+}
+
+.text-headline-lg-mobile {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+}
+
+.text-title-md {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+}
+
+.text-body-lg {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+.text-body-sm {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.text-label-caps {
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.text-data-mono {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.01em;
+  font-weight: 500;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
 }

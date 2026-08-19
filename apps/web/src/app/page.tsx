@@ -1,375 +1,304 @@
-"use client"
-
-import Link from "next/link"
-import { Search, ArrowRight, Code, TrendingUp, TrendingDown, MapPin, BadgeCheck, Clock, Zap, Key, Copy } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-
-const LIVE_PRICES = [
-  { item: "Rice", price: "₦2,200/kg" },
-  { item: "Egg", price: "₦250/piece" },
-  { item: "Beans", price: "₦1,800/kg" },
-]
-
-const PRICE_TABLE = [
-  {
-    icon: "🍚",
-    name: "Rice (Local)",
-    category: "Grains",
-    location: "Abuja, Wuse",
-    price: "₦2,200/kg",
-    change: "+8.4%",
-    changeType: "up" as const,
-    time: "2 mins ago",
-  },
-  {
-    icon: "🫘",
-    name: "Beans (Oloyin)",
-    category: "Grains",
-    location: "Lagos, Mile 12",
-    price: "₦2,000/kg",
-    change: "+3.2%",
-    changeType: "up" as const,
-    time: "15 mins ago",
-  },
-  {
-    icon: "🍅",
-    name: "Tomato",
-    category: "Vegetables",
-    location: "Kano, Dawanau",
-    price: "₦120/piece",
-    change: "+12.5%",
-    changeType: "up" as const,
-    time: "1 hr ago",
-  },
-  {
-    icon: "🥚",
-    name: "Eggs (Crate)",
-    category: "Protein",
-    location: "Ibadan, Bodija",
-    price: "₦4,500/crate",
-    change: "-1.2%",
-    changeType: "down" as const,
-    time: "2 hrs ago",
-  },
-]
-
-const API_EXAMPLE = `{
-  "status": "success",
-  "data": {
-    "item": "Rice (Local)",
-    "location": {
-      "city": "Abuja",
-      "market": "Wuse Market"
-    },
-    "current_price": {
-      "amount": 2200,
-      "currency": "NGN",
-      "unit": "kg"
-    },
-    "historical_trends": {
-      "7_day_change_pct": 8.4,
-      "30_day_avg": 2050
-    },
-    "last_updated": "2024-05-20T14:32:00Z"
-  }
-}`
+import React from "react";
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-background">
-      <nav className="border-b border-border bg-background/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                <span className="text-white font-bold text-sm">P</span>
-              </div>
-              <span className="font-semibold text-ink-primary text-lg">PriceNaija</span>
-            </div>
-            <div className="hidden md:flex items-center gap-8">
-              <Link href="/explorer" className="text-sm font-medium text-ink-primary hover:text-primary transition-colors">Explorer</Link>
-              <Link href="/developers/dashboard" className="text-sm font-medium text-ink-primary hover:text-primary transition-colors">Developers</Link>
-              <Link href="/explorer" className="text-sm font-medium text-ink-primary hover:text-primary transition-colors">Markets</Link>
-              <Link href="/docs" className="text-sm font-medium text-ink-primary hover:text-primary transition-colors">About</Link>
-            </div>
-            <div className="flex items-center gap-3">
-              <Link href="/developers/dashboard">
-                <Button variant="ghost" size="sm">Sign In</Button>
-              </Link>
-              <Link href="/developers/api-keys">
-                <Button size="sm" className="bg-primary hover:bg-primary/90">Get API Key</Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      <section className="relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
-          <div className="text-center max-w-3xl mx-auto">
-            <Badge variant="secondary" className="mb-6 bg-primary/10 text-primary border-primary/20">
-              Live Market Data
-            </Badge>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-ink-primary tracking-tight leading-tight">
-              Know What Food Costs in Nigeria.
-            </h1>
-            <p className="mt-6 text-lg text-ink-secondary max-w-2xl mx-auto">
-              Reliable, structured Nigerian food-price data for people, businesses and developers.
-            </p>
-          </div>
-
-          <div className="mt-10 max-w-xl mx-auto">
-            <div className="relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-ink-secondary" />
-              <input
-                type="text"
-                placeholder="Search..."
-                className="w-full h-14 pl-12 pr-4 rounded-xl border border-border bg-surface text-ink-primary placeholder:text-ink-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all shadow-sm"
-              />
-            </div>
-          </div>
-
-          <div className="mt-6 flex items-center justify-center gap-6 text-sm text-ink-secondary">
-            <div className="flex items-center gap-2">
-              <Clock className="h-4 w-4" />
-              <span>Updated 2 mins ago:</span>
-            </div>
-            <div className="flex items-center gap-4">
-              {LIVE_PRICES.map((p) => (
-                <span key={p.item} className="font-medium text-ink-primary">
-                  {p.item} <span className="text-primary">{p.price}</span>
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/explorer">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8">
-                Explore Prices
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-            <Link href="/developers/dashboard">
-              <Button size="lg" variant="outline" className="px-8">
-                <Code className="mr-2 h-4 w-4" />
-                Build With Our API
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-4 pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <Card className="lg:col-span-1 border-border">
-            <CardContent className="p-6">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="text-3xl">🍚</span>
-                <div>
-                  <h3 className="font-semibold text-ink-primary">Rice (Local)</h3>
-                  <div className="flex items-center gap-1 text-sm text-ink-secondary">
-                    <MapPin className="h-3 w-3" />
-                    Wuse Market, Abuja
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center gap-2 mb-6">
-                <Badge variant="secondary" className="bg-emerald-50 text-emerald-700 border-emerald-200">
-                  <TrendingUp className="h-3 w-3 mr-1" />
-                  8.4%
-                </Badge>
-              </div>
-              <div className="space-y-3">
-                <div>
-                  <p className="text-xs text-ink-secondary uppercase tracking-wider">Current Price</p>
-                  <p className="text-2xl font-bold text-ink-primary">₦2,200 <span className="text-sm font-normal text-ink-secondary">/ kg</span></p>
-                </div>
-                <div>
-                  <p className="text-xs text-ink-secondary uppercase tracking-wider">7-Day Avg</p>
-                  <p className="text-lg font-semibold text-ink-primary">₦2,030 <span className="text-sm font-normal text-ink-secondary">/ kg</span></p>
-                </div>
-              </div>
-              <div className="mt-6 pt-4 border-t border-border flex items-center gap-2 text-sm text-ink-secondary">
-                <BadgeCheck className="h-4 w-4 text-primary" />
-                <span>Verified Source</span>
-                <span className="text-ink-secondary/60">·</span>
-                <span>Market Agent #442</span>
-              </div>
-            </CardContent>
-          </Card>
-
-          <div className="lg:col-span-2">
-            <Card className="border-border h-full">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-xl font-semibold text-ink-primary">Live Market Prices</h2>
-                  <Link href="/explorer" className="text-sm text-primary hover:text-primary/80 flex items-center gap-1 transition-colors">
-                    View all prices <ArrowRight className="h-3 w-3" />
-                  </Link>
-                </div>
-                <p className="text-sm text-ink-secondary mb-6">Real-time observations from major markets across the country.</p>
-                <div className="overflow-x-auto">
-                  <table className="w-full">
-                    <thead>
-                      <tr className="border-b border-border">
-                        <th className="text-left text-xs font-semibold text-ink-secondary uppercase tracking-wider py-3 px-2">Food Item</th>
-                        <th className="text-left text-xs font-semibold text-ink-secondary uppercase tracking-wider py-3 px-2">Category</th>
-                        <th className="text-left text-xs font-semibold text-ink-secondary uppercase tracking-wider py-3 px-2">Location</th>
-                        <th className="text-right text-xs font-semibold text-ink-secondary uppercase tracking-wider py-3 px-2">Price (NGN)</th>
-                        <th className="text-right text-xs font-semibold text-ink-secondary uppercase tracking-wider py-3 px-2">Change</th>
-                        <th className="text-right text-xs font-semibold text-ink-secondary uppercase tracking-wider py-3 px-2">Last Updated</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {PRICE_TABLE.map((row) => (
-                        <tr key={row.name} className="border-b border-border last:border-0 hover:bg-surface-container-low/50 transition-colors">
-                          <td className="py-4 px-2">
-                            <div className="flex items-center gap-3">
-                              <span className="text-xl">{row.icon}</span>
-                              <span className="font-medium text-ink-primary">{row.name}</span>
-                            </div>
-                          </td>
-                          <td className="py-4 px-2 text-sm text-ink-secondary">{row.category}</td>
-                          <td className="py-4 px-2 text-sm text-ink-secondary">{row.location}</td>
-                          <td className="py-4 px-2 text-right font-mono font-medium text-ink-primary">{row.price}</td>
-                          <td className="py-4 px-2 text-right">
-                            <span className={`inline-flex items-center gap-1 font-mono text-sm font-medium ${row.changeType === "up" ? "text-emerald-600" : "text-red-500"}`}>
-                              {row.changeType === "up" ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
-                              {row.change}
-                            </span>
-                          </td>
-                          <td className="py-4 px-2 text-right text-sm text-ink-secondary">{row.time}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-border bg-surface-container-low/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold text-ink-primary">
-                Build with Nigerian food-price data.
-              </h2>
-              <p className="mt-4 text-ink-secondary text-lg">
-                Integrate reliable pricing intelligence directly into your applications with our robust REST API.
-              </p>
-              <div className="mt-8 space-y-4">
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <Zap className="h-4 w-4 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-ink-primary">Fast & Reliable</h4>
-                    <p className="text-sm text-ink-secondary">99.9% uptime with sub-100ms response times for critical applications.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <Key className="h-4 w-4 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-ink-primary">Start Building Today</h4>
-                    <p className="text-sm text-ink-secondary">Get a free developer key and make up to 1,000 requests per month.</p>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-8 flex items-center gap-4">
-                <Link href="/docs">
-                  <Button variant="outline">
-                    Explore API Documentation
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
-                <Link href="/developers/api-keys">
-                  <Button className="bg-primary hover:bg-primary/90 text-white">
+    <div className="bg-surface text-on-surface font-body-lg antialiased">
+{/* Navigation Shell (TopNavBar) */}
+<header className="bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline flat no shadows docked full-width top-0 sticky z-50">
+<nav className="flex justify-between items-center w-full px-margin-desktop max-w-[1440px] mx-auto h-16">
+{/* Brand */}
+<div className="flex items-center gap-md">
+<a className="text-title-md font-headline-lg text-primary dark:text-primary-fixed flex items-center gap-xs" href="#">
+<span className="material-symbols-outlined text-primary" data-weight="fill" style={{fontVariationSettings: "'FILL' 1"}}>dataset</span>
+                    PriceNaija
+                </a>
+{/* Desktop Links */}
+<div className="hidden md:flex items-center gap-lg ml-xl">
+{/* Explorer is active since this is the main landing/exploration page */}
+<a className="text-primary dark:text-primary-fixed border-b-2 border-primary dark:border-primary-fixed pb-1 opacity-80 scale-95 transition-all text-body-lg font-body-lg" href="#">Explorer</a>
+<a className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors text-body-lg font-body-lg" href="#">Developers</a>
+<a className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors text-body-lg font-body-lg" href="#">Markets</a>
+<a className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors text-body-lg font-body-lg" href="#">About</a>
+</div>
+</div>
+{/* Actions */}
+<div className="flex items-center gap-sm">
+<button className="hidden md:block text-on-surface-variant text-body-lg font-body-lg hover:text-primary transition-colors">Sign In</button>
+<button className="bg-primary-container text-on-primary rounded-lg px-sm py-xs font-body-lg text-body-sm hover:opacity-90 transition-opacity flex items-center gap-xs">
                     Get API Key
-                  </Button>
-                </Link>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="rounded-xl border border-border bg-surface shadow-lg overflow-hidden">
-                <div className="flex items-center gap-2 px-4 py-3 border-b border-border bg-surface-container-low">
-                  <Badge variant="secondary" className="bg-emerald-50 text-emerald-700 border-emerald-200 text-xs">
-                    GET
-                  </Badge>
-                  <code className="text-sm text-ink-secondary font-mono">
-                    /api/v1/prices?food=rice&location=abuja
-                  </code>
-                  <button className="ml-auto p-1 rounded hover:bg-border transition-colors">
-                    <Copy className="h-4 w-4 text-ink-secondary" />
-                  </button>
-                </div>
-                <pre className="p-4 text-sm font-mono text-ink-primary overflow-x-auto leading-relaxed">
-                  <code>{API_EXAMPLE}</code>
-                </pre>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-          <h2 className="text-3xl font-bold text-ink-primary">Start Building Today</h2>
-          <p className="mt-4 text-ink-secondary text-lg max-w-xl mx-auto">
-            Get a free developer key and make up to 1,000 requests per month.
-          </p>
-          <div className="mt-8">
-            <Link href="/developers/api-keys">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8">
-                Get API Key
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <footer className="border-t border-border bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">P</span>
-                </div>
-                <span className="font-semibold text-ink-primary">PriceNaija</span>
-              </div>
-              <p className="text-sm text-ink-secondary">
-                Making Nigerian food-price data accessible.
-              </p>
-              <p className="text-xs text-ink-secondary mt-2">© 2024 PriceNaija. Data-driven food security for Nigeria.</p>
-            </div>
-            <div>
-              <h5 className="font-semibold text-ink-primary mb-3">Product</h5>
-              <ul className="space-y-2 text-sm">
-                <li><Link href="/docs" className="text-ink-secondary hover:text-primary transition-colors">API Docs</Link></li>
-                <li><Link href="/explorer" className="text-ink-secondary hover:text-primary transition-colors">Pricing</Link></li>
-                <li><Link href="/explorer" className="text-ink-secondary hover:text-primary transition-colors">Explorer</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h5 className="font-semibold text-ink-primary mb-3">Legal & Support</h5>
-              <ul className="space-y-2 text-sm">
-                <li><span className="text-ink-secondary">Terms of Service</span></li>
-                <li><span className="text-ink-secondary">Privacy Policy</span></li>
-                <li><span className="text-ink-secondary">Contact Support</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
+                </button>
+{/* Mobile Menu Toggle */}
+<button className="md:hidden text-on-surface-variant">
+<span className="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+</header>
+<main>
+{/* Hero Section */}
+<section className="relative pt-xl pb-xl px-margin-desktop md:px-margin-desktop max-w-[1440px] mx-auto overflow-hidden">
+<div className="grid grid-cols-1 lg:grid-cols-12 gap-xl items-center relative z-10">
+{/* Hero Content */}
+<div className="lg:col-span-7 flex flex-col gap-lg">
+<div className="flex flex-col gap-sm">
+<span className="inline-flex items-center gap-xs bg-tertiary-container/10 text-tertiary-container rounded-full px-sm py-base text-label-caps font-label-caps w-max">
+<span className="w-2 h-2 rounded-full bg-tertiary-container"></span>
+                            Live Market Data
+                        </span>
+<h1 className="text-display-lg font-display-lg text-on-surface tracking-tight leading-tight md:text-[56px] md:leading-[64px]">
+                            Know What Food Costs in Nigeria.
+                        </h1>
+<p className="text-title-md font-body-lg text-on-surface-variant max-w-2xl">
+                            Reliable, structured Nigerian food-price data for people, businesses and developers.
+                        </p>
+</div>
+{/* Search Bar */}
+<div className="flex flex-col gap-sm max-w-2xl relative">
+<div className="relative group">
+<span className="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors z-10">search</span>
+<input className="w-full bg-surface-container-lowest border border-outline-variant rounded-xl py-sm pl-xl pr-sm text-body-lg font-body-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary shadow-sm transition-all" placeholder="How much is rice in Abuja?" type="text"/>
+<button className="absolute right-xs top-1/2 -translate-y-1/2 bg-primary-container text-on-primary rounded-lg px-sm py-xs text-body-sm font-body-sm hover:opacity-90">Search</button>
+</div>
+{/* Quick Results */}
+<div className="flex flex-wrap items-center gap-sm">
+<span className="text-label-caps font-label-caps text-on-surface-variant flex items-center gap-xs">
+<span className="material-symbols-outlined" style={{fontSize: "16px"}}>update</span>
+                                Updated 2 mins ago:
+                            </span>
+<div className="flex flex-wrap gap-xs">
+<span className="bg-surface-container-highest rounded-full px-sm py-base text-body-sm font-body-sm text-on-surface border border-outline-variant/30 flex items-center gap-xs">
+                                    Rice <span className="text-on-surface-variant font-data-mono">₦2,200/kg</span>
+</span>
+<span className="bg-surface-container-highest rounded-full px-sm py-base text-body-sm font-body-sm text-on-surface border border-outline-variant/30 flex items-center gap-xs">
+                                    Egg <span className="text-on-surface-variant font-data-mono">₦250/piece</span>
+</span>
+<span className="bg-surface-container-highest rounded-full px-sm py-base text-body-sm font-body-sm text-on-surface border border-outline-variant/30 flex items-center gap-xs">
+                                    Beans <span className="text-on-surface-variant font-data-mono">₦1,800/kg</span>
+</span>
+</div>
+</div>
+</div>
+{/* CTAs */}
+<div className="flex flex-wrap items-center gap-sm mt-sm">
+<button className="bg-primary-container text-on-primary rounded-lg px-md py-sm text-body-lg font-body-lg hover:opacity-90 transition-opacity flex items-center gap-xs font-medium shadow-sm">
+                            Explore Prices
+                            <span className="material-symbols-outlined">arrow_forward</span>
+</button>
+<button className="bg-surface-container-low text-on-surface border border-outline-variant rounded-lg px-md py-sm text-body-lg font-body-lg hover:bg-surface-container-high transition-colors flex items-center gap-xs font-medium">
+                            Build With Our API
+                            <span className="material-symbols-outlined">code</span>
+</button>
+</div>
+</div>
+{/* Hero Visual */}
+<div className="lg:col-span-5 relative hidden md:block">
+{/* Abstract Background Pattern */}
+<div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-container/10 via-surface to-surface w-full h-full rounded-full blur-3xl -z-10"></div>
+{/* Main Card */}
+<div className="bg-surface-container-lowest rounded-xl border border-outline-variant p-md shadow-lg shadow-on-surface/5 relative overflow-hidden group hover:border-primary/50 transition-colors">
+{/* Decorative top accent */}
+<div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-container to-tertiary-container"></div>
+<div className="flex justify-between items-start mb-md mt-xs">
+<div className="flex items-center gap-sm">
+<div className="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center border border-outline-variant/30">
+<span className="material-symbols-outlined text-primary-container" data-weight="fill" style={{fontVariationSettings: "'FILL' 1"}}>rice_bowl</span>
+</div>
+<div>
+<h3 className="text-title-md font-headline-lg text-on-surface">Rice (Local)</h3>
+<p className="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-xs">
+<span className="material-symbols-outlined" style={{fontSize: "16px"}}>location_on</span>
+                                        Wuse Market, Abuja
+                                    </p>
+</div>
+</div>
+<span className="bg-error-container/20 text-error rounded-full px-xs py-base text-label-caps font-label-caps flex items-center gap-xs border border-error-container">
+<span className="material-symbols-outlined" style={{fontSize: "14px"}}>trending_up</span>
+                                8.4%
+                            </span>
+</div>
+<div className="grid grid-cols-2 gap-sm mb-md">
+<div className="bg-surface-container-low rounded-lg p-sm border border-outline-variant/30">
+<span className="text-label-caps font-label-caps text-on-surface-variant block mb-xs">CURRENT PRICE</span>
+<div className="text-headline-lg font-headline-lg text-on-surface font-data-mono">₦2,200 <span className="text-body-sm text-on-surface-variant font-body-sm">/ kg</span></div>
+</div>
+<div className="bg-surface-container-low rounded-lg p-sm border border-outline-variant/30">
+<span className="text-label-caps font-label-caps text-on-surface-variant block mb-xs">7-DAY AVG</span>
+<div className="text-headline-lg-mobile font-headline-lg-mobile text-on-surface font-data-mono">₦2,030 <span className="text-body-sm text-on-surface-variant font-body-sm">/ kg</span></div>
+</div>
+</div>
+{/* Mini Chart representation */}
+<div className="h-16 w-full flex items-end gap-1 px-xs">
+<div className="w-full bg-surface-container-high rounded-t-sm h-[40%] hover:bg-primary-container/40 transition-colors"></div>
+<div className="w-full bg-surface-container-high rounded-t-sm h-[45%] hover:bg-primary-container/40 transition-colors"></div>
+<div className="w-full bg-surface-container-high rounded-t-sm h-[35%] hover:bg-primary-container/40 transition-colors"></div>
+<div className="w-full bg-surface-container-high rounded-t-sm h-[50%] hover:bg-primary-container/40 transition-colors"></div>
+<div className="w-full bg-surface-container-high rounded-t-sm h-[65%] hover:bg-primary-container/40 transition-colors"></div>
+<div className="w-full bg-surface-container-high rounded-t-sm h-[80%] hover:bg-primary-container/40 transition-colors"></div>
+<div className="w-full bg-primary-container/80 rounded-t-sm h-[100%] border-t-2 border-primary-container"></div>
+</div>
+</div>
+{/* Floating contextual element */}
+<div className="absolute -right-md -bottom-md bg-surface-container-lowest rounded-lg border border-outline-variant p-sm shadow-md flex items-center gap-sm animate-bounce" style={{animationDuration: "3s"}}>
+<span className="material-symbols-outlined text-tertiary-container">verified_user</span>
+<div className="flex flex-col">
+<span className="text-label-caps font-label-caps text-on-surface">VERIFIED SOURCE</span>
+<span className="text-body-sm font-body-sm text-on-surface-variant">Market Agent #442</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+{/* Live Price Table Section */}
+<section className="py-xl px-margin-desktop md:px-margin-desktop max-w-[1440px] mx-auto bg-surface-container-lowest rounded-3xl border border-outline-variant/50 my-xl shadow-sm">
+<div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-lg gap-sm">
+<div>
+<h2 className="text-headline-lg font-headline-lg text-on-surface">Live Market Prices</h2>
+<p className="text-body-lg font-body-lg text-on-surface-variant">Real-time observations from major markets across the country.</p>
+</div>
+<button className="text-primary font-medium hover:text-primary-container transition-colors flex items-center gap-xs">
+                    View all prices <span className="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div className="overflow-x-auto">
+<table className="w-full text-left border-collapse min-w-[800px]">
+<thead>
+<tr className="bg-surface-container-low text-label-caps font-label-caps text-on-surface-variant border-y border-outline-variant/50">
+<th className="py-sm px-sm font-semibold">FOOD ITEM</th>
+<th className="py-sm px-sm font-semibold">CATEGORY</th>
+<th className="py-sm px-sm font-semibold">LOCATION</th>
+<th className="py-sm px-sm font-semibold text-right">PRICE (NGN)</th>
+<th className="py-sm px-sm font-semibold text-right">CHANGE</th>
+<th className="py-sm px-sm font-semibold text-right">LAST UPDATED</th>
+</tr>
+</thead>
+<tbody className="text-body-sm font-body-sm text-on-surface divide-y divide-outline-variant/30">
+<tr className="hover:bg-surface-container-lowest transition-colors group">
+<td className="py-md px-sm font-medium flex items-center gap-sm">
+<span className="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary-container/10 transition-colors">
+<span className="material-symbols-outlined text-on-surface-variant group-hover:text-primary" style={{fontSize: "16px"}}>rice_bowl</span>
+</span>
+                                Rice (Local)
+                            </td>
+<td className="py-md px-sm"><span className="bg-surface-container-highest px-xs py-base rounded-md text-label-caps font-label-caps">Grains</span></td>
+<td className="py-md px-sm">Abuja, Wuse</td>
+<td className="py-md px-sm text-right font-data-mono font-medium">₦2,200<span className="text-on-surface-variant font-normal text-xs ml-1">/kg</span></td>
+<td className="py-md px-sm text-right text-error font-data-mono bg-error-container/10">+8.4%</td>
+<td className="py-md px-sm text-right text-on-surface-variant">2 mins ago</td>
+</tr>
+<tr className="hover:bg-surface-container-lowest transition-colors group">
+<td className="py-md px-sm font-medium flex items-center gap-sm">
+<span className="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary-container/10 transition-colors">
+<span className="material-symbols-outlined text-on-surface-variant group-hover:text-primary" style={{fontSize: "16px"}}>eco</span>
+</span>
+                                Beans (Oloyin)
+                            </td>
+<td className="py-md px-sm"><span className="bg-surface-container-highest px-xs py-base rounded-md text-label-caps font-label-caps">Grains</span></td>
+<td className="py-md px-sm">Lagos, Mile 12</td>
+<td className="py-md px-sm text-right font-data-mono font-medium">₦2,000<span className="text-on-surface-variant font-normal text-xs ml-1">/kg</span></td>
+<td className="py-md px-sm text-right text-error font-data-mono bg-error-container/10">+3.2%</td>
+<td className="py-md px-sm text-right text-on-surface-variant">15 mins ago</td>
+</tr>
+<tr className="hover:bg-surface-container-lowest transition-colors group">
+<td className="py-md px-sm font-medium flex items-center gap-sm">
+<span className="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary-container/10 transition-colors">
+<span className="material-symbols-outlined text-on-surface-variant group-hover:text-primary" style={{fontSize: "16px"}}>nutrition</span>
+</span>
+                                Tomato
+                            </td>
+<td className="py-md px-sm"><span className="bg-surface-container-highest px-xs py-base rounded-md text-label-caps font-label-caps">Vegetables</span></td>
+<td className="py-md px-sm">Kano, Dawanau</td>
+<td className="py-md px-sm text-right font-data-mono font-medium">₦120<span className="text-on-surface-variant font-normal text-xs ml-1">/piece</span></td>
+<td className="py-md px-sm text-right text-error font-data-mono bg-error-container/10">+12.5%</td>
+<td className="py-md px-sm text-right text-on-surface-variant">1 hr ago</td>
+</tr>
+<tr className="hover:bg-surface-container-lowest transition-colors group">
+<td className="py-md px-sm font-medium flex items-center gap-sm">
+<span className="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary-container/10 transition-colors">
+<span className="material-symbols-outlined text-on-surface-variant group-hover:text-primary" style={{fontSize: "16px"}}>egg</span>
+</span>
+                                Eggs (Crate)
+                            </td>
+<td className="py-md px-sm"><span className="bg-surface-container-highest px-xs py-base rounded-md text-label-caps font-label-caps">Protein</span></td>
+<td className="py-md px-sm">Ibadan, Bodija</td>
+<td className="py-md px-sm text-right font-data-mono font-medium">₦4,500<span className="text-on-surface-variant font-normal text-xs ml-1">/crate</span></td>
+<td className="py-md px-sm text-right text-primary-container font-data-mono bg-primary-container/10">-1.2%</td>
+<td className="py-md px-sm text-right text-on-surface-variant">2 hrs ago</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+{/* Developer Section (Bento Grid Style) */}
+<section className="py-xl px-margin-desktop md:px-margin-desktop max-w-[1440px] mx-auto">
+<div className="mb-lg text-center max-w-2xl mx-auto">
+<h2 className="text-headline-lg font-headline-lg text-on-surface mb-xs">Build with Nigerian food-price data.</h2>
+<p className="text-body-lg font-body-lg text-on-surface-variant">Integrate reliable pricing intelligence directly into your applications with our robust REST API.</p>
+</div>
+<div className="grid grid-cols-1 lg:grid-cols-3 gap-md">
+{/* API Snippet Card */}
+<div className="lg:col-span-2 bg-on-surface rounded-xl p-md border border-outline-variant/20 shadow-lg relative overflow-hidden group">
+<div className="flex justify-between items-center mb-sm border-b border-surface-variant/20 pb-sm">
+<div className="flex items-center gap-sm">
+<span className="bg-primary-container/20 text-primary-fixed-dim rounded px-xs py-base text-label-caps font-label-caps font-data-mono">GET</span>
+<span className="text-surface-variant font-data-mono text-body-sm">/api/v1/prices?food=rice&amp;location=abuja</span>
+</div>
+<button className="text-surface-variant hover:text-primary-fixed transition-colors" title="Copy code">
+<span className="material-symbols-outlined" style={{fontSize: "18px"}}>content_copy</span>
+</button>
+</div>
+<pre className="text-surface-variant font-data-mono text-sm overflow-x-auto p-sm bg-[#1e1e1e] rounded-lg"><code>{"{\n  \"status\": \"success\",\n  \"data\": {\n    \"item\": \"Rice (Local)\",\n    \"location\": {\n      \"city\": \"Abuja\",\n      \"market\": \"Wuse Market\"\n    },\n    \"current_price\": {\n      \"amount\": 2200,\n      \"currency\": \"NGN\",\n      \"unit\": \"kg\"\n    },\n    \"historical_trends\": {\n      \"7_day_change_pct\": 8.4,\n      \"30_day_avg\": 2050\n    },\n    \"last_updated\": \"2024-05-20T14:32:00Z\"\n  }\n}"}</code></pre>
+</div>
+{/* Feature/CTA Cards */}
+<div className="flex flex-col gap-md">
+<div className="bg-surface-container-lowest rounded-xl p-md border border-outline-variant hover:border-primary/50 transition-colors flex-1 flex flex-col justify-center">
+<span className="material-symbols-outlined text-primary-container mb-sm" style={{fontSize: "32px"}}>bolt</span>
+<h3 className="text-title-md font-headline-lg text-on-surface mb-xs">Fast &amp; Reliable</h3>
+<p className="text-body-sm font-body-sm text-on-surface-variant mb-md">99.9% uptime with sub-100ms response times for critical applications.</p>
+<a className="text-primary font-medium flex items-center gap-xs hover:underline mt-auto" href="#">
+                            Explore API Documentation <span className="material-symbols-outlined" style={{fontSize: "18px"}}>arrow_forward</span>
+</a>
+</div>
+<div className="bg-primary-container text-on-primary rounded-xl p-md shadow-md flex-1 flex flex-col justify-center relative overflow-hidden">
+<div className="absolute top-0 right-0 p-sm opacity-20">
+<span className="material-symbols-outlined" style={{fontSize: "64px"}}>vpn_key</span>
+</div>
+<h3 className="text-title-md font-headline-lg mb-xs relative z-10">Start Building Today</h3>
+<p className="text-body-sm font-body-sm opacity-90 mb-md relative z-10">Get a free developer key and make up to 1,000 requests per month.</p>
+<button className="bg-on-primary text-primary-container rounded-lg px-md py-sm text-body-sm font-medium hover:bg-surface-container-lowest transition-colors w-max relative z-10">
+                            Get API Key
+                        </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+{/* Footer Shell */}
+<footer className="bg-surface-container-highest dark:bg-inverse-surface border-t border-outline-variant full-width bottom mt-xl">
+<div className="w-full py-xl px-margin-desktop flex flex-col md:flex-row justify-between items-start md:items-center max-w-[1440px] mx-auto gap-lg">
+<div className="flex flex-col gap-sm">
+<a className="text-title-md font-headline-lg text-primary flex items-center gap-xs" href="#">
+<span className="material-symbols-outlined" data-weight="fill" style={{fontVariationSettings: "'FILL' 1"}}>dataset</span>
+                    PriceNaija
+                </a>
+<p className="text-body-sm font-body-sm text-on-surface-variant max-w-sm">Making Nigerian food-price data accessible.</p>
+<p className="text-body-sm font-body-sm text-on-surface-variant opacity-70 mt-sm">© 2024 PriceNaija. Data-driven food security for Nigeria.</p>
+</div>
+<div className="flex flex-col sm:flex-row gap-lg md:gap-xl">
+<div className="flex flex-col gap-sm text-body-sm font-body-sm">
+<span className="text-label-caps font-label-caps text-on-surface font-semibold mb-xs">Product</span>
+<a className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">API Docs</a>
+<a className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Pricing</a>
+<a className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Explorer</a>
+</div>
+<div className="flex flex-col gap-sm text-body-sm font-body-sm">
+<span className="text-label-caps font-label-caps text-on-surface font-semibold mb-xs">Legal &amp; Support</span>
+<a className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Terms of Service</a>
+<a className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Privacy Policy</a>
+<a className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</div>
+</footer>
     </div>
-  )
+  );
 }
