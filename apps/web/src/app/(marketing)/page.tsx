@@ -72,17 +72,17 @@ export default function LandingPage() {
 </span>
 </div>
 </div>
-</div>
 {/* CTAs */}
 <div className="flex flex-wrap items-center gap-sm mt-sm">
-<button className="bg-primary-container text-on-primary rounded-lg px-md py-sm text-body-lg font-body-lg hover:opacity-90 transition-opacity flex items-center gap-xs font-medium shadow-sm">
+<Link href="/explorer" className="bg-primary-container text-on-primary rounded-lg px-md py-sm text-body-lg font-body-lg hover:opacity-90 transition-opacity flex items-center gap-xs font-medium shadow-sm">
                             Explore Prices
                             <ArrowRight className="w-5 h-5" />
-</button>
-<button className="bg-surface-container-low text-on-surface border border-outline-variant rounded-lg px-md py-sm text-body-lg font-body-lg hover:bg-surface-container-high transition-colors flex items-center gap-xs font-medium">
+</Link>
+<Link href="/docs" className="bg-surface-container-low text-on-surface border border-outline-variant rounded-lg px-md py-sm text-body-lg font-body-lg hover:bg-surface-container-high transition-colors flex items-center gap-xs font-medium">
                             Build With Our API
                             <Code className="w-5 h-5" />
-</button>
+</Link>
+</div>
 </div>
 </div>
 {/* Hero Visual */}
@@ -150,9 +150,9 @@ export default function LandingPage() {
 <h2 className="text-headline-lg font-headline-lg text-on-surface">Live Market Prices</h2>
 <p className="text-body-lg font-body-lg text-on-surface-variant">Real-time observations from major markets across the country.</p>
 </div>
-<button className="text-primary font-medium hover:text-primary-container transition-colors flex items-center gap-xs">
+<Link href="/explorer" className="text-primary font-medium hover:text-primary-container transition-colors flex items-center gap-xs">
                     View all prices <ArrowRight className="w-5 h-5" />
-</button>
+</Link>
 </div>
 <div className="overflow-x-auto">
 <table className="w-full text-left border-collapse min-w-[800px]">
@@ -249,9 +249,9 @@ export default function LandingPage() {
 <Zap className="w-8 h-8 text-primary-container mb-sm" />
 <h3 className="text-title-md font-headline-lg text-on-surface mb-xs">Fast &amp; Reliable</h3>
 <p className="text-body-sm font-body-sm text-on-surface-variant mb-md">99.9% uptime with sub-100ms response times for critical applications.</p>
-<a className="text-primary font-medium flex items-center gap-xs hover:underline mt-auto" href="#">
+<Link className="text-primary font-medium flex items-center gap-xs hover:underline mt-auto" href="/docs">
                             Explore API Documentation <ArrowRight className="w-4.5 h-4.5" />
-</a>
+</Link>
 </div>
 <div className="bg-primary-container text-on-primary rounded-xl p-md shadow-md flex-1 flex flex-col justify-center relative overflow-hidden">
 <div className="absolute top-0 right-0 p-sm opacity-20">
@@ -259,9 +259,9 @@ export default function LandingPage() {
 </div>
 <h3 className="text-title-md font-headline-lg mb-xs relative z-10">Start Building Today</h3>
 <p className="text-body-sm font-body-sm opacity-90 mb-md relative z-10">Get a free developer key and make up to 1,000 requests per month.</p>
-<button className="bg-on-primary text-primary-container rounded-lg px-md py-sm text-body-sm font-medium hover:bg-surface-container-lowest transition-colors w-max relative z-10">
+<Link href="/api-keys" className="bg-on-primary text-primary-container rounded-lg px-md py-sm text-body-sm font-medium hover:bg-surface-container-lowest transition-colors w-max relative z-10 block">
                             Get API Key
-                        </button>
+</Link>
 </div>
 </div>
 </div>
