@@ -38,10 +38,17 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
           </p>
           <Link
             href="/docs"
-            className="flex items-center gap-3 px-3 py-2 rounded-lg text-primary bg-primary-container/10 font-body-sm text-body-sm font-medium border-r-4 border-primary"
+            className="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-body-sm text-body-sm transition-colors"
           >
             <BookOpen className="w-4 h-4" />
             Introduction
+          </Link>
+          <Link
+            href="/docs/quickstart"
+            className="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-body-sm text-body-sm transition-colors"
+          >
+            <BookOpen className="w-4 h-4" />
+            Quickstart
           </Link>
 
           <p className="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-wider px-3 mt-4 mb-2">
