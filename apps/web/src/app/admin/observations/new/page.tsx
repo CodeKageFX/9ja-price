@@ -1,21 +1,12 @@
-import { Header } from "@/components/layout/PageHeader"
-import { ObservationForm } from "@/components/forms/ObservationForm"
-import { cn } from "@/lib/utils"
+import type { Metadata } from "next";
+import React from "react";
+import { AdminRecordObservationContent } from "@/components/shared/AdminRecordObservationContent";
 
-export default function AdminObservationsPage() {
-  return (
-    <main className="min-h-screen bg-background">
-      <Header
-        title="Record Observation"
-        description="Add new price observation for a commodity"
-        showBreadcrumb={true}
-      />
+export const metadata: Metadata = {
+  title: "Record Price Observation | 9jaPrice Admin",
+  description: "Record new food price observations across Nigerian markets.",
+};
 
-      <section className="py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ObservationForm />
-        </div>
-      </section>
-    </main>
-  )
+export default function RecordObservationPage() {
+  return <AdminRecordObservationContent />;
 }
