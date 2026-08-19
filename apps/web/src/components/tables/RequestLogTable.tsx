@@ -1,23 +1,27 @@
-import { DataTable } from "@/components/tables/DataTable"
-
-export type RequestLogColumn = "date" | "method" | "endpoint" | "status" | "duration" | "actions"
+import { DataTable, type DataTableColumnDef } from "@/components/tables/DataTable"
 
 export interface RequestLogRow {
-  date: string
   method: string
   endpoint: string
-  status: string
-  duration: string
+  status: number
+  responseTime: number
+  timestamp: string
 }
 
-export function RequestLogTable({ data }: { data: RequestLogRow[] }) {
-  const columns: RequestLogColumn[] = ["date", "method", "endpoint", "status"]
+const columns: DataTableColumnDef<RequestLogRow>[] = [
+  { accessorKey: "method", header: "Method" },
+  { accessorKey: "endpoint", header: "Endpoint" },
+  { accessorKey: "status", header: "Status" },
+  { accessorKey: "responseTime", header: "Response Time" },
+  { accessorKey: "timestamp", header: "Timestamp" },
+]
 
+export function RequestLogTable({ data }: { data: RequestLogRow[] }) {
   return (
-    <DataTable<RequestLogRow>
+    <DataTable
       data={data}
       columns={columns}
-      title="Recent API Requests"
+      title="Recent Requests"
     />
   )
 }

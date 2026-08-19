@@ -1,110 +1,45 @@
-import { NavigationMenu, NavigationMenuItem, NavigationMenuSeparator, NavigationMenuContent, NavigationMenuDivider, NavigationMenuDropdown } from "@/components/ui/navigation-menu"
-import { Menu } from "lucide-react"
+"use client"
+
 import Link from "next/link"
+import { Menu } from "lucide-react"
 
-export function Navbar() {
+export function Navbar({ onMenuClick }: { onMenuClick?: () => void }) {
   return (
-    <nav className="border-b border-border bg-background/80 backdrop-blur-md sticky top-0 z-50">
+    <nav className="border-b border-border bg-background/80 backdrop-blur-md sticky top-0 z-40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <NavigationMenu>
-          <NavigationMenuContent className="flex items-center gap-8">
-            <NavigationMenuItem asChild>
-              <Link
-                href="/"
-                className="font-medium text-ink-primary hover:text-primary transition-colors"
-              >
-                <span className="self-center whitespace-nowrap">PriceNaija</span>
-              </Link>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem asChild>
-              <Link
-                href="/explorer"
-                className="font-medium text-ink-primary hover:text-primary transition-colors"
-              >
+        <div className="flex items-center justify-between h-16">
+          <div className="flex items-center gap-8">
+            <Link href="/" className="font-semibold text-ink-primary text-lg">
+              PriceNaija
+            </Link>
+            <div className="hidden md:flex items-center gap-6">
+              <Link href="/explorer" className="text-sm font-medium text-ink-primary hover:text-primary transition-colors">
                 Price Explorer
               </Link>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem asChild>
-              <Link
-                href="/docs"
-                className="font-medium text-ink-primary hover:text-primary transition-colors"
-              >
+              <Link href="/developers/dashboard" className="text-sm font-medium text-ink-primary hover:text-primary transition-colors">
+                Developers
+              </Link>
+              <Link href="/docs" className="text-sm font-medium text-ink-primary hover:text-primary transition-colors">
                 API Docs
               </Link>
-            </NavigationMenuItem>
-
-            <NavigationMenuDropdown>
-              <NavigationMenuItem asChild>
-                <Link
-                  href="#"
-                  className="relative flex items-center gap-2 font-medium text-ink-primary"
-                >
-                  Admin
-                  <svg
-                    className="h-4 w-4 inline"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path d="M6 9l6 6 6-6" />
-                  </svg>
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuContent className="mt-2 w-48 bg-white shadow-md px-2">
-                <NavigationMenuItem>
-                  <Link href="/admin/observations" className="block px-4 py-2 rounded hover:bg-border transition-colors">
-                    Record Observation
-                  </Link>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <Link href="/admin/api-keys" className="block px-4 py-2 rounded hover:bg-border transition-colors">
-                    API Keys
-                  </Link>
-                </NavigationMenuItem>
-              </NavigationMenuContent>
-            </NavigationMenuDropdown>
-
-            <NavigationMenuSeparator />
-
-            <NavigationMenuDropdown>
-              <NavigationMenuItem asChild>
-                <button
-                  className="flex items-center gap-2 font-medium text-ink-primary hover:text-primary transition-colors"
-                >
-                  Profile
-                  <svg
-                    className="h-4 w-4 inline"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path d="M6 9l6 6 6-6" />
-                  </svg>
-                </button>
-              </NavigationMenuItem>
-              <NavigationMenuContent className="mt-2 w-48 bg-white shadow-md px-2">
-                <NavigationMenuItem>
-                  <span className="block px-4 py-2 rounded">User</span>
-                </NavigationMenuItem>
-                <NavigationMenuSeparator />
-                <NavigationMenuItem>
-                  <span className="block px-4 py-2 rounded text-sm text-ink-secondary">Sign out</span>
-                </NavigationMenuItem>
-              </NavigationMenuContent>
-            </NavigationMenuDropdown>
-          </NavigationMenuContent>
-
-          <button
-            className="sm:hidden p-2 rounded-lg hover:bg-border focus:outline-none focus:ring-2 focus:ring-primary"
-            aria-label="Open menu"
-          >
-            <Menu className="h-6 w-6" />
-          </button>
-        </NavigationMenu>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <Link href="/developers/api-keys" className="hidden sm:inline-flex text-sm font-medium text-ink-primary hover:text-primary transition-colors">
+              Sign In
+            </Link>
+            <Link href="/developers/api-keys" className="hidden sm:inline-flex h-8 items-center justify-center rounded-lg bg-primary px-3 text-sm font-medium text-white hover:bg-primary/90 transition-colors">
+              Get API Key
+            </Link>
+            <button
+              onClick={onMenuClick}
+              className="md:hidden p-2 rounded-lg hover:bg-border transition-colors"
+              aria-label="Open menu"
+            >
+              <Menu className="h-5 w-5" />
+            </button>
+          </div>
+        </div>
       </div>
     </nav>
   )

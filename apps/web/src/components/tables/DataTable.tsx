@@ -1,59 +1,65 @@
-import { useReactTable } from "@tanstack/react-table"
+"use client"
+
+import { useMemo } from "react"
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+
+export interface DataTableColumnDef<TData> {
+  accessorKey: keyof TData & string
+  header: string
+}
 
 export interface DataTableProps<TData> {
   data: TData[]
-  columns: string[]
+  columns: DataTableColumnDef<TData>[]
   title?: string
-  onAction?: (row: TData) => void
+  onRowClick?: (row: TData) => void
 }
 
 export function DataTable<TData>({
   data,
   columns,
   title,
-  onAction,
+  onRowClick,
 }: DataTableProps<TData>) {
-  const { getTableBodyProps, getNoRowsTemplate, getRowId, } = useReactTable({
-    data,
-    columns,
-    getCoreRowModel: {},
-  })
-
   return (
-    <Table>
-      {title && <TableHeader>
-        <TableRow>
-          {columns.map((column) => (
-            <TableHead key={column}>
-              {column}
-            </TableHead>
-          ))}
-        </TableRow>
-      </TableHeader>}
-
-      <TableBody {...getTableBodyProps()}>
-        {getNoRowsTemplate && <TableRow>{getNoRowsTemplate()}</TableRow>}
-
-        {data.map((row) => {
-          const cellValues: Record<string, unknown> = {}
-          columns.forEach((column) => {
-            cellValues[column] = row[column as keyof TData]
-          })
-          return (
-            <TableRow
-              key={getRowId!(row)}
-              onClick={() => onAction && onAction(row)}
-            >
-              {columns.map((column) => (
-                <TableCell key={column}>{cellValues[column]}</TableCell>
-              ))}
+    <div className="rounded-xl border border-border overflow-hidden">
+      {title && (
+        <div className="px-4 py-3 border-b border-border bg-surface-container-low/50">
+          <h3 className="font-semibold text-ink-primary">{title}</h3>
+        </div>
+      )}
+      <Table>
+        <TableHeader>
+          <TableRow>
+            {columns.map((col) => (
+              <TableHead key={col.accessorKey as string}>{col.header}</TableHead>
+            ))}
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {data.length === 0 ? (
+            <TableRow>
+              <TableCell colSpan={columns.length} className="h-24 text-center text-ink-secondary">
+                No results.
+              </TableCell>
             </TableRow>
-          )
-        })}
-      </TableBody>
-    </Table>
+          ) : (
+            data.map((row, index) => (
+              <TableRow
+                key={index}
+                onClick={() => onRowClick?.(row)}
+                className={onRowClick ? "cursor-pointer hover:bg-surface-container-low/50" : ""}
+              >
+                {columns.map((col) => (
+                  <TableCell key={col.accessorKey as string}>
+                    {String(row[col.accessorKey])}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))
+          )}
+        </TableBody>
+      </Table>
+    </div>
   )
 }

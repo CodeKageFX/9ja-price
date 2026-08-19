@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge"
+import { cn } from "@/lib/utils"
 
 export type StatusBadgeVariant = "active" | "revoked" | "verified" | "pending"
 

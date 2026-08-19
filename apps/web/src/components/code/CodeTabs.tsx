@@ -1,30 +1,40 @@
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
+"use client"
+
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
 import { CodeBlock } from "@/components/code/CodeBlock"
 
 export interface CodeTabsProps {
   tabs: {
     label: string
-    language: "json" | "javascript" | "bash" | "curl"
+    language: string
     code: string
   }[]
 }
 
 export function CodeTabs({ tabs }: CodeTabsProps) {
-  return (
-    <Tabs className="w-full">
-      <TabsList className="border-b">
-        {tabs.map((tab) => (
-          <TabsTrigger key={tab.label} className="p-4 text-sm font-medium">
-            {tab.label}
-          </TabsTrigger>
-        ))}
-      </TabsList>
+  const [activeTab, setActiveTab] = useState(0)
 
-      {tabs.map((tab) => (
-        <TabsContent key={tab.label} className="p-4">
-          <CodeBlock code={tab.code} language={tab.language} />
-        </TabsContent>
-      ))}
-    </Tabs>
+  return (
+    <div className="rounded-xl border border-border overflow-hidden">
+      <div className="flex border-b border-border bg-surface-container-low/50">
+        {tabs.map((tab, index) => (
+          <button
+            key={tab.label}
+            onClick={() => setActiveTab(index)}
+            className={`px-4 py-2.5 text-sm font-medium transition-colors ${
+              activeTab === index
+                ? "border-b-2 border-primary text-primary"
+                : "text-ink-secondary hover:text-ink-primary"
+            }`}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+      <div className="p-0">
+        <CodeBlock code={tabs[activeTab].code} language={tabs[activeTab].language} />
+      </div>
+    </div>
   )
 }

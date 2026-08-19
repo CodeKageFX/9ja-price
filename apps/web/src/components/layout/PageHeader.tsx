@@ -1,5 +1,4 @@
-import { Breadcrumb, BreadcrumbItem, BreadcrumbSeparator, } from "@/components/ui/breadcrumb"
-import { AboveHead, Heading, Description } from "@/components/ui/alert"
+import { Breadcrumb, BreadcrumbItem, BreadcrumbSeparator, BreadcrumbList } from "@/components/ui/breadcrumb"
 
 export function PageHeader({
   title,
@@ -14,30 +13,20 @@ export function PageHeader({
     <header className="border-b border-border bg-background/80 backdrop-blur-md py-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {showBreadcrumb && (
-          <Breadcrumb className="mb-4">
+          <BreadcrumbList className="mb-4">
             <BreadcrumbItem>
-              <a href="/!" className="hover:text-primary transition-colors">
+              <a href="/" className="hover:text-primary transition-colors">
                 Home
               </a>
             </BreadcrumbItem>
-            <BreadcrumbSeparator>
-              <svg
-                className="h-3 w-3"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path d="M3 6l9 9 9-9" />
-              </svg>
-            </BreadcrumbSeparator>
+            <BreadcrumbSeparator />
             <BreadcrumbItem>
               <span className="font-medium text-ink-primary">{title}</span>
             </BreadcrumbItem>
-          </Breadcrumb>
+          </BreadcrumbList>
         )}
 
-        <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-ink-primary mb-2">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-ink-primary mb-2">
           {title}
         </h1>
 
@@ -50,3 +39,5 @@ export function PageHeader({
     </header>
   )
 }
+
+export const Header = PageHeader

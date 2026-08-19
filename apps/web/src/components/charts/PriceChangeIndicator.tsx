@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge"
-import { ChevronUpChevronDown } from "lucide-react"
+import { TrendingUp, TrendingDown, Minus } from "lucide-react"
 
 export type PriceChangeDirection = "up" | "down" | "neutral"
 
@@ -10,23 +10,15 @@ export function PriceChangeIndicator({
   change: number
   direction: PriceChangeDirection
 }) {
-  const directionMap: Record<PriceChangeDirection, { angle: number; label: string }> = {
-    up: { angle: -135, label: "Increase" },
-    down: { angle: 45, label: "Decrease" },
-    neutral: { angle: 0, label: "Stable" },
-  }
-
-  const { angle, label } = directionMap[direction]
+  const icon = direction === "up" ? TrendingUp : direction === "down" ? TrendingDown : Minus
+  const Icon = icon
+  const color = direction === "up" ? "text-emerald-600" : direction === "down" ? "text-red-500" : "text-ink-secondary"
+  const bg = direction === "up" ? "bg-emerald-50" : direction === "down" ? "bg-red-50" : "bg-surface-container-low"
 
   return (
-    <Badge
-      className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300"
-      variant="default"
-    >
-      <ChevronUpChevronDown
-        className="h-3 w-3 rotate-[{angle}] inline"
-        aria-label={label}
-      />{label}
+    <Badge className={`${bg} ${color} border-transparent`} variant="default">
+      <Icon className="h-3 w-3 mr-1" />
+      {direction === "up" ? "+" : direction === "down" ? "-" : ""}{Math.abs(change)}%
     </Badge>
   )
 }

@@ -1,27 +1,28 @@
-import { SyntaxHighlighter } from "react-syntax-highlighter"
-import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/atomOneDark"
+"use client"
+
+import { useState } from "react"
+import dynamic from "next/dynamic"
 import { cn } from "@/lib/utils"
+
+const SyntaxHighlighter = dynamic(() => import("react-syntax-highlighter"), { ssr: false })
 
 export interface CodeBlockProps {
   code: string
-  language: "json" | "javascript" | "bash" | "curl"
+  language: string
   className?: string
 }
 
 export function CodeBlock({ code, language, className }: CodeBlockProps) {
-  const supportedLanguages: Record<CodeBlockProps["language"], string> = {
-    json: "json",
-    javascript: "javascript",
-    bash: "bash",
-    curl: "bash",
-  }
-
   return (
-    <div className={cn("rounded-md p-4 bg-background/50 text-sm", className)}>
+    <div className={cn("rounded-xl border border-border overflow-hidden text-sm", className)}>
       <SyntaxHighlighter
-        language={supportedLanguages[language]}
-        style={atomOneDark}
-        wrapLines
+        language={language === "curl" ? "bash" : language}
+        customStyle={{
+          margin: 0,
+          padding: "1rem",
+          background: "var(--surface)",
+          fontSize: "0.875rem",
+        }}
       >
         {code}
       </SyntaxHighlighter>

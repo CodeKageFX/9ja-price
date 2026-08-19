@@ -1,13 +1,4 @@
-import { DataTable } from "@/components/tables/DataTable"
-import { Price } from "@/types/price"
-
-export type PriceTableColumn =
-  | "commodity"
-  | "market"
-  | "unit"
-  | "price"
-  | "date"
-  | "actions"
+import { DataTable, type DataTableColumnDef } from "@/components/tables/DataTable"
 
 export interface PriceTableRow {
   commodity: string
@@ -17,17 +8,20 @@ export interface PriceTableRow {
   date: string
 }
 
-export function PriceTable({ data }: { data: PriceTableRow[] }) {
-  const columns: PriceTableColumn[] = ["commodity", "market", "unit", "price", "date"]
+const columns: DataTableColumnDef<PriceTableRow>[] = [
+  { accessorKey: "commodity", header: "Food Item" },
+  { accessorKey: "market", header: "Location" },
+  { accessorKey: "unit", header: "Unit" },
+  { accessorKey: "price", header: "Price (NGN)" },
+  { accessorKey: "date", header: "Last Updated" },
+]
 
+export function PriceTable({ data }: { data: PriceTableRow[] }) {
   return (
-    <DataTable<PriceTableRow>
+    <DataTable
       data={data}
       columns={columns}
       title="Live Market Prices"
-      onAction={(row) => {
-        // Handle row action
-      }}
     />
   )
 }

@@ -1,24 +1,26 @@
-import { DataTable } from "@/components/tables/DataTable"
-import { ApiKey } from "@/types/api-key"
+import { DataTable, type DataTableColumnDef } from "@/components/tables/DataTable"
 
-export type ApiKeyTableColumn =
-  | "name"
-  | "key"
-  | "permissions"
-  | "status"
-  | "actions"
+export interface ApiKeyTableRow {
+  id: string
+  name: string
+  key: string
+  permissions: string[]
+  status: string
+}
 
-export function ApiKeyTable({ data }: { data: ApiKey[] }) {
-  const columns: ApiKeyTableColumn[] = ["name", "key", "permissions", "status"]
+const columns: DataTableColumnDef<ApiKeyTableRow>[] = [
+  { accessorKey: "name", header: "Name" },
+  { accessorKey: "key", header: "Key" },
+  { accessorKey: "permissions", header: "Permissions" },
+  { accessorKey: "status", header: "Status" },
+]
 
+export function ApiKeyTable({ data }: { data: ApiKeyTableRow[] }) {
   return (
-    <DataTable<ApiKey>
+    <DataTable
       data={data}
       columns={columns}
       title="API Keys"
-      onAction={(key) => {
-        // Handle key action
-      }}
     />
   )
 }

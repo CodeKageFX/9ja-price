@@ -1,37 +1,24 @@
-import { Input } from "@/components/ui/input"
-import { Command, CommandEmpty, CommandHeader, CommandItem, CommandShortcut, CommandValue, } from "@/components/ui/command"
-import { Search } from "lucide-react"
-import { cn } from "@/lib/utils"
+"use client"
 
-export function SearchInput() {
+import { useState } from "react"
+import { Input } from "@/components/ui/input"
+import { Search } from "lucide-react"
+
+export function SearchInput({ placeholder, onSearch }: { placeholder?: string; onSearch?: (value: string) => void }) {
+  const [value, setValue] = useState("")
+
   return (
     <div className="relative">
-      <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-ink-secondary" />
+      <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-ink-secondary" />
       <Input
-        placeholder="Search commands or prices..."
-        className="pl-10"
-        classNameMerge={cn}
-      />
-      <Command
-        className="mt-2 w-full rounded-md border border-border bg-background px-2"
-        onSelect={(value) => {
-          // Handle command selection
+        value={value}
+        onChange={(e) => {
+          setValue(e.target.value)
+          onSearch?.(e.target.value)
         }}
-      >
-        <CommandEmpty>No results found</CommandEmpty>
-        <CommandHeader>Recent Prices</CommandHeader>
-        <CommandItem>
-          <CommandValue>Rice - Lagos</CommandValue>
-        </CommandItem>
-        <CommandItem>
-          <CommandValue>Beans - Kano</CommandValue>
-        </CommandItem>
-        <CommandSeparator />
-        <CommandHeader>Commands</CommandHeader>
-        <CommandItem>
-          <CommandShortcut><kbd>Cmd</kbd> + <kbd>/</kbd></CommandShortcut> Quick search
-        </CommandItem>
-      </Command>
+        placeholder={placeholder || "Search..."}
+        className="pl-10"
+      />
     </div>
   )
 }
