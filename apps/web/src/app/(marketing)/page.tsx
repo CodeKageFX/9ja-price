@@ -1,39 +1,34 @@
+import type { Metadata } from "next";
+import Link from "next/link";
 import React from "react";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import {
+  Search,
+  Clock,
+  ArrowRight,
+  Code,
+  Wheat,
+  MapPin,
+  TrendingUp,
+  CheckCircle2,
+  Sprout,
+  Apple,
+  Egg,
+  Copy,
+  Zap,
+  Key,
+} from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "9jaPrice - Know What Food Costs in Nigeria",
+  description: "Reliable, structured Nigerian food-price data for people, businesses and developers.",
+};
 
 export default function LandingPage() {
   return (
-    <div className="bg-surface text-on-surface font-body-lg antialiased">
-{/* Navigation Shell (TopNavBar) */}
-<header className="bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline flat no shadows docked full-width top-0 sticky z-50">
-<nav className="flex justify-between items-center w-full px-margin-desktop max-w-[1440px] mx-auto h-16">
-{/* Brand */}
-<div className="flex items-center gap-md">
-<a className="text-title-md font-headline-lg text-primary dark:text-primary-fixed flex items-center gap-xs" href="#">
-<span className="material-symbols-outlined text-primary" data-weight="fill" style={{fontVariationSettings: "'FILL' 1"}}>dataset</span>
-                    PriceNaija
-                </a>
-{/* Desktop Links */}
-<div className="hidden md:flex items-center gap-lg ml-xl">
-{/* Explorer is active since this is the main landing/exploration page */}
-<a className="text-primary dark:text-primary-fixed border-b-2 border-primary dark:border-primary-fixed pb-1 opacity-80 scale-95 transition-all text-body-lg font-body-lg" href="#">Explorer</a>
-<a className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors text-body-lg font-body-lg" href="#">Developers</a>
-<a className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors text-body-lg font-body-lg" href="#">Markets</a>
-<a className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors text-body-lg font-body-lg" href="#">About</a>
-</div>
-</div>
-{/* Actions */}
-<div className="flex items-center gap-sm">
-<button className="hidden md:block text-on-surface-variant text-body-lg font-body-lg hover:text-primary transition-colors">Sign In</button>
-<button className="bg-primary-container text-on-primary rounded-lg px-sm py-xs font-body-lg text-body-sm hover:opacity-90 transition-opacity flex items-center gap-xs">
-                    Get API Key
-                </button>
-{/* Mobile Menu Toggle */}
-<button className="md:hidden text-on-surface-variant">
-<span className="material-symbols-outlined">menu</span>
-</button>
-</div>
-</nav>
-</header>
+    <div className="bg-surface text-on-surface font-body-lg antialiased min-h-screen flex flex-col">
+      <Navbar />
 <main>
 {/* Hero Section */}
 <section className="relative pt-xl pb-xl px-margin-desktop md:px-margin-desktop max-w-[1440px] mx-auto overflow-hidden">
@@ -55,14 +50,14 @@ export default function LandingPage() {
 {/* Search Bar */}
 <div className="flex flex-col gap-sm max-w-2xl relative">
 <div className="relative group">
-<span className="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors z-10">search</span>
+<Search className="absolute left-sm top-1/2 -translate-y-1/2 w-5 h-5 text-on-surface-variant group-focus-within:text-primary transition-colors z-10" />
 <input className="w-full bg-surface-container-lowest border border-outline-variant rounded-xl py-sm pl-xl pr-sm text-body-lg font-body-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary shadow-sm transition-all" placeholder="How much is rice in Abuja?" type="text"/>
 <button className="absolute right-xs top-1/2 -translate-y-1/2 bg-primary-container text-on-primary rounded-lg px-sm py-xs text-body-sm font-body-sm hover:opacity-90">Search</button>
 </div>
 {/* Quick Results */}
 <div className="flex flex-wrap items-center gap-sm">
 <span className="text-label-caps font-label-caps text-on-surface-variant flex items-center gap-xs">
-<span className="material-symbols-outlined" style={{fontSize: "16px"}}>update</span>
+<Clock className="w-4 h-4" />
                                 Updated 2 mins ago:
                             </span>
 <div className="flex flex-wrap gap-xs">
@@ -82,11 +77,11 @@ export default function LandingPage() {
 <div className="flex flex-wrap items-center gap-sm mt-sm">
 <button className="bg-primary-container text-on-primary rounded-lg px-md py-sm text-body-lg font-body-lg hover:opacity-90 transition-opacity flex items-center gap-xs font-medium shadow-sm">
                             Explore Prices
-                            <span className="material-symbols-outlined">arrow_forward</span>
+                            <ArrowRight className="w-5 h-5" />
 </button>
 <button className="bg-surface-container-low text-on-surface border border-outline-variant rounded-lg px-md py-sm text-body-lg font-body-lg hover:bg-surface-container-high transition-colors flex items-center gap-xs font-medium">
                             Build With Our API
-                            <span className="material-symbols-outlined">code</span>
+                            <Code className="w-5 h-5" />
 </button>
 </div>
 </div>
@@ -101,18 +96,18 @@ export default function LandingPage() {
 <div className="flex justify-between items-start mb-md mt-xs">
 <div className="flex items-center gap-sm">
 <div className="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center border border-outline-variant/30">
-<span className="material-symbols-outlined text-primary-container" data-weight="fill" style={{fontVariationSettings: "'FILL' 1"}}>rice_bowl</span>
+<Wheat className="w-6 h-6 text-primary-container" />
 </div>
 <div>
 <h3 className="text-title-md font-headline-lg text-on-surface">Rice (Local)</h3>
 <p className="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-xs">
-<span className="material-symbols-outlined" style={{fontSize: "16px"}}>location_on</span>
+<MapPin className="w-4 h-4" />
                                         Wuse Market, Abuja
                                     </p>
 </div>
 </div>
 <span className="bg-error-container/20 text-error rounded-full px-xs py-base text-label-caps font-label-caps flex items-center gap-xs border border-error-container">
-<span className="material-symbols-outlined" style={{fontSize: "14px"}}>trending_up</span>
+<TrendingUp className="w-3.5 h-3.5" />
                                 8.4%
                             </span>
 </div>
@@ -139,7 +134,7 @@ export default function LandingPage() {
 </div>
 {/* Floating contextual element */}
 <div className="absolute -right-md -bottom-md bg-surface-container-lowest rounded-lg border border-outline-variant p-sm shadow-md flex items-center gap-sm animate-bounce" style={{animationDuration: "3s"}}>
-<span className="material-symbols-outlined text-tertiary-container">verified_user</span>
+<CheckCircle2 className="w-5 h-5 text-tertiary-container" />
 <div className="flex flex-col">
 <span className="text-label-caps font-label-caps text-on-surface">VERIFIED SOURCE</span>
 <span className="text-body-sm font-body-sm text-on-surface-variant">Market Agent #442</span>
@@ -156,7 +151,7 @@ export default function LandingPage() {
 <p className="text-body-lg font-body-lg text-on-surface-variant">Real-time observations from major markets across the country.</p>
 </div>
 <button className="text-primary font-medium hover:text-primary-container transition-colors flex items-center gap-xs">
-                    View all prices <span className="material-symbols-outlined">arrow_forward</span>
+                    View all prices <ArrowRight className="w-5 h-5" />
 </button>
 </div>
 <div className="overflow-x-auto">
@@ -175,7 +170,7 @@ export default function LandingPage() {
 <tr className="hover:bg-surface-container-lowest transition-colors group">
 <td className="py-md px-sm font-medium flex items-center gap-sm">
 <span className="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary-container/10 transition-colors">
-<span className="material-symbols-outlined text-on-surface-variant group-hover:text-primary" style={{fontSize: "16px"}}>rice_bowl</span>
+<Wheat className="w-4 h-4 text-on-surface-variant group-hover:text-primary" />
 </span>
                                 Rice (Local)
                             </td>
@@ -188,7 +183,7 @@ export default function LandingPage() {
 <tr className="hover:bg-surface-container-lowest transition-colors group">
 <td className="py-md px-sm font-medium flex items-center gap-sm">
 <span className="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary-container/10 transition-colors">
-<span className="material-symbols-outlined text-on-surface-variant group-hover:text-primary" style={{fontSize: "16px"}}>eco</span>
+<Sprout className="w-4 h-4 text-on-surface-variant group-hover:text-primary" />
 </span>
                                 Beans (Oloyin)
                             </td>
@@ -201,7 +196,7 @@ export default function LandingPage() {
 <tr className="hover:bg-surface-container-lowest transition-colors group">
 <td className="py-md px-sm font-medium flex items-center gap-sm">
 <span className="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary-container/10 transition-colors">
-<span className="material-symbols-outlined text-on-surface-variant group-hover:text-primary" style={{fontSize: "16px"}}>nutrition</span>
+<Apple className="w-4 h-4 text-on-surface-variant group-hover:text-primary" />
 </span>
                                 Tomato
                             </td>
@@ -214,7 +209,7 @@ export default function LandingPage() {
 <tr className="hover:bg-surface-container-lowest transition-colors group">
 <td className="py-md px-sm font-medium flex items-center gap-sm">
 <span className="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary-container/10 transition-colors">
-<span className="material-symbols-outlined text-on-surface-variant group-hover:text-primary" style={{fontSize: "16px"}}>egg</span>
+<Egg className="w-4 h-4 text-on-surface-variant group-hover:text-primary" />
 </span>
                                 Eggs (Crate)
                             </td>
@@ -243,7 +238,7 @@ export default function LandingPage() {
 <span className="text-surface-variant font-data-mono text-body-sm">/api/v1/prices?food=rice&amp;location=abuja</span>
 </div>
 <button className="text-surface-variant hover:text-primary-fixed transition-colors" title="Copy code">
-<span className="material-symbols-outlined" style={{fontSize: "18px"}}>content_copy</span>
+<Copy className="w-4.5 h-4.5" />
 </button>
 </div>
 <pre className="text-surface-variant font-data-mono text-sm overflow-x-auto p-sm bg-[#1e1e1e] rounded-lg"><code>{"{\n  \"status\": \"success\",\n  \"data\": {\n    \"item\": \"Rice (Local)\",\n    \"location\": {\n      \"city\": \"Abuja\",\n      \"market\": \"Wuse Market\"\n    },\n    \"current_price\": {\n      \"amount\": 2200,\n      \"currency\": \"NGN\",\n      \"unit\": \"kg\"\n    },\n    \"historical_trends\": {\n      \"7_day_change_pct\": 8.4,\n      \"30_day_avg\": 2050\n    },\n    \"last_updated\": \"2024-05-20T14:32:00Z\"\n  }\n}"}</code></pre>
@@ -251,16 +246,16 @@ export default function LandingPage() {
 {/* Feature/CTA Cards */}
 <div className="flex flex-col gap-md">
 <div className="bg-surface-container-lowest rounded-xl p-md border border-outline-variant hover:border-primary/50 transition-colors flex-1 flex flex-col justify-center">
-<span className="material-symbols-outlined text-primary-container mb-sm" style={{fontSize: "32px"}}>bolt</span>
+<Zap className="w-8 h-8 text-primary-container mb-sm" />
 <h3 className="text-title-md font-headline-lg text-on-surface mb-xs">Fast &amp; Reliable</h3>
 <p className="text-body-sm font-body-sm text-on-surface-variant mb-md">99.9% uptime with sub-100ms response times for critical applications.</p>
 <a className="text-primary font-medium flex items-center gap-xs hover:underline mt-auto" href="#">
-                            Explore API Documentation <span className="material-symbols-outlined" style={{fontSize: "18px"}}>arrow_forward</span>
+                            Explore API Documentation <ArrowRight className="w-4.5 h-4.5" />
 </a>
 </div>
 <div className="bg-primary-container text-on-primary rounded-xl p-md shadow-md flex-1 flex flex-col justify-center relative overflow-hidden">
 <div className="absolute top-0 right-0 p-sm opacity-20">
-<span className="material-symbols-outlined" style={{fontSize: "64px"}}>vpn_key</span>
+<Key className="w-16 h-16" />
 </div>
 <h3 className="text-title-md font-headline-lg mb-xs relative z-10">Start Building Today</h3>
 <p className="text-body-sm font-body-sm opacity-90 mb-md relative z-10">Get a free developer key and make up to 1,000 requests per month.</p>
@@ -272,33 +267,7 @@ export default function LandingPage() {
 </div>
 </section>
 </main>
-{/* Footer Shell */}
-<footer className="bg-surface-container-highest dark:bg-inverse-surface border-t border-outline-variant full-width bottom mt-xl">
-<div className="w-full py-xl px-margin-desktop flex flex-col md:flex-row justify-between items-start md:items-center max-w-[1440px] mx-auto gap-lg">
-<div className="flex flex-col gap-sm">
-<a className="text-title-md font-headline-lg text-primary flex items-center gap-xs" href="#">
-<span className="material-symbols-outlined" data-weight="fill" style={{fontVariationSettings: "'FILL' 1"}}>dataset</span>
-                    PriceNaija
-                </a>
-<p className="text-body-sm font-body-sm text-on-surface-variant max-w-sm">Making Nigerian food-price data accessible.</p>
-<p className="text-body-sm font-body-sm text-on-surface-variant opacity-70 mt-sm">© 2024 PriceNaija. Data-driven food security for Nigeria.</p>
-</div>
-<div className="flex flex-col sm:flex-row gap-lg md:gap-xl">
-<div className="flex flex-col gap-sm text-body-sm font-body-sm">
-<span className="text-label-caps font-label-caps text-on-surface font-semibold mb-xs">Product</span>
-<a className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">API Docs</a>
-<a className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Pricing</a>
-<a className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Explorer</a>
-</div>
-<div className="flex flex-col gap-sm text-body-sm font-body-sm">
-<span className="text-label-caps font-label-caps text-on-surface font-semibold mb-xs">Legal &amp; Support</span>
-<a className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Terms of Service</a>
-<a className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Privacy Policy</a>
-<a className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Contact Support</a>
-</div>
-</div>
-</div>
-</footer>
+      <Footer />
     </div>
   );
 }
