@@ -5,13 +5,11 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import {
   Terminal,
-  Copy,
   Utensils,
   CreditCard,
   Store,
   LineChart,
   Code,
-  ArrowRight,
 } from "lucide-react";
 import { CopyButton } from "@/components/code/CopyButton";
 

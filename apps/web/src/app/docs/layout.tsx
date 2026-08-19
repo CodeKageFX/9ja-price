@@ -7,7 +7,6 @@ import {
   MapPin,
   Clock,
   Gauge,
-  Webhook,
   HeadphonesIcon,
   CheckCircle2,
 } from "lucide-react";
@@ -63,6 +62,13 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
             Endpoints
           </p>
           <Link
+            href="/docs/foods"
+            className="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-body-sm text-body-sm transition-colors"
+          >
+            <Wheat className="w-4 h-4" />
+            Foods API
+          </Link>
+          <Link
             href="/docs/prices"
             className="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-body-sm text-body-sm transition-colors"
           >
@@ -74,28 +80,21 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
             className="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-body-sm text-body-sm transition-colors"
           >
             <MapPin className="w-4 h-4" />
-            Market Locations
+            Markets API
           </Link>
           <Link
-            href="#"
+            href="/docs/prices"
             className="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-body-sm text-body-sm transition-colors"
           >
             <Clock className="w-4 h-4" />
             Historical Data
           </Link>
           <Link
-            href="#"
+            href="/docs/authentication"
             className="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-body-sm text-body-sm transition-colors"
           >
             <Gauge className="w-4 h-4" />
             Rate Limits
-          </Link>
-          <Link
-            href="#"
-            className="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-body-sm text-body-sm transition-colors"
-          >
-            <Webhook className="w-4 h-4" />
-            Webhooks
           </Link>
         </div>
 

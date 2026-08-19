@@ -19,7 +19,7 @@ export function CopyButton({ text, onCopy, className }: CopyButtonProps) {
       await navigator.clipboard.writeText(text)
       setIsCopied(true)
       if (onCopy) onCopy()
-    } catch (err) {
+    } catch {
       // Fallback for IE
       const textarea = document.createElement("textarea")
       textarea.value = text

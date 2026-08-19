@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Plus, Info, Copy, Edit2, Trash2, Check, Key } from "lucide-react";
+import { Plus, Info, Copy, Edit2, Trash2, Check } from "lucide-react";
 import {
   Dialog,
   DialogContent,

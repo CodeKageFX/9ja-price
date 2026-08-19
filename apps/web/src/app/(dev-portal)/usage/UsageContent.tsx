@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { TrendingUp, TrendingDown, CheckCircle2, AlertCircle } from "lucide-react";
+import { TrendingUp } from "lucide-react";
 
 export function UsageContent() {
   const [timeRange, setTimeRange] = useState<"7D" | "30D" | "90D">("30D");

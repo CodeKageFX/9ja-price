@@ -1,4 +1,5 @@
-import { Breadcrumb, BreadcrumbItem, BreadcrumbSeparator, BreadcrumbList } from "@/components/ui/breadcrumb"
+import Link from "next/link"
+import { BreadcrumbItem, BreadcrumbSeparator, BreadcrumbList } from "@/components/ui/breadcrumb"
 
 export function PageHeader({
   title,
@@ -15,9 +16,9 @@ export function PageHeader({
         {showBreadcrumb && (
           <BreadcrumbList className="mb-4">
             <BreadcrumbItem>
-              <a href="/" className="hover:text-primary transition-colors">
+              <Link href="/" className="hover:text-primary transition-colors">
                 Home
-              </a>
+              </Link>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>

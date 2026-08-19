@@ -163,6 +163,7 @@ export function MarketsContent() {
             className="bg-white border border-[#e2e8f0] rounded-xl overflow-hidden hover:shadow-md transition-shadow flex flex-col h-full group"
           >
             <div className="h-48 relative overflow-hidden bg-[#f2f4f6]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 alt={market.name}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"

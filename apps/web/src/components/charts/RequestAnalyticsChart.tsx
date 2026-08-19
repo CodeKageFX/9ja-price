@@ -1,5 +1,4 @@
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, } from "recharts"
-import { cn } from "@/lib/utils"
 
 export interface RequestAnalyticsChartProps {
   data: {

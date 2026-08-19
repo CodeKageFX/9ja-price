@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { LayoutDashboard, Key, BarChart2, Terminal, FileText, Settings, HelpCircle, X, Database } from "lucide-react"
+import { LayoutDashboard, Key, BarChart2, Terminal, FileText, Settings, X, Database } from "lucide-react"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
 interface SidebarProps {
@@ -17,7 +17,9 @@ const NAV_ITEMS = [
     items: [
       { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
       { href: "/api-keys", label: "API Keys", icon: Key },
+      { href: "/usage", label: "Usage", icon: BarChart2 },
       { href: "/playground", label: "Playground", icon: Terminal },
+      { href: "/settings", label: "Settings", icon: Settings },
     ],
   },
   {

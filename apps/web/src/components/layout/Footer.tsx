@@ -21,21 +21,21 @@ export function Footer() {
         <div className="flex flex-col sm:flex-row gap-lg md:gap-xl">
           <div className="flex flex-col gap-sm text-body-sm font-body-sm">
             <span className="text-label-caps font-label-caps text-on-surface font-semibold mb-xs">Product</span>
-            <Link className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="/docs">API Docs</Link>
             <Link className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="/explorer">Explorer</Link>
-            <Link className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="/commodity/rice">Markets</Link>
+            <Link className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="/markets">Markets</Link>
+            <Link className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="/methodology">Methodology</Link>
           </div>
           <div className="flex flex-col gap-sm text-body-sm font-body-sm">
             <span className="text-label-caps font-label-caps text-on-surface font-semibold mb-xs">Developer</span>
-            <Link className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="/dashboard">Dashboard</Link>
-            <Link className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="/api-keys">API Keys</Link>
+            <Link className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="/developers">Developers</Link>
+            <Link className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="/docs">API Docs</Link>
             <Link className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="/playground">Playground</Link>
           </div>
           <div className="flex flex-col gap-sm text-body-sm font-body-sm">
-            <span className="text-label-caps font-label-caps text-on-surface font-semibold mb-xs">Legal &amp; Support</span>
-            <Link className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Terms of Service</Link>
-            <Link className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Privacy Policy</Link>
-            <Link className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Contact Support</Link>
+            <span className="text-label-caps font-label-caps text-on-surface font-semibold mb-xs">Portal</span>
+            <Link className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="/dashboard">Dashboard</Link>
+            <Link className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="/api-keys">API Keys</Link>
+            <Link className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="/usage">Usage</Link>
           </div>
         </div>
       </div>
