@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function LoginPage() {
   return (
-    <main className="bg-background min-h-screen flex flex-col justify-center items-center px-4 sm:px-8 selection:bg-primary selection:text-on-primary">
+    <main className="bg-[#f7f9fb] min-h-screen w-full flex flex-col justify-center items-center px-4 py-12 selection:bg-[#006b3f] selection:text-white">
       <LoginForm />
     </main>
   );

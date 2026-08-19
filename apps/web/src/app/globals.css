@@ -47,8 +47,8 @@
   --color-secondary-fixed: #dae2fd;
   --color-surface-container-lowest: #ffffff;
   --color-surface-bright: #f7f9fb;
-  --color-outline-variant: #bdcabe;
-  --color-on-tertiary: #ffffff;
+  --color-border-subtle: #e2e8f0;
+  --color-surface-white: #ffffff;
   --color-inverse-surface: #2d3133;
 
   --spacing-sm: 16px;
