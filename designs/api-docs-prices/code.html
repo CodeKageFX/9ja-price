@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Commodity Prices - PriceNaija API Documentation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@500;600&amp;family=Inter:wght@400&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error-container": "#ffdad6",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "secondary-fixed": "#dae2fd",
+                      "surface-container": "#eceef0",
+                      "inverse-on-surface": "#eff1f3",
+                      "secondary-fixed-dim": "#bec6e0",
+                      "outline-variant": "#bdcabe",
+                      "on-secondary-fixed": "#131b2e",
+                      "on-tertiary": "#ffffff",
+                      "surface": "#f7f9fb",
+                      "surface-container-highest": "#e0e3e5",
+                      "tertiary-fixed": "#6bff8f",
+                      "surface-container-low": "#f2f4f6",
+                      "surface-container-high": "#e6e8ea",
+                      "surface-variant": "#e0e3e5",
+                      "on-primary-container": "#fdfff9",
+                      "surface-bright": "#f7f9fb",
+                      "secondary-container": "#dae2fd",
+                      "primary-fixed-dim": "#70db9d",
+                      "tertiary-container": "#00883c",
+                      "error": "#ba1a1a",
+                      "on-error-container": "#93000a",
+                      "surface-tint": "#006d40",
+                      "on-tertiary-fixed-variant": "#005321",
+                      "on-surface-variant": "#3e4a41",
+                      "on-background": "#191c1e",
+                      "tertiary": "#006c2e",
+                      "on-error": "#ffffff",
+                      "primary": "#006b3f",
+                      "inverse-primary": "#70db9d",
+                      "on-secondary-container": "#5c647a",
+                      "on-primary-fixed-variant": "#00522f",
+                      "primary-fixed": "#8df8b7",
+                      "outline": "#6e7a70",
+                      "on-tertiary-fixed": "#002109",
+                      "background": "#f7f9fb",
+                      "on-primary-fixed": "#002110",
+                      "on-surface": "#191c1e",
+                      "secondary": "#565e74",
+                      "inverse-surface": "#2d3133",
+                      "on-secondary-fixed-variant": "#3f465c",
+                      "tertiary-fixed-dim": "#4ae176",
+                      "on-tertiary-container": "#fdfff8",
+                      "primary-container": "#008751",
+                      "on-primary": "#ffffff",
+                      "surface-dim": "#d8dadc"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "20px",
+                      "md": "24px",
+                      "xs": "8px",
+                      "margin-desktop": "32px",
+                      "lg": "40px",
+                      "xl": "64px",
+                      "margin-mobile": "16px",
+                      "base": "4px",
+                      "sm": "16px"
+              },
+              "fontFamily": {
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Geist"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "title-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "data-mono": [
+                              "Geist"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "title-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "data-mono": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for data density areas */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 10px;
+        }
+        .code-block {
+            counter-reset: line;
+        }
+        .code-block > div::before {
+            counter-increment: line;
+            content: counter(line);
+            display: inline-block;
+            width: 2rem;
+            padding-right: 1rem;
+            text-align: right;
+            color: #94a3b8;
+            border-right: 1px solid #475569;
+            margin-right: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-sm text-body-sm h-screen overflow-hidden flex">
+<!-- SideNavBar (Shared Component) -->
+<nav class="bg-surface dark:bg-inverse-surface h-screen w-64 fixed left-0 top-0 border-r border-outline-variant dark:border-outline flex flex-col py-md px-sm z-50">
+<div class="mb-lg">
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary-fixed leading-tight">PriceNaija API</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-xs">v2.4.0-stable</p>
+</div>
+<ul class="flex-1 space-y-1">
+<!-- Inactive -->
+<li>
+<a class="flex items-center gap-xs px-sm py-2 rounded-DEFAULT text-on-surface-variant dark:text-surface-variant hover:bg-surface-container dark:hover:bg-on-surface-variant hover:text-primary transition-colors duration-200 ease-in-out font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">info</span>
+                    Introduction
+                </a>
+</li>
+<!-- Inactive -->
+<li>
+<a class="flex items-center gap-xs px-sm py-2 rounded-DEFAULT text-on-surface-variant dark:text-surface-variant hover:bg-surface-container dark:hover:bg-on-surface-variant hover:text-primary transition-colors duration-200 ease-in-out font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">rocket_launch</span>
+                    Quickstart
+                </a>
+</li>
+<!-- Inactive -->
+<li>
+<a class="flex items-center gap-xs px-sm py-2 rounded-DEFAULT text-on-surface-variant dark:text-surface-variant hover:bg-surface-container dark:hover:bg-on-surface-variant hover:text-primary transition-colors duration-200 ease-in-out font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">lock</span>
+                    Authentication
+                </a>
+</li>
+<!-- Active (Commodity Prices) -->
+<li>
+<a class="flex items-center gap-xs px-sm py-2 rounded-DEFAULT text-primary dark:text-primary-fixed font-bold border-r-2 border-primary dark:border-primary-fixed bg-surface-container-low transition-colors duration-200 ease-in-out font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">agriculture</span>
+                    Commodity Prices
+                </a>
+</li>
+<!-- Inactive -->
+<li>
+<a class="flex items-center gap-xs px-sm py-2 rounded-DEFAULT text-on-surface-variant dark:text-surface-variant hover:bg-surface-container dark:hover:bg-on-surface-variant hover:text-primary transition-colors duration-200 ease-in-out font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">location_on</span>
+                    Market Locations
+                </a>
+</li>
+<!-- Inactive -->
+<li>
+<a class="flex items-center gap-xs px-sm py-2 rounded-DEFAULT text-on-surface-variant dark:text-surface-variant hover:bg-surface-container dark:hover:bg-on-surface-variant hover:text-primary transition-colors duration-200 ease-in-out font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">history</span>
+                    Historical Data
+                </a>
+</li>
+<!-- Inactive -->
+<li>
+<a class="flex items-center gap-xs px-sm py-2 rounded-DEFAULT text-on-surface-variant dark:text-surface-variant hover:bg-surface-container dark:hover:bg-on-surface-variant hover:text-primary transition-colors duration-200 ease-in-out font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">speed</span>
+                    Rate Limits
+                </a>
+</li>
+<!-- Inactive -->
+<li>
+<a class="flex items-center gap-xs px-sm py-2 rounded-DEFAULT text-on-surface-variant dark:text-surface-variant hover:bg-surface-container dark:hover:bg-on-surface-variant hover:text-primary transition-colors duration-200 ease-in-out font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">webhook</span>
+                    Webhooks
+                </a>
+</li>
+</ul>
+<div class="mt-auto space-y-md">
+<button class="w-full bg-primary-container text-on-primary font-body-lg text-body-lg py-2 rounded-lg hover:bg-primary transition-colors duration-200 font-medium">Get API Key</button>
+<ul class="border-t border-outline-variant dark:border-outline pt-sm space-y-1">
+<li>
+<a class="flex items-center gap-xs px-sm py-2 rounded-DEFAULT text-on-surface-variant dark:text-surface-variant hover:bg-surface-container dark:hover:bg-on-surface-variant hover:text-primary transition-colors duration-200 ease-in-out font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">support_agent</span>
+                        Support
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-xs px-sm py-2 rounded-DEFAULT text-on-surface-variant dark:text-surface-variant hover:bg-surface-container dark:hover:bg-on-surface-variant hover:text-primary transition-colors duration-200 ease-in-out font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">check_circle</span>
+                        Status
+                    </a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="ml-64 flex-1 flex h-full overflow-hidden">
+<!-- Middle Column (Details) -->
+<div class="flex-1 overflow-y-auto px-margin-desktop py-lg max-w-4xl border-r border-outline-variant">
+<header class="mb-xl">
+<h2 class="font-display-lg text-display-lg text-on-surface mb-sm">Commodity Prices</h2>
+<div class="flex items-center gap-sm mb-md">
+<span class="bg-surface-tint text-on-primary font-data-mono text-data-mono px-2 py-1 rounded-DEFAULT font-bold">GET</span>
+<span class="font-data-mono text-data-mono text-on-surface-variant bg-surface-container px-2 py-1 rounded-DEFAULT">/prices</span>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                    Retrieve the latest prices for specific food items across different locations. This endpoint provides real-time market intelligence critical for agricultural planning and trade.
+                </p>
+</header>
+<section class="mb-xl">
+<h3 class="font-title-md text-title-md text-on-surface mb-md">Query Parameters</h3>
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant overflow-hidden">
+<table class="w-full text-left">
+<thead class="bg-surface-container font-label-caps text-label-caps text-on-surface-variant border-b border-outline-variant">
+<tr>
+<th class="px-md py-sm">Parameter</th>
+<th class="px-md py-sm">Type</th>
+<th class="px-md py-sm">Description</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface divide-y divide-outline-variant">
+<tr>
+<td class="px-md py-sm font-data-mono text-data-mono text-primary">food</td>
+<td class="px-md py-sm text-on-surface-variant">string</td>
+<td class="px-md py-sm">The name of the commodity (e.g., "rice", "beans"). Optional.</td>
+</tr>
+<tr>
+<td class="px-md py-sm font-data-mono text-data-mono text-primary">location</td>
+<td class="px-md py-sm text-on-surface-variant">string</td>
+<td class="px-md py-sm">The specific state or region to filter by (e.g., "Kano", "Lagos"). Optional.</td>
+</tr>
+<tr>
+<td class="px-md py-sm font-data-mono text-data-mono text-primary">market</td>
+<td class="px-md py-sm text-on-surface-variant">string</td>
+<td class="px-md py-sm">Specific market name for hyper-local pricing. Optional.</td>
+</tr>
+<tr>
+<td class="px-md py-sm font-data-mono text-data-mono text-primary">unit</td>
+<td class="px-md py-sm text-on-surface-variant">string</td>
+<td class="px-md py-sm">Measurement unit (e.g., "kg", "bag"). Defaults to standard regional unit if omitted. Optional.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Right Column (Request/Response) -->
+<aside class="w-[500px] bg-on-secondary-fixed flex flex-col h-full overflow-hidden flex-shrink-0">
+<!-- Tabs -->
+<div class="flex border-b border-on-secondary-fixed-variant">
+<button class="px-md py-sm font-label-caps text-label-caps text-on-primary border-b-2 border-primary-fixed bg-on-secondary-fixed-variant transition-colors" id="tab-request" onclick="switchTab('request')">Request</button>
+<button class="px-md py-sm font-label-caps text-label-caps text-secondary-fixed-dim border-b-2 border-transparent hover:text-on-primary transition-colors" id="tab-response" onclick="switchTab('response')">Response</button>
+</div>
+<!-- Request Content -->
+<div class="p-md flex-1 overflow-y-auto" id="content-request">
+<div class="bg-[#1e1e1e] rounded-lg overflow-hidden border border-[#333]">
+<div class="bg-[#2d2d2d] px-sm py-2 flex items-center justify-between border-b border-[#444]">
+<span class="font-data-mono text-data-mono text-secondary-fixed-dim text-xs">JavaScript (Fetch)</span>
+<button aria-label="Copy code" class="text-secondary-fixed-dim hover:text-white transition-colors">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+</button>
+</div>
+<div class="p-sm font-data-mono text-data-mono text-gray-300 text-sm overflow-x-auto code-block">
+<div><span class="text-blue-400">const</span> url = <span class="text-green-400">'https://api.pricenaija.com/v2/prices?food=rice&amp;location=kano'</span>;</div>
+<div><span class="text-blue-400">const</span> options = {</div>
+<div>  method: <span class="text-green-400">'GET'</span>,</div>
+<div>  headers: {</div>
+<div> <span class="text-green-400">'Authorization'</span>: <span class="text-green-400">'Bearer YOUR_API_KEY'</span>,</div>
+<div> <span class="text-green-400">'Accept'</span>: <span class="text-green-400">'application/json'</span></div>
+<div>  }</div>
+<div>};</div>
+<div></div>
+<div><span class="text-blue-400">try</span> {</div>
+<div> <span class="text-blue-400">const</span> response = <span class="text-blue-400">await</span> fetch(url, options);</div>
+<div> <span class="text-blue-400">const</span> data = <span class="text-blue-400">await</span> response.json();</div>
+<div>  console.log(data);</div>
+<div>} <span class="text-blue-400">catch</span> (error) {</div>
+<div>  console.error(error);</div>
+<div>}</div>
+</div>
+</div>
+</div>
+<!-- Response Content (Hidden initially) -->
+<div class="p-md flex-1 overflow-y-auto hidden" id="content-response">
+<div class="bg-[#1e1e1e] rounded-lg overflow-hidden border border-[#333]">
+<div class="bg-[#2d2d2d] px-sm py-2 flex items-center justify-between border-b border-[#444]">
+<span class="font-data-mono text-data-mono text-secondary-fixed-dim text-xs">JSON - 200 OK</span>
+</div>
+<pre class="p-sm font-data-mono text-data-mono text-gray-300 text-sm overflow-x-auto"><code class="language-json">{
+  <span class="text-blue-400">"status"</span>: <span class="text-green-400">"success"</span>,
+  <span class="text-blue-400">"data"</span>: [
+    {
+      <span class="text-blue-400">"id"</span>: <span class="text-orange-400">1042</span>,
+      <span class="text-blue-400">"commodity"</span>: <span class="text-green-400">"Rice (Local)"</span>,
+      <span class="text-blue-400">"location"</span>: <span class="text-green-400">"Kano"</span>,
+      <span class="text-blue-400">"market"</span>: <span class="text-green-400">"Dawanau Market"</span>,
+      <span class="text-blue-400">"price"</span>: <span class="text-orange-400">55000</span>,
+      <span class="text-blue-400">"currency"</span>: <span class="text-green-400">"NGN"</span>,
+      <span class="text-blue-400">"unit"</span>: <span class="text-green-400">"50kg Bag"</span>,
+      <span class="text-blue-400">"timestamp"</span>: <span class="text-green-400">"2024-05-14T08:30:00Z"</span>
+    }
+  ],
+  <span class="text-blue-400">"meta"</span>: {
+    <span class="text-blue-400">"total_results"</span>: <span class="text-orange-400">1</span>,
+    <span class="text-blue-400">"page"</span>: <span class="text-orange-400">1</span>
+  }
+}</code></pre>
+</div>
+</div>
+</aside>
+</main>
+<script>
+        function switchTab(tabId) {
+            const reqTab = document.getElementById('tab-request');
+            const resTab = document.getElementById('tab-response');
+            const reqContent = document.getElementById('content-request');
+            const resContent = document.getElementById('content-response');
+
+            if (tabId === 'request') {
+                reqTab.className = "px-md py-sm font-label-caps text-label-caps text-on-primary border-b-2 border-primary-fixed bg-on-secondary-fixed-variant transition-colors";
+                resTab.className = "px-md py-sm font-label-caps text-label-caps text-secondary-fixed-dim border-b-2 border-transparent hover:text-on-primary transition-colors";
+                reqContent.classList.remove('hidden');
+                resContent.classList.add('hidden');
+            } else {
+                resTab.className = "px-md py-sm font-label-caps text-label-caps text-on-primary border-b-2 border-primary-fixed bg-on-secondary-fixed-variant transition-colors";
+                reqTab.className = "px-md py-sm font-label-caps text-label-caps text-secondary-fixed-dim border-b-2 border-transparent hover:text-on-primary transition-colors";
+                resContent.classList.remove('hidden');
+                reqContent.classList.add('hidden');
+            }
+        }
+    </script>
+</body></html>
