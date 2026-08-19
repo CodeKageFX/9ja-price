@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication - PriceNaija Documentation</title>
+    <script src='https://cdn.tailwindcss.com?plugins=forms,container-queries'></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#131b2e",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#d7dff9",
+                        "tertiary-fixed": "#9bf7a8",
+                        "on-secondary-container": "#5a6278",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#565e74",
+                        "on-primary-fixed-variant": "#00522f",
+                        "surface-dim": "#d8dadc",
+                        "secondary-fixed": "#dae2fc",
+                        "surface-white": "#ffffff",
+                        "on-error": "#ffffff",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "primary": "#006b3f",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#008751",
+                        "surface-tint": "#006d40",
+                        "market-up": "#22c55e",
+                        "surface": "#f7f9fb",
+                        "tertiary-container": "#2b8644",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#eceef0",
+                        "ink-charcoal": "#191c1e",
+                        "border-subtle": "#e2e8f0",
+                        "on-surface-variant": "#3e4a41",
+                        "on-tertiary-fixed": "#002109",
+                        "surface-container-highest": "#e0e3e5",
+                        "tertiary": "#006c2e",
+                        "on-primary-fixed": "#002110",
+                        "on-primary-container": "#fdfff9",
+                        "on-background": "#191c1e",
+                        "inverse-surface": "#2d3133",
+                        "on-tertiary-container": "#fefff9",
+                        "background": "#f7f9fb",
+                        "primary-fixed-dim": "#70db9d",
+                        "primary-fixed": "#8df8b7",
+                        "inverse-primary": "#70db9d",
+                        "surface-bright": "#f7f9fb",
+                        "market-down": "#ef4444",
+                        "code-bg": "#0f172a",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-container-high": "#e6e8ea",
+                        "outline": "#6e7a70",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#005321",
+                        "outline-variant": "#bdcabe",
+                        "tertiary-fixed-dim": "#80da8e",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary-fixed-variant": "#3e465b",
+                        "surface-variant": "#e0e3e5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "doc-content-max": "800px",
+                        "margin-desktop": "32px",
+                        "gutter": "20px",
+                        "margin-mobile": "16px",
+                        "sidebar-width": "280px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-caps": ["Geist"],
+                        "code-block": ["Geist"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "data-mono": ["Geist"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "title-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "code-block": ["13px", { "lineHeight": "22px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "data-mono": ["14px", { "lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-lg min-h-screen">
+
+    <!-- TopNavBar -->
+    <header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface dark:bg-ink-charcoal border-b border-border-subtle dark:border-outline">
+        <div class="flex items-center gap-8">
+            <a href="/" class="font-display-lg text-title-md font-bold text-primary dark:text-primary-fixed">PriceNaija</a>
+            <nav class="hidden md:flex gap-6">
+                <a href="/explore" class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-body-lg text-body-lg">Explore Prices</a>
+                <a href="/markets" class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-body-lg text-body-lg">Markets</a>
+                <a href="/docs" class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary font-body-lg text-body-lg opacity-80 transition-opacity">Developers</a>
+            </nav>
+        </div>
+        <div class="flex items-center gap-4">
+            <button class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-body-lg text-body-lg">Sign In</button>
+            <button class="bg-primary-container text-on-primary-container px-4 py-2 rounded-lg font-body-sm text-body-sm hover:bg-primary transition-colors shadow-[0_4px_12px_rgba(0,0,0,0.05)]">Get API Key</button>
+        </div>
+    </header>
+
+    <div class="flex pt-16 h-screen overflow-hidden">
+        
+        <!-- SideNavBar -->
+        <aside class="hidden md:flex flex-col w-sidebar-width h-[calc(100vh-64px)] fixed left-0 top-16 overflow-y-auto px-6 py-8 border-r border-border-subtle dark:border-outline bg-surface dark:bg-ink-charcoal">
+            <div class="mb-8">
+                <h2 class="font-display-lg text-title-md font-bold text-primary">Documentation</h2>
+                <p class="text-on-surface-variant text-body-sm mt-1">API Reference & Guides</p>
+            </div>
+            
+            <nav class="flex flex-col gap-2">
+                <a href="/docs/introduction" class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-body-sm text-body-sm">
+                    <span class="material-symbols-outlined" data-icon="info">info</span>
+                    Introduction
+                </a>
+                <a href="/docs/quickstart" class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-body-sm text-body-sm">
+                    <span class="material-symbols-outlined" data-icon="rocket_launch">rocket_launch</span>
+                    Quickstart
+                </a>
+                <a href="/docs/authentication" class="flex items-center gap-3 px-3 py-2 rounded-lg text-primary dark:text-primary-fixed font-bold translate-x-1 transition-transform font-body-sm text-body-sm">
+                    <span class="material-symbols-outlined" data-weight="fill" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
+                    Authentication
+                </a>
+                <a href="/docs/foods" class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-body-sm text-body-sm">
+                    <span class="material-symbols-outlined" data-icon="restaurant">restaurant</span>
+                    Foods
+                </a>
+                <a href="/docs/prices" class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-body-sm text-body-sm">
+                    <span class="material-symbols-outlined" data-icon="payments">payments</span>
+                    Prices
+                </a>
+                <a href="/docs/markets" class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-body-sm text-body-sm">
+                    <span class="material-symbols-outlined" data-icon="storefront">storefront</span>
+                    Markets
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 ml-0 md:ml-[280px] overflow-y-auto bg-surface-lowest">
+            <div class="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 p-margin-mobile md:p-margin-desktop pb-24">
+                
+                <!-- Prose Column -->
+                <div class="lg:col-span-7 flex flex-col gap-10">
+                    
+                    <section class="max-w-doc-content-max">
+                        <h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-4">Authentication</h1>
+                        <p class="text-on-surface-variant text-body-lg mb-6 leading-relaxed">
+                            The PriceNaija API uses Bearer token authentication to authorize requests. You need to include your API key in the `Authorization` header of every HTTP request you make to our endpoints.
+                        </p>
+                        
+                        <div class="bg-surface-white border border-border-subtle rounded-xl p-6 mb-8 shadow-[0_4px_12px_rgba(0,0,0,0.05)]">
+                            <h3 class="font-title-md text-title-md text-on-surface mb-4 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary">key</span>
+                                Obtaining an API Key
+                            </h3>
+                            <ol class="list-decimal list-inside text-on-surface-variant space-y-3 font-body-sm text-body-sm">
+                                <li>Navigate to your <a href="/dashboard" class="text-primary font-medium hover:underline">Dashboard</a>.</li>
+                                <li>Select <strong>API Keys</strong> from the sidebar.</li>
+                                <li>Click the <strong>Create New Key</strong> button.</li>
+                                <li>Copy the generated key and store it securely. You will not be able to see it again.</li>
+                            </ol>
+                        </div>
+
+                        <!-- Warning Box -->
+                        <div class="bg-error-container/20 border border-error/20 rounded-xl p-5 mb-10 flex gap-4">
+                            <span class="material-symbols-outlined text-error mt-0.5">warning</span>
+                            <div>
+                                <h4 class="font-title-md text-[16px] font-semibold text-error mb-1">Security Warning</h4>
+                                <p class="text-on-surface-variant font-body-sm text-body-sm">
+                                    Never commit your API keys to version control systems like GitHub, or embed them in client-side applications. Always use environment variables to store them securely on your server.
+                                </p>
+                            </div>
+                        </div>
+
+                        <h2 class="font-headline-lg-mobile md:font-title-md text-headline-lg-mobile md:text-title-md text-on-surface mb-4 mt-8">Rate Limits</h2>
+                        <p class="text-on-surface-variant text-body-lg mb-6">
+                            To ensure stability and fair usage across our network, API requests are subject to rate limiting based on your current subscription plan.
+                        </p>
+
+                        <!-- High-density Utility Table -->
+                        <div class="bg-surface-white border border-border-subtle rounded-lg overflow-hidden mb-8">
+                            <table class="w-full text-left border-collapse">
+                                <thead class="bg-surface-container-low font-label-caps text-label-caps text-on-surface-variant">
+                                    <tr>
+                                        <th class="py-3 px-4 border-b border-border-subtle">Plan</th>
+                                        <th class="py-3 px-4 border-b border-border-subtle">Requests / Minute</th>
+                                        <th class="py-3 px-4 border-b border-border-subtle">Requests / Month</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="font-data-mono text-data-mono text-on-surface">
+                                    <tr class="border-b border-border-subtle hover:bg-surface-container-lowest transition-colors">
+                                        <td class="py-3 px-4 font-body-sm text-body-sm font-medium">Free Tier</td>
+                                        <td class="py-3 px-4">60</td>
+                                        <td class="py-3 px-4">10,000</td>
+                                    </tr>
+                                    <tr class="border-b border-border-subtle hover:bg-surface-container-lowest transition-colors">
+                                        <td class="py-3 px-4 font-body-sm text-body-sm font-medium">Pro</td>
+                                        <td class="py-3 px-4">600</td>
+                                        <td class="py-3 px-4">500,000</td>
+                                    </tr>
+                                    <tr class="hover:bg-surface-container-lowest transition-colors">
+                                        <td class="py-3 px-4 font-body-sm text-body-sm font-medium">Enterprise</td>
+                                        <td class="py-3 px-4">Custom</td>
+                                        <td class="py-3 px-4">Unlimited</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="mt-8">
+                             <a href="/dashboard/api-keys" class="inline-flex items-center gap-2 bg-primary-container text-on-primary-container px-6 py-3 rounded-lg font-body-sm text-body-sm font-medium hover:bg-primary transition-colors shadow-[0_4px_12px_rgba(0,0,0,0.05)]">
+                                Manage API Keys
+                                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                            </a>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Code Column (Right) -->
+                <div class="lg:col-span-5 flex flex-col gap-6 sticky top-[104px] self-start">
+                    
+                    <div class="bg-code-bg rounded-xl overflow-hidden border border-border-subtle shadow-[0_4px_12px_rgba(0,0,0,0.05)]">
+                        <div class="flex justify-between items-center bg-[#1e293b] px-4 py-2 border-b border-[#334155]">
+                            <span class="font-label-caps text-label-caps text-surface-container-low">cURL Example</span>
+                            <button class="text-surface-dim hover:text-surface-white transition-colors" title="Copy to clipboard">
+                                <span class="material-symbols-outlined text-[16px]">content_copy</span>
+                            </button>
+                        </div>
+                        <div class="p-4 overflow-x-auto">
+<pre class="font-code
