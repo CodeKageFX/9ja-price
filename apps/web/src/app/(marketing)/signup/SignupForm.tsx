@@ -5,7 +5,7 @@ import { TrendingUp, User, Mail, Lock, ShieldCheck } from "lucide-react";
 
 export function SignupForm() {
   return (
-    <div className="w-full max-w-md">
+    <div className="w-full max-w-[480px] mx-auto">
       {/* Logo */}
       <div className="text-center mb-8">
         <h1 className="text-[20px] font-bold text-[#006b3f] inline-flex items-center gap-2">
@@ -15,7 +15,7 @@ export function SignupForm() {
       </div>
 
       {/* Signup Card */}
-      <div className="bg-white border border-[#e2e8f0] rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] p-8">
+      <div className="bg-white border border-[#e2e8f0] rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] p-8 sm:p-10">
         <div className="mb-8 text-center">
           <h2 className="text-[24px] md:text-[32px] font-bold text-[#191c1e] mb-2 leading-tight">
             Create your developer account

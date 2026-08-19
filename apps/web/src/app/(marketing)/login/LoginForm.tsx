@@ -8,7 +8,7 @@ export function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="w-full max-w-md bg-white border border-[#e2e8f0] rounded-xl p-8 shadow-[0px_4px_12px_rgba(0,0,0,0.05)]">
+    <div className="w-full max-w-[480px] mx-auto bg-white border border-[#e2e8f0] rounded-xl p-8 sm:p-10 shadow-[0px_4px_12px_rgba(0,0,0,0.05)]">
       {/* Header */}
       <div className="text-center mb-8">
         <h1 className="text-[20px] font-bold text-[#006b3f] mb-2 flex items-center justify-center gap-2">
