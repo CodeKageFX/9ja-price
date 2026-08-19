@@ -181,7 +181,7 @@ export default function PriceExplorerPage() {
 <div className="bg-surface-container-lowest border-t border-outline-variant p-md flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
 <div>Showing 1 to 3 of 150 entries</div>
 <div className="flex gap-xs">
-<button className="p-xs border border-outline-variant rounded hover:bg-surface-container-low disabled:opacity-50" disabled="">
+<button className="p-xs border border-outline-variant rounded hover:bg-surface-container-low disabled:opacity-50" disabled>
 <ChevronLeft className="w-4 h-4" />
 </button>
 <button className="p-xs border border-outline-variant rounded hover:bg-surface-container-low bg-surface-container-low font-medium">1</button>
