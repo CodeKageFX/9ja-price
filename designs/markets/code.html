@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PriceNaija - Nigerian Markets Directory</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-fixed": "#131b2e",
+                      "on-error-container": "#93000a",
+                      "secondary-container": "#d7dff9",
+                      "tertiary-fixed": "#9bf7a8",
+                      "on-secondary-container": "#5a6278",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary": "#565e74",
+                      "on-primary-fixed-variant": "#00522f",
+                      "surface-dim": "#d8dadc",
+                      "secondary-fixed": "#dae2fc",
+                      "surface-white": "#ffffff",
+                      "on-error": "#ffffff",
+                      "secondary-fixed-dim": "#bec6e0",
+                      "primary": "#006b3f",
+                      "on-secondary": "#ffffff",
+                      "primary-container": "#008751",
+                      "surface-tint": "#006d40",
+                      "market-up": "#22c55e",
+                      "surface": "#f7f9fb",
+                      "tertiary-container": "#2b8644",
+                      "error-container": "#ffdad6",
+                      "surface-container": "#eceef0",
+                      "ink-charcoal": "#191c1e",
+                      "border-subtle": "#e2e8f0",
+                      "on-surface-variant": "#3e4a41",
+                      "on-tertiary-fixed": "#002109",
+                      "surface-container-highest": "#e0e3e5",
+                      "tertiary": "#006c2e",
+                      "on-primary-fixed": "#002110",
+                      "on-primary-container": "#fdfff9",
+                      "on-background": "#191c1e",
+                      "inverse-surface": "#2d3133",
+                      "on-tertiary-container": "#fefff9",
+                      "background": "#f7f9fb",
+                      "primary-fixed-dim": "#70db9d",
+                      "primary-fixed": "#8df8b7",
+                      "inverse-primary": "#70db9d",
+                      "surface-bright": "#f7f9fb",
+                      "market-down": "#ef4444",
+                      "code-bg": "#0f172a",
+                      "on-primary": "#ffffff",
+                      "on-surface": "#191c1e",
+                      "surface-container-low": "#f2f4f6",
+                      "surface-container-high": "#e6e8ea",
+                      "outline": "#6e7a70",
+                      "on-tertiary": "#ffffff",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed-variant": "#005321",
+                      "outline-variant": "#bdcabe",
+                      "tertiary-fixed-dim": "#80da8e",
+                      "inverse-on-surface": "#eff1f3",
+                      "on-secondary-fixed-variant": "#3e465b",
+                      "surface-variant": "#e0e3e5"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "doc-content-max": "800px",
+                      "margin-desktop": "32px",
+                      "gutter": "20px",
+                      "margin-mobile": "16px",
+                      "sidebar-width": "280px",
+                      "base": "4px"
+              },
+              "fontFamily": {
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Geist"
+                      ],
+                      "code-block": [
+                              "Geist"
+                      ],
+                      "display-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "data-mono": [
+                              "Geist"
+                      ],
+                      "headline-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "title-md": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "code-block": [
+                              "13px",
+                              {
+                                      "lineHeight": "22px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "data-mono": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "title-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+      </style>
+</head>
+<body class="bg-background text-on-background font-body-lg antialiased min-h-screen flex flex-col pt-16">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface dark:bg-ink-charcoal border-b border-border-subtle dark:border-outline">
+<div class="flex items-center gap-8">
+<a class="font-display-lg text-title-md font-bold text-primary dark:text-primary-fixed" href="#">PriceNaija</a>
+<div class="hidden md:flex gap-6">
+<a class="text-on-surface-variant dark:text-surface-variant font-body-lg text-body-lg hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Explore Prices</a>
+<a class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary font-body-lg text-body-lg hover:text-primary dark:hover:text-primary-fixed transition-colors pb-5 mt-5" href="#">Markets</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-body-lg text-body-lg hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Developers</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex relative text-on-surface-variant">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border border-border-subtle rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary text-body-sm font-body-sm w-48 lg:w-64 transition-all" placeholder="Search..." type="text"/>
+</div>
+<a class="text-on-surface-variant dark:text-surface-variant font-body-lg text-body-lg hover:text-primary dark:hover:text-primary-fixed transition-colors hidden md:block" href="#">Sign In</a>
+<a class="bg-primary-container text-on-primary font-body-sm text-body-sm px-4 py-2 rounded-lg hover:bg-primary transition-colors whitespace-nowrap" href="#">Get API Key</a>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-10">
+<!-- Header Section -->
+<header class="mb-10 max-w-3xl">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-4">Nigerian Markets</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Explore markets and locations covered by our food-price data.</p>
+</header>
+<!-- Search & Filter Controls -->
+<section class="glass-card rounded-xl p-6 mb-10 flex flex-col md:flex-row gap-4 items-end shadow-sm">
+<div class="w-full md:w-1/3">
+<label class="block font-label-caps text-label-caps text-secondary mb-2 uppercase tracking-wider">Search Market</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50">search</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface-white border border-border-subtle rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary text-body-lg font-body-lg transition-all shadow-sm" placeholder="e.g. Wuse, Mile 12..." type="text"/>
+</div>
+</div>
+<div class="w-full md:w-1/4">
+<label class="block font-label-caps text-label-caps text-secondary mb-2 uppercase tracking-wider">State</label>
+<div class="relative">
+<select class="w-full appearance-none pl-4 pr-10 py-3 bg-surface-white border border-border-subtle rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary text-body-lg font-body-lg transition-all shadow-sm text-on-surface">
+<option value="">All States</option>
+<option value="fct">FCT Abuja</option>
+<option value="lagos">Lagos</option>
+<option value="kano">Kano</option>
+<option value="rivers">Rivers</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50 pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="w-full md:w-1/4">
+<label class="block font-label-caps text-label-caps text-secondary mb-2 uppercase tracking-wider">City</label>
+<div class="relative">
+<select class="w-full appearance-none pl-4 pr-10 py-3 bg-surface-white border border-border-subtle rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary text-body-lg font-body-lg transition-all shadow-sm text-on-surface">
+<option value="">All Cities</option>
+<option value="abuja">Abuja</option>
+<option value="ikeja">Ikeja</option>
+<option value="port-harcourt">Port Harcourt</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50 pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="w-full md:w-auto">
+<button class="w-full md:w-auto bg-surface-container hover:bg-surface-container-high text-on-surface font-body-sm text-body-sm px-6 py-3 rounded-lg transition-colors border border-border-subtle flex items-center justify-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                    More Filters
+                </button>
+</div>
+</section>
+<!-- Markets Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Market Card 1 -->
+<article class="bg-surface-white border border-border-subtle rounded-xl overflow-hidden hover:shadow-md transition-shadow flex flex-col h-full group">
+<div class="h-48 relative overflow-hidden bg-surface-container-low">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A bustling outdoor African market scene during golden hour. The image focuses on structured market stalls laden with fresh produce like tomatoes, yams, and greens under colorful umbrellas. The style is modern, bright, and slightly desaturated to fit a corporate financial context. Minimalistic composition with high-key lighting, emphasizing structural clarity and data-readiness over chaotic details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_MyUBRS7H9wViZ5bZMeBOutZmXynG6gFirHS5oHzSJ3PoSf1XmFI0HthrOXvPVsVpq_60uI5iquri0m_hVQDT07WY1vcaN5b1AzhvAjaGAzr5g8jJMzo4evwbyRLYnjF8AW7JHowtpVFRLcVUDz0l0qWxuNHJSkotjVUG4tU6GaGYeemlcQQpCz2xL5BzXIdpa3-7cAU2k3RA13UVQOeYJejjK_zzON1bZDZwcO0XeaGTAAGi3Ysn"/>
+<div class="absolute top-4 left-4 bg-surface-white/90 backdrop-blur-sm px-3 py-1 rounded-full border border-border-subtle flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-market-up"></span>
+<span class="font-label-caps text-label-caps text-on-surface uppercase">Active Data</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex items-start justify-between mb-2">
+<h2 class="font-title-md text-title-md text-on-surface group-hover:text-primary transition-colors">Wuse Market</h2>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm mb-4">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span>Abuja, FCT</span>
+</div>
+<div class="mb-6 flex-grow">
+<h3 class="font-label-caps text-label-caps text-secondary uppercase tracking-wider mb-3">Foods Tracked</h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 bg-surface-container-low border border-border-subtle rounded text-on-surface-variant font-body-sm text-[13px]">Rice</span>
+<span class="px-2.5 py-1 bg-surface-container-low border border-border-subtle rounded text-on-surface-variant font-body-sm text-[13px]">Garri</span>
+<span class="px-2.5 py-1 bg-surface-container-low border border-border-subtle rounded text-on-surface-variant font-body-sm text-[13px]">Tomatoes</span>
+<span class="px-2.5 py-1 bg-surface-container-low border border-border-subtle rounded text-on-surface-variant font-body-sm text-[13px]">+12 more</span>
+</div>
+</div>
+<div class="pt-4 border-t border-border-subtle flex items-center justify-between mt-auto">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-secondary uppercase">Last Update</span>
+<span class="font-data-mono text-data-mono text-on-surface">2 hours ago</span>
+</div>
+<a class="text-primary font-body-sm text-body-sm font-semibold hover:text-primary-container flex items-center gap-1" href="/explorer">
+                            View Market
+                            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</article>
+<!-- Market Card 2 -->
+<article class="bg-surface-white border border-border-subtle rounded-xl overflow-hidden hover:shadow-md transition-shadow flex flex-col h-full group">
+<div class="h-48 relative overflow-hidden bg-surface-container-low">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="An expansive wholesale produce market in Nigeria, focusing on neat rows of stacked sacks and organized crates of vegetables. The lighting is clean, bright, and diffuse, creating a modern, institutional feel appropriate for a data terminal. The color palette is controlled, using earthy tones anchored by pristine whites and deep slate accents, communicating reliability and logistical scale." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZ5J4fK1JsZoZlvxXv_rOAmnz9hoZPqsuIvLplDaMoPir-tHEXhFg3972GcUuq258_t8oz4a0pda_bKS1kgLcxK4nNC0E7LvZyiY8QTfzKrnEFeU0UqWbMrV8WX8H_uRcxMLaZsq_kD_tqzwhK4lVjCzmUCMt-SHAu7NJZMihRgMLe0RD90vJ5EN4yxPOgIJvkxsM1pAls33QPv3-m9UiWGhFigFyP-jtW8GYYgHDLYsC6dWzmX14K"/>
+<div class="absolute top-4 left-4 bg-surface-white/90 backdrop-blur-sm px-3 py-1 rounded-full border border-border-subtle flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-market-up"></span>
+<span class="font-label-caps text-label-caps text-on-surface uppercase">Active Data</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex items-start justify-between mb-2">
+<h2 class="font-title-md text-title-md text-on-surface group-hover:text-primary transition-colors">Mile 12 Market</h2>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm mb-4">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span>Kosofe, Lagos</span>
+</div>
+<div class="mb-6 flex-grow">
+<h3 class="font-label-caps text-label-caps text-secondary uppercase tracking-wider mb-3">Foods Tracked</h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 bg-surface-container-low border border-border-subtle rounded text-on-surface-variant font-body-sm text-[13px]">Onions</span>
+<span class="px-2.5 py-1 bg-surface-container-low border border-border-subtle rounded text-on-surface-variant font-body-sm text-[13px]">Peppers</span>
+<span class="px-2.5 py-1 bg-surface-container-low border border-border-subtle rounded text-on-surface-variant font-body-sm text-[13px]">Yam</span>
+<span class="px-2.5 py-1 bg-surface-container-low border border-border-subtle rounded text-on-surface-variant font-body-sm text-[13px]">+24 more</span>
+</div>
+</div>
+<div class="pt-4 border-t border-border-subtle flex items-center justify-between mt-auto">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-secondary uppercase">Last Update</span>
+<span class="font-data-mono text-data-mono text-on-surface">15 mins ago</span>
+</div>
+<a class="text-primary font-body-sm text-body-sm font-semibold hover:text-primary-container flex items-center gap-1" href="/explorer">
+                            View Market
+                            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</article>
+<!-- Market Card 3 -->
+<article class="bg-surface-white border border-border-subtle rounded-xl overflow-hidden hover:shadow-md transition-shadow flex flex-col h-full group">
+<div class="h-48 relative overflow-hidden bg-surface-container-low">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A clean, structured view of an indoor market corridor in Nigeria. The perspective is linear, drawing the eye down an aisle of neatly arranged grain stalls. The image utilizes high-contrast lighting with a modern, cool-toned filter, stripping away clutter to emphasize a structured, data-centric aesthetic suitable for a professional commodity tracking dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3Iax3cAe54VPoi-mrnbApOIEOkPZ-oO1axdLCsz1vLPW3G-_2JELMvxwWiKFDAm5WVIC-H9SYXpw3yzVrmzUwNiKxW4DmQ04vu7TU-f1_LpgMn3xtSCZwroMc8dKia-gJ5DtT8Xam4KDYk0QB94EWKv-vCL4sNIseEerpvWX0t5Nx5P6bi1hJcJ2RvZeRzt5tnuMHZB0y3N8w-dst9XP1_bnH7IOiBlo5eZaTPA2WbzSrM7GP8JeP"/>
+<div class="absolute top-4 left-4 bg-surface-white/90 backdrop-blur-sm px-3 py-1 rounded-full border border-border-subtle flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-surface-variant"></span>
+<span class="font-label-caps text-label-caps text-on-surface uppercase">Delayed</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex items-start justify-between mb-2">
+<h2 class="font-title-md text-title-md text-on-surface group-hover:text-primary transition-colors">Dawanau Market</h2>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm mb-4">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span>Dawakin Tofa, Kano</span>
+</div>
+<div class="mb-6 flex-grow">
+<h3 class="font-label-caps text-label-caps text-secondary uppercase tracking-wider mb-3">Foods Tracked</h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 bg-surface-container-low border border-border-subtle rounded text-on-surface-variant font-body-sm text-[13px]">Maize</span>
+<span class="px-2.5 py-1 bg-surface-container-low border border-border-subtle rounded text-on-surface-variant font-body-sm text-[13px]">Sorghum</span>
+<span class="px-2.5 py-1 bg-surface-container-low border border-border-subtle rounded text-on-surface-variant font-body-sm text-[13px]">Millet</span>
+<span class="px-2.5 py-1 bg-surface-container-low border border-border-subtle rounded text-on-surface-variant font-body-sm text-[13px]">+8 more</span>
+</div>
+</div>
+<div class="pt-4 border-t border-border-subtle flex items-center justify-between mt-auto">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-secondary uppercase">Last Update</span>
+<span class="font-data-mono text-data-mono text-on-surface">1 day ago</span>
+</div>
+<a class="text-primary font-body-sm text-body-sm font-semibold hover:text-primary-container flex items-center gap-1" href="/explorer">
+                            View Market
+                            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</article>
+</section>
+<!-- Pagination (Simple) -->
+<div class="mt-12 flex justify-center">
+<nav class="flex items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border-subtle text-on-surface-variant hover:bg-surface-container-low transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-on-primary font-body-sm font-medium">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border-subtle text-on-surface hover:bg-surface-container-low transition-colors font-body-sm font-medium">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border-subtle text-on-surface hover:bg-surface-container-low transition-colors font-body-sm font-medium">3</button>
+<span class="text-on-surface-variant mx-2">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border-subtle text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</nav>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-margin-desktop grid grid-cols-2 md:grid-cols-4 gap-8 max-w-7xl mx-auto border-t border-border-subtle dark:border-outline bg-surface-container-lowest dark:bg-ink-charcoal mt-auto">
+<div class="col-span-2 md:col-span-1 flex flex-col gap-4">
+<span class="font-display-lg text-title-md font-bold text-primary">PriceNaija</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 PriceNaija. Market Intelligence for Nigeria.</p>
+</div>
+<div class="flex flex-col gap-3">
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Product</a>
+</div>
+<div class="flex flex-col gap-3">
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Developers</a>
+</div>
+<div class="flex flex-col gap-3">
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Resources</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Legal</a>
+</div>
+</footer>
+</body></html>

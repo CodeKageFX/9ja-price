@@ -191,7 +191,7 @@ export default function DevelopersLandingPage() {
               <h2 className="text-[28px] sm:text-[36px] font-bold text-[#191c1e] mb-4 leading-tight">
                 Free to build with.
               </h2>
-              <p className="text-[16px] sm:text-[18px] text-[#565e74] mb-10 max-w-xl mx-auto leading-relaxed">
+              <p className="text-[16px] sm:text-[18px] text-[#565e74] mb-10  mx-auto leading-relaxed">
                 Get started immediately with our generous developer tier. 10,000
                 requests per month, completely free. No credit card required.
               </p>
