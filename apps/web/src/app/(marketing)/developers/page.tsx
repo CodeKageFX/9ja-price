@@ -182,21 +182,21 @@ export default function DevelopersLandingPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="max-w-4xl mx-auto px-4 sm:px-8 py-16 text-center">
-          <div className="bg-[#006b3f]/5 border border-[#006b3f]/20 rounded-2xl p-10 md:p-16 relative overflow-hidden">
-            <div className="relative z-10">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-white rounded-full shadow-sm mb-6 border border-[#e2e8f0] text-[#006b3f]">
+        <section className="w-full max-w-5xl mx-auto px-4 sm:px-8 py-20 sm:py-24 text-center">
+          <div className="bg-[#006b3f]/5 border border-[#006b3f]/20 rounded-2xl p-8 sm:p-14 md:p-16 relative overflow-hidden">
+            <div className="relative z-10 flex flex-col items-center justify-center text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-white rounded-full shadow-sm mb-6 border border-[#e2e8f0] text-[#006b3f] shrink-0">
                 <Code className="w-8 h-8" />
               </div>
-              <h2 className="text-[28px] sm:text-[32px] font-bold text-[#191c1e] mb-4">
+              <h2 className="text-[28px] sm:text-[36px] font-bold text-[#191c1e] mb-4 leading-tight">
                 Free to build with.
               </h2>
-              <p className="text-[16px] text-[#565e74] mb-10 max-w-lg mx-auto leading-relaxed">
+              <p className="text-[16px] sm:text-[18px] text-[#565e74] mb-10 max-w-xl mx-auto leading-relaxed">
                 Get started immediately with our generous developer tier. 10,000
                 requests per month, completely free. No credit card required.
               </p>
               <Link
-                className="inline-block text-[12px] font-semibold tracking-wider uppercase bg-[#008751] text-white px-8 py-4 rounded-lg hover:bg-[#006b3f] transition-colors shadow-sm"
+                className="inline-flex items-center justify-center text-[13px] font-semibold tracking-wider uppercase bg-[#008751] text-white px-8 py-4 rounded-lg hover:bg-[#006b3f] transition-colors shadow-sm"
                 href="/signup"
               >
                 Ready to build? Get API Key
