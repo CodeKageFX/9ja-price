@@ -70,7 +70,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
             Commodity Prices
           </Link>
           <Link
-            href="#"
+            href="/docs/markets"
             className="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-body-sm text-body-sm transition-colors"
           >
             <MapPin className="w-4 h-4" />
