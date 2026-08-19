@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Data Methodology - PriceNaija</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-fixed": "#131b2e",
+                      "on-error-container": "#93000a",
+                      "secondary-container": "#d7dff9",
+                      "tertiary-fixed": "#9bf7a8",
+                      "on-secondary-container": "#5a6278",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary": "#565e74",
+                      "on-primary-fixed-variant": "#00522f",
+                      "surface-dim": "#d8dadc",
+                      "secondary-fixed": "#dae2fc",
+                      "surface-white": "#ffffff",
+                      "on-error": "#ffffff",
+                      "secondary-fixed-dim": "#bec6e0",
+                      "primary": "#006b3f",
+                      "on-secondary": "#ffffff",
+                      "primary-container": "#008751",
+                      "surface-tint": "#006d40",
+                      "market-up": "#22c55e",
+                      "surface": "#f7f9fb",
+                      "tertiary-container": "#2b8644",
+                      "error-container": "#ffdad6",
+                      "surface-container": "#eceef0",
+                      "ink-charcoal": "#191c1e",
+                      "border-subtle": "#e2e8f0",
+                      "on-surface-variant": "#3e4a41",
+                      "on-tertiary-fixed": "#002109",
+                      "surface-container-highest": "#e0e3e5",
+                      "tertiary": "#006c2e",
+                      "on-primary-fixed": "#002110",
+                      "on-primary-container": "#fdfff9",
+                      "on-background": "#191c1e",
+                      "inverse-surface": "#2d3133",
+                      "on-tertiary-container": "#fefff9",
+                      "background": "#f7f9fb",
+                      "primary-fixed-dim": "#70db9d",
+                      "primary-fixed": "#8df8b7",
+                      "inverse-primary": "#70db9d",
+                      "surface-bright": "#f7f9fb",
+                      "market-down": "#ef4444",
+                      "code-bg": "#0f172a",
+                      "on-primary": "#ffffff",
+                      "on-surface": "#191c1e",
+                      "surface-container-low": "#f2f4f6",
+                      "surface-container-high": "#e6e8ea",
+                      "outline": "#6e7a70",
+                      "on-tertiary": "#ffffff",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed-variant": "#005321",
+                      "outline-variant": "#bdcabe",
+                      "tertiary-fixed-dim": "#80da8e",
+                      "inverse-on-surface": "#eff1f3",
+                      "on-secondary-fixed-variant": "#3e465b",
+                      "surface-variant": "#e0e3e5"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "doc-content-max": "800px",
+                      "margin-desktop": "32px",
+                      "gutter": "20px",
+                      "margin-mobile": "16px",
+                      "sidebar-width": "280px",
+                      "base": "4px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "label-caps": ["Geist"],
+                      "code-block": ["Geist"],
+                      "display-lg": ["Plus Jakarta Sans"],
+                      "data-mono": ["Geist"],
+                      "headline-lg-mobile": ["Plus Jakarta Sans"],
+                      "headline-lg": ["Plus Jakarta Sans"],
+                      "title-md": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "code-block": ["13px", {"lineHeight": "22px", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "data-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+              }
+            }
+          }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen pt-16 flex flex-col font-body-lg">
+<!-- TopNavBar (Shared Component JSON Index 0) -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 bg-surface dark:bg-ink-charcoal border-b border-border-subtle dark:border-outline shadow-none">
+<div class="flex items-center gap-8">
+<a class="font-display-lg text-title-md font-bold text-primary dark:text-primary-fixed tracking-tight" href="/">
+                PriceNaija
+            </a>
+<div class="hidden md:flex items-center gap-6">
+<!-- Navigation Items: None active as Methodology is a secondary/footer destination -->
+<a class="font-body-lg text-body-lg text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Explore Prices</a>
+<a class="font-body-lg text-body-lg text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Markets</a>
+<a class="font-body-lg text-body-lg text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Developers</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors hidden md:block">
+                Sign In
+            </button>
+<button class="bg-primary-container text-on-primary font-label-caps text-label-caps px-4 py-2 rounded-DEFAULT hover:bg-tertiary-container transition-colors">
+                Get API Key
+            </button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-20 flex flex-col items-center">
+<!-- Header Section -->
+<header class="w-full max-w-doc-content-max text-center flex flex-col items-center mb-16">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container rounded-full mb-6">
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">policy</span>
+<span class="font-label-caps text-label-caps text-primary">Data Intelligence Framework</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-6">Uncompromising Precision in Market Data</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl text-center mb-8">
+                PriceNaija operates on a rigorous, transparent methodology to collect, verify, and standardize commodity prices across Nigeria. Our process ensures that every data point serves as a reliable anchor for analysts, traders, and institutional logic.
+            </p>
+<div class="flex items-center gap-2 text-secondary">
+<span class="material-symbols-outlined text-[18px]">update</span>
+<span class="font-label-caps text-label-caps">Methodology last updated: October 26, 2024</span>
+</div>
+</header>
+<!-- Abstract Hero Graphic -->
+<div class="w-full h-[320px] rounded-xl mb-20 bg-cover bg-center border border-border-subtle relative overflow-hidden flex items-center justify-center bg-surface-container-low" data-alt="A highly detailed, modern abstract 3D render representing financial data and market intelligence. Glowing, geometric data nodes connected by thin lines of light over a clean, minimalist light-grey background. High-key lighting, professional corporate aesthetic, emphasizing precision, technology, and African economic growth. A palette of pristine white, subtle greys, and vibrant green accents." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBp_Yl9ACKSJLcf_INgK0eSd8HBDKyfekPWP5xr_Y-UBzc4xEjkGMKlmsS5nb7L8FjHzcmnmpc-kDg70jfbTrRZ0XkR9Bv2CSvV6-WNjOKedRAo1N1oAAxbNp2TNf0YE8QO0xZOqOvEv662Bej9wj-1gWk4vr81FnOo9aFumHWshfVgbi6MWj3eWsZ8GIdHHc_oXntUCx6yUAfbDYjgG3TO00WtNZIM8X37xWa_2SV1sIdlFQSq5kcI')">
+<!-- Fallback content if image fails or before load, reinforcing the theme -->
+<div class="absolute inset-0 bg-gradient-to-tr from-surface/80 to-transparent"></div>
+<div class="relative z-10 flex gap-4 text-border-subtle opacity-20">
+<span class="material-symbols-outlined text-[120px]">database</span>
+<span class="material-symbols-outlined text-[120px]">network_node</span>
+</div>
+</div>
+<!-- Methodology Bento Grid -->
+<div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+<!-- Origin -->
+<article class="bg-surface-white border border-border-subtle rounded-xl p-6 flex flex-col gap-4 hover:shadow-sm transition-shadow">
+<div class="w-12 h-12 rounded-lg bg-surface-container-low flex items-center justify-center border border-border-subtle">
+<span class="material-symbols-outlined text-primary">travel_explore</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface">Data Origination</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                    Information is sourced directly from major wholesale markets, verified retail outlets, and proprietary on-the-ground agent networks across key Nigerian states. We do not rely on secondary aggregators.
+                </p>
+</article>
+<!-- Observations -->
+<article class="bg-surface-white border border-border-subtle rounded-xl p-6 flex flex-col gap-4 hover:shadow-sm transition-shadow">
+<div class="w-12 h-12 rounded-lg bg-surface-container-low flex items-center justify-center border border-border-subtle">
+<span class="material-symbols-outlined text-primary">monitoring</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface">Discrete Observations</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                    Every price point is recorded as a discrete observation containing strict metadata: precise timestamp, geolocation coordinates, vendor category, and specific commodity variations or grades.
+                </p>
+</article>
+<!-- Normalization -->
+<article class="bg-surface-white border border-border-subtle rounded-xl p-6 flex flex-col gap-4 hover:shadow-sm transition-shadow lg:col-span-1 md:col-span-2">
+<div class="w-12 h-12 rounded-lg bg-surface-container-low flex items-center justify-center border border-border-subtle">
+<span class="material-symbols-outlined text-primary">sync_alt</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface">Unit Normalization</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                    Raw field data captured in local measurements (e.g., "mudu", "paint bucket", "derica") is mathematically converted into standardized international metric units (kilograms, liters) utilizing our proprietary conversion matrices.
+                </p>
+</article>
+<!-- Frequency -->
+<article class="bg-surface-white border border-border-subtle rounded-xl p-6 flex flex-col gap-4 hover:shadow-sm transition-shadow">
+<div class="w-12 h-12 rounded-lg bg-surface-container-low flex items-center justify-center border border-border-subtle">
+<span class="material-symbols-outlined text-primary">schedule</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface">Update Frequency</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                    Core tier-one commodities are tracked daily. Our automated ingestion pipeline processes, validates, and publishes updates to the API and web platform within 4 hours of field collection.
+                </p>
+</article>
+<!-- Historical -->
+<article class="bg-surface-white border border-border-subtle rounded-xl p-6 flex flex-col gap-4 hover:shadow-sm transition-shadow">
+<div class="w-12 h-12 rounded-lg bg-surface-container-low flex items-center justify-center border border-border-subtle">
+<span class="material-symbols-outlined text-primary">history</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface">Historical Continuity</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                    We maintain immutable time-series records. Past observations are never overwritten or deleted, ensuring absolute historical integrity required for robust trend analysis and machine learning forecasting.
+                </p>
+</article>
+<!-- Validation -->
+<article class="bg-surface-white border border-border-subtle rounded-xl p-6 flex flex-col gap-4 hover:shadow-sm transition-shadow">
+<div class="w-12 h-12 rounded-lg bg-surface-container-low flex items-center justify-center border border-border-subtle">
+<span class="material-symbols-outlined text-primary">fact_check</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface">Quality Validation</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                    Automated statistical anomaly detection continuously scans for outliers. Any flagged data immediately enters a quarantine state and undergoes manual review by domain experts before being merged into the master index.
+                </p>
+</article>
+</div>
+<!-- Pipeline Visualization -->
+<div class="w-full max-w-doc-content-max bg-surface-container-lowest border border-border-subtle rounded-xl p-8 mb-12">
+<h3 class="font-label-caps text-label-caps text-secondary mb-8 text-center uppercase tracking-widest">Data Ingestion Pipeline</h3>
+<div class="flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="flex flex-col items-center gap-2 text-center w-full md:w-1/4">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center border border-border-subtle z-10">
+<span class="material-symbols-outlined text-on-surface">person_pin_circle</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface mt-2">1. Field Collection</span>
+</div>
+<span class="material-symbols-outlined text-border-subtle rotate-90 md:rotate-0">arrow_right_alt</span>
+<div class="flex flex-col items-center gap-2 text-center w-full md:w-1/4">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center border border-border-subtle z-10">
+<span class="material-symbols-outlined text-on-surface">rule</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface mt-2">2. Anomaly Check</span>
+</div>
+<span class="material-symbols-outlined text-border-subtle rotate-90 md:rotate-0">arrow_right_alt</span>
+<div class="flex flex-col items-center gap-2 text-center w-full md:w-1/4">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center border border-border-subtle z-10">
+<span class="material-symbols-outlined text-on-surface">transform</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface mt-2">3. Normalization</span>
+</div>
+<span class="material-symbols-outlined text-border-subtle rotate-90 md:rotate-0">arrow_right_alt</span>
+<div class="flex flex-col items-center gap-2 text-center w-full md:w-1/4">
+<div class="w-16 h-16 rounded-full bg-primary flex items-center justify-center border border-primary-container z-10 shadow-sm shadow-primary/20">
+<span class="material-symbols-outlined text-on-primary">database</span>
+</div>
+<span class="font-label-caps text-label-caps text-primary mt-2">4. Master Index</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component JSON Index 4) -->
+<footer class="w-full py-12 px-margin-mobile md:px-margin-desktop grid grid-cols-2 md:grid-cols-4 gap-8 max-w-7xl mx-auto bg-surface-container-lowest dark:bg-ink-charcoal border-t border-border-subtle dark:border-outline mt-auto">
+<div class="col-span-2 md:col-span-1 flex flex-col gap-4">
+<span class="font-display-lg text-title-md font-bold text-primary dark:text-primary-fixed">PriceNaija</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant">© 2024 PriceNaija. Market Intelligence for Nigeria.</span>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label-caps text-label-caps text-on-surface">Links</span>
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Product</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Developers</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Resources</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Legal</a>
+</div>
+</footer>
+</body></html>
