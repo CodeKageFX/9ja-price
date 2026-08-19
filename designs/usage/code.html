@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>API Usage - PriceNaija Developer Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed": "#131b2e",
+                    "on-error-container": "#93000a",
+                    "secondary-container": "#d7dff9",
+                    "tertiary-fixed": "#9bf7a8",
+                    "on-secondary-container": "#5a6278",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary": "#565e74",
+                    "on-primary-fixed-variant": "#00522f",
+                    "surface-dim": "#d8dadc",
+                    "secondary-fixed": "#dae2fc",
+                    "surface-white": "#ffffff",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "primary": "#006b3f",
+                    "on-secondary": "#ffffff",
+                    "primary-container": "#008751",
+                    "surface-tint": "#006d40",
+                    "market-up": "#22c55e",
+                    "surface": "#f7f9fb",
+                    "tertiary-container": "#2b8644",
+                    "error-container": "#ffdad6",
+                    "surface-container": "#eceef0",
+                    "ink-charcoal": "#191c1e",
+                    "border-subtle": "#e2e8f0",
+                    "on-surface-variant": "#3e4a41",
+                    "on-tertiary-fixed": "#002109",
+                    "surface-container-highest": "#e0e3e5",
+                    "tertiary": "#006c2e",
+                    "on-primary-fixed": "#002110",
+                    "on-primary-container": "#fdfff9",
+                    "on-background": "#191c1e",
+                    "inverse-surface": "#2d3133",
+                    "on-tertiary-container": "#fefff9",
+                    "background": "#f7f9fb",
+                    "primary-fixed-dim": "#70db9d",
+                    "primary-fixed": "#8df8b7",
+                    "inverse-primary": "#70db9d",
+                    "surface-bright": "#f7f9fb",
+                    "market-down": "#ef4444",
+                    "code-bg": "#0f172a",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#191c1e",
+                    "surface-container-low": "#f2f4f6",
+                    "surface-container-high": "#e6e8ea",
+                    "outline": "#6e7a70",
+                    "on-tertiary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed-variant": "#005321",
+                    "outline-variant": "#bdcabe",
+                    "tertiary-fixed-dim": "#80da8e",
+                    "inverse-on-surface": "#eff1f3",
+                    "on-secondary-fixed-variant": "#3e465b",
+                    "surface-variant": "#e0e3e5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "doc-content-max": "800px",
+                    "margin-desktop": "32px",
+                    "gutter": "20px",
+                    "margin-mobile": "16px",
+                    "sidebar-width": "280px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "label-caps": ["Geist"],
+                    "code-block": ["Geist"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "data-mono": ["Geist"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "title-md": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "code-block": ["13px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "data-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .chart-bar {
+            transition: height 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-lg text-body-lg min-h-screen antialiased flex">
+<nav class="fixed left-0 top-0 h-full w-sidebar-width flex flex-col py-6 border-r border-border-subtle bg-surface-container">
+<div class="px-6 mb-8">
+<h1 class="font-display-lg text-title-md font-bold text-primary">Developer Portal</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Manage your market data</p>
+</div>
+<ul class="flex flex-col flex-grow gap-1 px-4">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span>Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">vpn_key</span>
+<span>API Keys</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg font-body-sm text-body-sm bg-primary/5 text-primary border-l-4 border-primary font-semibold" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">bar_chart</span>
+<span>Usage</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">terminal</span>
+<span>Playground</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">description</span>
+<span>Documentation</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span>Settings</span>
+</a>
+</li>
+</ul>
+<div class="px-6 mt-auto">
+<button class="w-full bg-surface-white border border-border-subtle font-label-caps text-label-caps text-on-surface py-3 rounded-lg hover:bg-surface-container transition-colors flex items-center justify-center gap-2 shadow-[0px_4px_12px_rgba(0,0,0,0.02)]">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+                Upgrade Plan
+            </button>
+</div>
+</nav>
+<main class="ml-sidebar-width flex-grow p-margin-desktop bg-surface min-h-screen">
+<header class="flex justify-between items-end mb-10 border-b border-border-subtle pb-6">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">API Usage</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Monitor your request volume, error rates, and endpoint performance.</p>
+</div>
+<div class="flex gap-4">
+<select class="bg-surface-white border border-border-subtle rounded-lg px-4 py-2 font-body-sm text-body-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none">
+<option>Production Env</option>
+<option>Sandbox Env</option>
+</select>
+<select class="bg-surface-white border border-border-subtle rounded-lg px-4 py-2 font-body-sm text-body-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none">
+<option>Last 30 Days</option>
+<option>Last 7 Days</option>
+<option>Last 90 Days</option>
+</select>
+</div>
+</header>
+<section class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-10">
+<div class="bg-surface-white border border-border-subtle rounded-xl p-6 shadow-[0px_4px_12px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-4">Requests Today</h3>
+<div class="flex items-end justify-between">
+<span class="font-display-lg text-[32px] font-bold text-on-surface leading-none">12,408</span>
+<span class="font-data-mono text-data-mono text-market-up flex items-center bg-market-up/10 px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[14px] mr-1">trending_up</span> 8.4%
+                    </span>
+</div>
+</div>
+<div class="bg-surface-white border border-border-subtle rounded-xl p-6 shadow-[0px_4px_12px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-4">Requests This Month</h3>
+<div class="flex items-end justify-between">
+<span class="font-display-lg text-[32px] font-bold text-on-surface leading-none">342.1k</span>
+<span class="font-data-mono text-data-mono text-market-up flex items-center bg-market-up/10 px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[14px] mr-1">trending_up</span> 12.1%
+                    </span>
+</div>
+</div>
+<div class="bg-surface-white border border-border-subtle rounded-xl p-6 shadow-[0px_4px_12px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-4">Successful Requests</h3>
+<div class="flex items-end justify-between">
+<span class="font-display-lg text-[32px] font-bold text-on-surface leading-none">99.8%</span>
+<span class="font-data-mono text-data-mono text-on-surface-variant flex items-center">
+                        Target: 99.9%
+                    </span>
+</div>
+</div>
+<div class="bg-surface-white border border-border-subtle rounded-xl p-6 shadow-[0px_4px_12px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-4">Failed Requests</h3>
+<div class="flex items-end justify-between">
+<span class="font-display-lg text-[32px] font-bold text-market-down leading-none">0.2%</span>
+<span class="font-data-mono text-data-mono text-market-down flex items-center bg-market-down/10 px-2 py-1 rounded">
+                        684 errors
+                    </span>
+</div>
+</div>
+</section>
+<section class="bg-surface-white border border-border-subtle rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.02)] mb-10 overflow-hidden">
+<div class="px-6 py-5 border-b border-border-subtle flex justify-between items-center bg-surface-bright">
+<h3 class="font-title-md text-title-md text-on-surface">API Requests Overview</h3>
+<div class="flex gap-2">
+<button class="font-label-caps text-label-caps text-on-surface-variant px-3 py-1 hover:text-primary transition-colors">7D</button>
+<button class="font-label-caps text-label-caps bg-surface-container text-on-surface px-3 py-1 rounded shadow-sm">30D</button>
+<button class="font-label-caps text-label-caps text-on-surface-variant px-3 py-1 hover:text-primary transition-colors">90D</button>
+</div>
+</div>
+<div class="p-6 h-72 flex items-end justify-between gap-1">
+<div class="w-full bg-surface-container-low h-full relative border-b border-border-subtle flex items-end pb-1 gap-1 px-2">
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-sm h-[30%]" title="Oct 1: 8k"></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-sm h-[35%]" title="Oct 2: 9k"></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-sm h-[40%]" title="Oct 3: 10k"></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-sm h-[38%]" title="Oct 4: 9.5k"></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-sm h-[45%]" title="Oct 5: 11k"></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-sm h-[50%]" title="Oct 6: 12k"></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-sm h-[48%]" title="Oct 7: 11.5k"></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-sm h-[55%]" title="Oct 8: 13k"></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-sm h-[60%]" title="Oct 9: 14k"></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-sm h-[58%]" title="Oct 10: 13.5k"></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-sm h-[65%]" title="Oct 11: 15k"></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-sm h-[70%]" title="Oct 12: 16k"></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-sm h-[68%]" title="Oct 13: 15.5k"></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-sm h-[75%]" title="Oct 14: 17k"></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-sm h-[80%]" title="Oct 15: 18k"></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-sm h-[78%]" title="Oct 16: 17.5k"></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-sm h-[85%]" title="Oct 17: 19k"></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-sm h-[90%]" title="Oct 18: 20k"></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-sm h-[88%]" title="Oct 19: 19.5k"></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-sm h-[95%]" title="Oct 20: 21k"></div>
+<div class="w-full bg-primary-container rounded-t-sm h-[100%] shadow-[0_0_10px_rgba(0,135,81,0.3)]" title="Oct 21: 22k"></div>
+</div>
+</div>
+<div class="px-6 pb-4 flex justify-between font-data-mono text-[11px] text-on-surface-variant">
+<span>Oct 01</span>
+<span>Oct 11</span>
+<span>Oct 21</span>
+</div>
+</section>
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-gutter mb-10">
+<section class="bg-surface-white border border-border-subtle rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.02)] overflow-hidden">
+<div class="px-6 py-5 border-b border-border-subtle bg-surface-bright">
+<h3 class="font-title-md text-title-md text-on-surface">Endpoint Breakdown</h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low font-label-caps text-label-caps text-on-surface-variant uppercase">
+<th class="py-3 px-6 font-semibold border-b border-border-subtle">Endpoint</th>
+<th class="py-3 px-6 font-semibold border-b border-border-subtle text-right">Requests</th>
+<th class="py-3 px-6 font-semibold border-b border-border-subtle text-right">Success</th>
+<th class="py-3 px-6 font-semibold border-b border-border-subtle text-right">Avg Resp</th>
+</tr>
+</thead>
+<tbody class="font-data-mono text-data-mono text-on-surface">
+<tr class="border-b border-border-subtle hover:bg-surface-bright transition-colors">
+<td class="py-4 px-6 text-primary">/v1/prices/garri</td>
+<td class="py-4 px-6 text-right">142,501</td>
+<td class="py-4 px-6 text-right text-market-up">99.9%</td>
+<td class="py-4 px-6 text-right">42ms</td>
+</tr>
+<tr class="border-b border-border-subtle hover:bg-surface-bright transition-colors">
+<td class="py-4 px-6 text-primary">/v1/markets/lagos/mile12</td>
+<td class="py-4 px-6 text-right">89,204</td>
+<td class="py-4 px-6 text-right text-market-up">99.8%</td>
+<td class="py-4 px-6 text-right">58ms</td>
+</tr>
+<tr class="border-b border-border-subtle hover:bg-surface-bright transition-colors">
+<td class="py-4 px-6 text-primary">/v1/prices/rice/ofada</td>
+<td class="py-4 px-6 text-right">65,112</td>
+<td class="py-4 px-6 text-right text-market-up">99.7%</td>
+<td class="py-4 px-6 text-right">45ms</td>
+</tr>
+<tr class="border-b border-border-subtle hover:bg-surface-bright transition-colors">
+<td class="py-4 px-6 text-primary">/v1/logistics/routes</td>
+<td class="py-4 px-6 text-right">24,890</td>
+<td class="py-4 px-6 text-right text-market-down">98.2%</td>
+<td class="py-4 px-6 text-right">120ms</td>
+</tr>
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="py-4 px-6 text-primary">/v1/auth/token</td>
+<td class="py-4 px-6 text-right">20,388</td>
+<td class="py-4 px-6 text-right text-market-up">100%</td>
+<td class="py-4 px-6 text-right">28ms</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="bg-surface-white border border-border-subtle rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.02)] overflow-hidden">
+<div class="px-6 py-5 border-b border-border-subtle bg-surface-bright">
+<h3 class="font-title-md text-title-md text-on-surface">Recent Requests</h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low font-label-caps text-label-caps text-on-surface-variant uppercase">
+<th class="py-3 px-6 font-semibold border-b border-border-subtle">Timestamp</th>
+<th class="py-3 px-6 font-semibold border-b border-border-subtle">Endpoint</th>
+<th class="py-3 px-6 font-semibold border-b border-border-subtle">Status</th>
+<th class="py-3 px-6 font-semibold border-b border-border-subtle text-right">Time</th>
+</tr>
+</thead>
+<tbody class="font-data-mono text-data-mono text-on-surface">
+<tr class="border-b border-border-subtle hover:bg-surface-bright transition-colors">
+<td class="py-4 px-6 text-on-surface-variant text-[13px]">14:23:05.112</td>
+<td class="py-4 px-6 truncate max-w-[150px]">/v1/prices/garri</td>
+<td class="py-4 px-6"><span class="bg-market-up/10 text-market-up px-2 py-0.5 rounded text-[12px] font-semibold">200 OK</span></td>
+<td class="py-4 px-6 text-right text-on-surface-variant">41ms</td>
+</tr>
+<tr class="border-b border-border-subtle hover:bg-surface-bright transition-colors">
+<td class="py-4 px-6 text-on-surface-variant text-[13px]">14:23:04.980</td>
+<td class="py-4 px-6 truncate max-w-[150px]">/v1/markets/abuja/wuse</td>
+<td class="py-4 px-6"><span class="bg-market-up/10 text-market-up px-2 py-0.5 rounded text-[12px] font-semibold">200 OK</span></td>
+<td class="py-4 px-6 text-right text-on-surface-variant">62ms</td>
+</tr>
+<tr class="border-b border-border-subtle hover:bg-surface-bright transition-colors">
+<td class="py-4 px-6 text-on-surface-variant text-[13px]">14:23:04.450</td>
+<td class="py-4 px-6 truncate max-w-[150px]">/v1/prices/tomatoes</td>
+<td class="py-4 px-6"><span class="bg-market-down/10 text-market-down px-2 py-0.5 rounded text-[12px] font-semibold">429 RATE</span></td>
+<td class="py-4 px-6 text-right text-on-surface-variant">12ms</td>
+</tr>
+<tr class="border-b border-border-subtle hover:bg-surface-bright transition-colors">
+<td class="py-4 px-6 text-on-surface-variant text-[13px]">14:23:02.100</td>
+<td class="py-4 px-6 truncate max-w-[150px]">/v1/prices/rice/ofada</td>
+<td class="py-4 px-6"><span class="bg-market-up/10 text-market-up px-2 py-0.5 rounded text-[12px] font-semibold">200 OK</span></td>
+<td class="py-4 px-6 text-right text-on-surface-variant">44ms</td>
+</tr>
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="py-4 px-6 text-on-surface-variant text-[13px]">14:22:59.882</td>
+<td class="py-4 px-6 truncate max-w-[150px]">/v1/auth/token</td>
+<td class="py-4 px-6"><span class="bg-secondary/10 text-secondary px-2 py-0.5 rounded text-[12px] font-semibold">201 CREATED</span></td>
+<td class="py-4 px-6 text-right text-on-surface-variant">89ms</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</main>
+</body></html>
