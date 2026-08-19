@@ -1,69 +1,41 @@
-import { Breadcrumb, BreadcrumbItem, BreadcrumbSeparator, } from "@/components/ui/breadcrumb"
+import Link from "next/link"
 
 export function Footer() {
   return (
-    <footer className="border-t border-border py-8 bg-background/80 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div>
-            <h4 className="font-medium text-ink-primary mb-3">PriceNaija</h4>
-            <p className="text-ink-secondary text-sm">
-              Comprehensive Nigerian food price tracking and analytics platform.
-            </p>
-          </div>
-
-          <div>
-            <h5 className="font-medium text-ink-primary mb-3">Product</h5>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a href="#!" className="hover:text-primary transition-colors">Price Explorer</a>
-              </li>
-              <li>
-                <a href="#!" className="hover:text-primary transition-colors">Commodity Details</a>
-              </li>
-              <li>
-                <a href="#!" className="hover:text-primary transition-colors">API Documentation</a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h5 className="font-medium text-ink-primary mb-3">Developer</h5>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a href="#!" className="hover:text-primary transition-colors">Dashboard</a>
-              </li>
-              <li>
-                <a href="#!" className="hover:text-primary transition-colors">API Keys</a>
-              </li>
-              <li>
-                <a href="#!" className="hover:text-primary transition-colors">Playground</a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h5 className="font-medium text-ink-primary mb-3">Company</h5>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a href="#!" className="hover:text-primary transition-colors">About</a>
-              </li>
-              <li>
-                <a href="#!" className="hover:text-primary transition-colors">Contact</a>
-              </li>
-              <li>
-                <a href="#!" className="hover:text-primary transition-colors">Terms</a>
-              </li>
-            </ul>
-          </div>
+    <footer className="bg-surface-container-highest dark:bg-inverse-surface border-t border-outline-variant full-width bottom mt-xl">
+      <div className="w-full py-xl px-margin-desktop flex flex-col md:flex-row justify-between items-start md:items-center max-w-[1440px] mx-auto gap-lg">
+        <div className="flex flex-col gap-sm">
+          <Link href="/" className="text-title-md font-headline-lg text-primary flex items-center gap-xs">
+            <span className="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary font-bold text-sm">
+              9
+            </span>
+            9jaPrice
+          </Link>
+          <p className="text-body-sm font-body-sm text-on-surface-variant max-w-sm">
+            Making Nigerian food-price data accessible.
+          </p>
+          <p className="text-body-sm font-body-sm text-on-surface-variant opacity-70 mt-sm">
+            © 2026 9jaPrice. Data-driven food security for Nigeria.
+          </p>
         </div>
-
-        <div className="mt-8 pt-8 border-t border-border flex flex-col sm:flex-row justify-between gap-4 text-ink-secondary text-xs">
-          <p>2026 PriceNaija. All rights reserved.</p>
-          <div className="flex gap-4">
-            <a href="#!" aria-label="Twitter" />
-            <a href="#!" aria-label="GitHub" />
-            <a href="#!" aria-label="LinkedIn" />
+        <div className="flex flex-col sm:flex-row gap-lg md:gap-xl">
+          <div className="flex flex-col gap-sm text-body-sm font-body-sm">
+            <span className="text-label-caps font-label-caps text-on-surface font-semibold mb-xs">Product</span>
+            <Link className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="/docs">API Docs</Link>
+            <Link className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="/explorer">Explorer</Link>
+            <Link className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="/commodity/rice">Markets</Link>
+          </div>
+          <div className="flex flex-col gap-sm text-body-sm font-body-sm">
+            <span className="text-label-caps font-label-caps text-on-surface font-semibold mb-xs">Developer</span>
+            <Link className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="/dashboard">Dashboard</Link>
+            <Link className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="/api-keys">API Keys</Link>
+            <Link className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="/playground">Playground</Link>
+          </div>
+          <div className="flex flex-col gap-sm text-body-sm font-body-sm">
+            <span className="text-label-caps font-label-caps text-on-surface font-semibold mb-xs">Legal &amp; Support</span>
+            <Link className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Terms of Service</Link>
+            <Link className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Privacy Policy</Link>
+            <Link className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Contact Support</Link>
           </div>
         </div>
       </div>

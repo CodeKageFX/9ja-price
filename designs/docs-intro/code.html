@@ -1,174 +1,280 @@
-PriceNaija API - Introduction
+<!DOCTYPE html>
 
-
-
-
-
-
-
-
-
-
-
-
-PriceNaija API
-v2.4.0-stable
-
-
-
-
-key
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PriceNaija API - Introduction</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;family=Geist:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#dae2fd",
+                        "surface-container": "#eceef0",
+                        "inverse-on-surface": "#eff1f3",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "outline-variant": "#bdcabe",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#f7f9fb",
+                        "surface-container-highest": "#e0e3e5",
+                        "tertiary-fixed": "#6bff8f",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-variant": "#e0e3e5",
+                        "on-primary-container": "#fdfff9",
+                        "surface-bright": "#f7f9fb",
+                        "secondary-container": "#dae2fd",
+                        "primary-fixed-dim": "#70db9d",
+                        "tertiary-container": "#00883c",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#006d40",
+                        "on-tertiary-fixed-variant": "#005321",
+                        "on-surface-variant": "#3e4a41",
+                        "on-background": "#191c1e",
+                        "tertiary": "#006c2e",
+                        "on-error": "#ffffff",
+                        "primary": "#006b3f",
+                        "inverse-primary": "#70db9d",
+                        "on-secondary-container": "#5c647a",
+                        "on-primary-fixed-variant": "#00522f",
+                        "primary-fixed": "#8df8b7",
+                        "outline": "#6e7a70",
+                        "on-tertiary-fixed": "#002109",
+                        "background": "#f7f9fb",
+                        "on-primary-fixed": "#002110",
+                        "on-surface": "#191c1e",
+                        "secondary": "#565e74",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "tertiary-fixed-dim": "#4ae176",
+                        "on-tertiary-container": "#fdfff8",
+                        "primary-container": "#008751",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#d8dadc"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "20px",
+                        "md": "24px",
+                        "xs": "8px",
+                        "margin-desktop": "32px",
+                        "lg": "40px",
+                        "xl": "64px",
+                        "margin-mobile": "16px",
+                        "base": "4px",
+                        "sm": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "label-caps": ["Geist"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "title-md": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "data-mono": ["Geist"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "data-mono": ["14px", { "lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface-container-lowest text-on-surface h-full antialiased font-body-lg">
+<div class="flex h-full w-full">
+<!-- SideNav: Left Column -->
+<nav aria-label="Sidebar Navigation" class="h-screen w-64 fixed left-0 top-0 border-r border-outline-variant bg-surface flex flex-col h-full py-md px-sm overflow-y-auto hidden md:flex z-40 shadow-none">
+<div class="mb-lg px-2">
+<a class="flex flex-col gap-1 text-decoration-none" href="#">
+<span class="font-headline-lg text-headline-lg font-bold text-primary">PriceNaija API</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">v2.4.0-stable</span>
+</a>
+</div>
+<div class="mb-lg px-2">
+<button class="w-full bg-primary-container text-on-primary font-body-sm text-body-sm rounded-lg py-2 px-4 font-semibold hover:bg-primary transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">key</span>
                     Get API Key
-                
-
-
-
-
-
-info
+                </button>
+</div>
+<div class="flex-1 overflow-y-auto">
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-primary font-bold border-r-2 border-primary bg-surface-container-low font-body-sm text-body-sm transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">info</span>
                             Introduction
-                        
-
-
-
-rocket_launch
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-body-sm text-body-sm transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">rocket_launch</span>
                             Quickstart
-                        
-
-
-
-lock
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-body-sm text-body-sm transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">lock</span>
                             Authentication
-                        
-
-
-
-agriculture
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-body-sm text-body-sm transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">agriculture</span>
                             Commodity Prices
-                        
-
-
-
-location_on
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-body-sm text-body-sm transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">location_on</span>
                             Market Locations
-                        
-
-
-
-history
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-body-sm text-body-sm transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">history</span>
                             Historical Data
-                        
-
-
-
-speed
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-body-sm text-body-sm transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">speed</span>
                             Rate Limits
-                        
-
-
-
-webhook
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-body-sm text-body-sm transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">webhook</span>
                             Webhooks
-                        
-
-
-
-
-
-
-
-support_agent
+                        </a>
+</li>
+</ul>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant">
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-body-sm text-body-sm transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">support_agent</span>
                             Support
-                        
-
-
-
-check_circle
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-body-sm text-body-sm transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">check_circle</span>
                             Status
-                        
-
-
-
-
-
-
-
-
-
-Introduction
-
+                        </a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Wrapper: Middle + Right Columns -->
+<main class="ml-0 md:ml-64 flex-1 flex flex-col lg:flex-row min-h-screen">
+<!-- Middle Column: Documentation Content -->
+<div class="flex-1 w-full max-w-4xl mx-auto px-margin-mobile md:px-margin-desktop py-lg overflow-y-auto">
+<header class="mb-lg">
+<h1 class="font-display-lg text-display-lg text-on-surface mb-sm">Introduction</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl leading-relaxed">
                         Welcome to the PriceNaija API. Our API provides programmatic access to real-time and historical food price data across major Nigerian markets.
-                    
-
-
-Getting Started
-
-
-
-travel_explore
-
-Explore the Explorer
-Browse endpoints, parameters, and interactive examples in our API Explorer.
-
-
-
-play_arrow
-
-View the Playground
-Test API calls directly from your browser without writing any code.
-
-
-
-
-Base URL
-All API requests should be prefixed with the following base URL:
-
-https://api.pricenaija.com/v1
-
-content_copy
-
-
-
-
-
+                    </p>
+</header>
+<section class="mb-xl">
+<h2 class="font-title-md text-title-md text-on-surface mb-md">Getting Started</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-sm">
+<a class="block p-md bg-surface-container-lowest border border-outline-variant rounded-xl hover:border-primary-container hover:shadow-[0_4px_12px_rgba(0,0,0,0.05)] transition-all group" href="#">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center mb-sm text-primary group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined">travel_explore</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-xs">Explore the Explorer</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Browse endpoints, parameters, and interactive examples in our API Explorer.</p>
+</a>
+<a class="block p-md bg-surface-container-lowest border border-outline-variant rounded-xl hover:border-primary-container hover:shadow-[0_4px_12px_rgba(0,0,0,0.05)] transition-all group" href="#">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center mb-sm text-primary group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined">play_arrow</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-xs">View the Playground</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Test API calls directly from your browser without writing any code.</p>
+</a>
+</div>
+</section>
+<section class="mb-xl">
+<h2 class="font-title-md text-title-md text-on-surface mb-md">Base URL</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-sm">All API requests should be prefixed with the following base URL:</p>
+<div class="bg-surface border border-outline-variant rounded-lg p-sm flex items-center justify-between">
+<code class="font-data-mono text-data-mono text-on-surface">https://api.pricenaija.com/v1</code>
+<button class="text-on-surface-variant hover:text-primary transition-colors" title="Copy to clipboard">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+</button>
+</div>
+</section>
+<!-- TopNavBar (Simulated TopNav for context, optional but helpful if requested, keeping it minimal as instruction focuses on SideNav) -->
+<div class="hidden">
                     {{DATA:COMPONENTS:COMPONENTS_11}}
-                
-
-
+                </div>
+<!-- Footer -->
+<div class="mt-xl">
                      {{DATA:COMPONENTS:COMPONENTS_12}}
-                
-
-
-
-
-Example Request
-
-
-cURL
-
-content_copy
-
-
-
-curl -X GET \
-  'https://api.pricenaija.com/v1/commodities/rice/prices?market_id=lag-01' \
-  -H 'Authorization: Bearer YOUR_API_KEY' \
-  -H 'Accept: application/json'
-
-
-Example Response
-
-
-JSON
-
-
-{
-  "status": "success",
-  "data": {
-    "commodity_id": "rice-50kg",
-    "market_name": "Mile 12 Market",
-    "current_price_ngn": 75000,
-    "price_change_24h": -1.5,
-    "timestamp": "2024-05-20T14:30:00Z"
+                </div>
+</div>
+<!-- Right Column: Code Examples -->
+<aside class="w-full lg:w-[400px] xl:w-[480px] bg-surface-container border-l border-outline-variant p-margin-mobile md:p-margin-desktop overflow-y-auto">
+<div class="sticky top-lg">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-sm">Example Request</h3>
+<div class="bg-[#1E293B] rounded-lg overflow-hidden border border-[#334155] shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
+<div class="flex items-center justify-between px-4 py-2 border-b border-[#334155] bg-[#0F172A]">
+<span class="font-data-mono text-[12px] text-surface-container-lowest">cURL</span>
+<button class="text-surface-variant hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</button>
+</div>
+<div class="p-4 overflow-x-auto">
+<pre class="font-data-mono text-[13px] leading-relaxed text-[#E2E8F0]"><code><span class="text-[#8df8b7]">curl</span> -X GET \
+  <span class="text-[#7DD3FC]">'https://api.pricenaija.com/v1/commodities/rice/prices?market_id=lag-01'</span> \
+  -H <span class="text-[#7DD3FC]">'Authorization: Bearer YOUR_API_KEY'</span> \
+  -H <span class="text-[#7DD3FC]">'Accept: application/json'</span></code></pre>
+</div>
+</div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mt-lg mb-sm">Example Response</h3>
+<div class="bg-[#1E293B] rounded-lg overflow-hidden border border-[#334155] shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
+<div class="flex items-center justify-between px-4 py-2 border-b border-[#334155] bg-[#0F172A]">
+<span class="font-data-mono text-[12px] text-surface-container-lowest">JSON</span>
+</div>
+<div class="p-4 overflow-x-auto max-h-[300px]">
+<pre class="font-data-mono text-[13px] leading-relaxed text-[#E2E8F0]"><code>{
+  <span class="text-[#7DD3FC]">"status"</span>: <span class="text-[#8df8b7]">"success"</span>,
+  <span class="text-[#7DD3FC]">"data"</span>: {
+    <span class="text-[#7DD3FC]">"commodity_id"</span>: <span class="text-[#8df8b7]">"rice-50kg"</span>,
+    <span class="text-[#7DD3FC]">"market_name"</span>: <span class="text-[#8df8b7]">"Mile 12 Market"</span>,
+    <span class="text-[#7DD3FC]">"current_price_ngn"</span>: <span class="text-[#FBBF24]">75000</span>,
+    <span class="text-[#7DD3FC]">"price_change_24h"</span>: <span class="text-[#EF4444]">-1.5</span>,
+    <span class="text-[#7DD3FC]">"timestamp"</span>: <span class="text-[#8df8b7]">"2024-05-20T14:30:00Z"</span>
   }
-}
+}</code></pre>
+</div>
+</div>
+</div>
+</aside>
+</main>
+</div>
+</body></html>

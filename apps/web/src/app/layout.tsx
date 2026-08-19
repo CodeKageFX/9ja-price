@@ -1,14 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { Geist } from "next/font/google";
-import { cn } from "@web/lib/utils";
-
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
-  title: "PriceNaija",
-  description: "Nigerian food price tracking and analytics platform",
+  title: "9jaPrice - Know What Food Costs in Nigeria",
+  description: "Reliable, structured Nigerian food-price data for people, businesses and developers.",
 };
 
 export default function RootLayout({
@@ -17,8 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("font-sans", geist.variable)}>
-      <body>
+    <html lang="en" className="light">
+      <body className="bg-background text-on-background font-body-lg antialiased min-h-screen flex flex-col">
         <TooltipProvider>{children}</TooltipProvider>
       </body>
     </html>
