@@ -1,0 +1,205 @@
+Commodity Prices - PriceNaija API Documentation
+
+
+
+
+
+
+
+
+
+
+
+
+
+PriceNaija API
+v2.4.0-stable
+
+
+
+
+
+info
+                    Introduction
+                
+
+
+
+
+rocket_launch
+                    Quickstart
+                
+
+
+
+
+lock
+                    Authentication
+                
+
+
+
+
+agriculture
+                    Commodity Prices
+                
+
+
+
+
+location_on
+                    Market Locations
+                
+
+
+
+
+history
+                    Historical Data
+                
+
+
+
+
+speed
+                    Rate Limits
+                
+
+
+
+
+webhook
+                    Webhooks
+                
+
+
+
+Get API Key
+
+
+
+support_agent
+                        Support
+                    
+
+
+
+check_circle
+                        Status
+                    
+
+
+
+
+
+
+
+
+
+Commodity Prices
+
+GET
+/prices
+
+
+                    Retrieve the latest prices for specific food items across different locations. This endpoint provides real-time market intelligence critical for agricultural planning and trade.
+                
+
+
+Query Parameters
+
+
+
+
+Parameter
+Type
+Description
+
+
+
+
+food
+string
+The name of the commodity (e.g., "rice", "beans"). Optional.
+
+
+location
+string
+The specific state or region to filter by (e.g., "Kano", "Lagos"). Optional.
+
+
+market
+string
+Specific market name for hyper-local pricing. Optional.
+
+
+unit
+string
+Measurement unit (e.g., "kg", "bag"). Defaults to standard regional unit if omitted. Optional.
+
+
+
+
+
+
+
+
+
+
+Request
+Response
+
+
+
+
+
+JavaScript (Fetch)
+
+content_copy
+
+
+
+const url = 'https://api.pricenaija.com/v2/prices?food=rice&location=kano';
+const options = {
+  method: 'GET',
+  headers: {
+ 'Authorization': 'Bearer YOUR_API_KEY',
+ 'Accept': 'application/json'
+  }
+};
+
+try {
+ const response = await fetch(url, options);
+ const data = await response.json();
+  console.log(data);
+} catch (error) {
+  console.error(error);
+}
+
+
+
+
+
+
+
+JSON - 200 OK
+
+{
+  "status": "success",
+  "data": [
+    {
+      "id": 1042,
+      "commodity": "Rice (Local)",
+      "location": "Kano",
+      "market": "Dawanau Market",
+      "price": 55000,
+      "currency": "NGN",
+      "unit": "50kg Bag",
+      "timestamp": "2024-05-14T08:30:00Z"
+    }
+  ],
+  "meta": {
+    "total_results": 1,
+    "page": 1
+  }
+}

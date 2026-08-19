@@ -1,0 +1,174 @@
+PriceNaija API - Introduction
+
+
+
+
+
+
+
+
+
+
+
+
+PriceNaija API
+v2.4.0-stable
+
+
+
+
+key
+                    Get API Key
+                
+
+
+
+
+
+info
+                            Introduction
+                        
+
+
+
+rocket_launch
+                            Quickstart
+                        
+
+
+
+lock
+                            Authentication
+                        
+
+
+
+agriculture
+                            Commodity Prices
+                        
+
+
+
+location_on
+                            Market Locations
+                        
+
+
+
+history
+                            Historical Data
+                        
+
+
+
+speed
+                            Rate Limits
+                        
+
+
+
+webhook
+                            Webhooks
+                        
+
+
+
+
+
+
+
+support_agent
+                            Support
+                        
+
+
+
+check_circle
+                            Status
+                        
+
+
+
+
+
+
+
+
+
+Introduction
+
+                        Welcome to the PriceNaija API. Our API provides programmatic access to real-time and historical food price data across major Nigerian markets.
+                    
+
+
+Getting Started
+
+
+
+travel_explore
+
+Explore the Explorer
+Browse endpoints, parameters, and interactive examples in our API Explorer.
+
+
+
+play_arrow
+
+View the Playground
+Test API calls directly from your browser without writing any code.
+
+
+
+
+Base URL
+All API requests should be prefixed with the following base URL:
+
+https://api.pricenaija.com/v1
+
+content_copy
+
+
+
+
+
+                    {{DATA:COMPONENTS:COMPONENTS_11}}
+                
+
+
+                     {{DATA:COMPONENTS:COMPONENTS_12}}
+                
+
+
+
+
+Example Request
+
+
+cURL
+
+content_copy
+
+
+
+curl -X GET \
+  'https://api.pricenaija.com/v1/commodities/rice/prices?market_id=lag-01' \
+  -H 'Authorization: Bearer YOUR_API_KEY' \
+  -H 'Accept: application/json'
+
+
+Example Response
+
+
+JSON
+
+
+{
+  "status": "success",
+  "data": {
+    "commodity_id": "rice-50kg",
+    "market_name": "Mile 12 Market",
+    "current_price_ngn": 75000,
+    "price_change_24h": -1.5,
+    "timestamp": "2024-05-20T14:30:00Z"
+  }
+}
