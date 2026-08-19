@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-background dark:bg-inverse-surface" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PriceNaija - Admin Dashboard</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#191c1e",
+                        "primary-fixed-dim": "#70db9d",
+                        "surface-dim": "#d8dadc",
+                        "surface-container": "#eceef0",
+                        "secondary-fixed": "#dae2fd",
+                        "inverse-primary": "#70db9d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#00522f",
+                        "inverse-surface": "#2d3133",
+                        "on-tertiary-fixed-variant": "#005321",
+                        "surface-bright": "#f7f9fb",
+                        "secondary": "#565e74",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#4ae176",
+                        "background": "#f7f9fb",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#3e4a41",
+                        "primary-container": "#008751",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f2f4f6",
+                        "tertiary": "#006c2e",
+                        "tertiary-fixed": "#6bff8f",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "outline-variant": "#bdcabe",
+                        "on-tertiary-fixed": "#002109",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-tertiary-container": "#fdfff8",
+                        "inverse-on-surface": "#eff1f3",
+                        "primary": "#006b3f",
+                        "surface-tint": "#006d40",
+                        "surface-container-high": "#e6e8ea",
+                        "on-background": "#191c1e",
+                        "outline": "#6e7a70",
+                        "tertiary-container": "#00883c",
+                        "surface-container-highest": "#e0e3e5",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "on-primary-fixed": "#002110",
+                        "on-primary-container": "#fdfff9",
+                        "primary-fixed": "#8df8b7",
+                        "on-secondary-container": "#5c647a",
+                        "on-primary": "#ffffff",
+                        "surface": "#f7f9fb",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#e0e3e5",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#dae2fd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "sm": "16px",
+                        "lg": "40px",
+                        "base": "4px",
+                        "md": "24px",
+                        "margin-desktop": "32px",
+                        "xl": "64px",
+                        "xs": "8px",
+                        "gutter": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "label-caps": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "data-mono": ["Geist"],
+                        "title-md": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "data-mono": ["14px", { "lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="h-full flex overflow-hidden">
+<!-- SideNavBar Component -->
+<nav class="hidden md:flex flex-col h-full py-md px-sm bg-surface-container-low dark:bg-inverse-surface border-r border-outline-variant dark:border-outline docked left-0 h-full w-64 z-20 shrink-0">
+<!-- Header -->
+<div class="flex items-center gap-sm mb-lg px-xs">
+<div class="h-10 w-10 rounded-full bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">dataset</span>
+</div>
+<div>
+<h2 class="text-title-md font-headline-lg text-primary dark:text-primary-fixed m-0">Dev Portal</h2>
+<p class="text-body-sm font-body-sm text-secondary m-0">Market Intelligence API</p>
+</div>
+</div>
+<!-- Main Navigation -->
+<ul class="flex-1 space-y-2 overflow-y-auto w-full list-none p-0 m-0">
+<li>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all text-body-sm font-body-sm" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg bg-primary-container text-on-primary-container dark:bg-primary dark:text-on-primary font-bold scale-[0.98] transition-transform text-body-sm font-body-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+                    Data Management
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all text-body-sm font-body-sm" href="#">
+<span class="material-symbols-outlined">vpn_key</span>
+                    API Keys
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all text-body-sm font-body-sm" href="#">
+<span class="material-symbols-outlined">code</span>
+                    Playground
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all text-body-sm font-body-sm" href="#">
+<span class="material-symbols-outlined">description</span>
+                    Documentation
+                </a>
+</li>
+</ul>
+<!-- Footer Navigation -->
+<div class="mt-auto pt-sm border-t border-outline-variant dark:border-outline">
+<ul class="space-y-2 list-none p-0 m-0">
+<li>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all text-body-sm font-body-sm" href="#">
+<span class="material-symbols-outlined">settings</span>
+                        Settings
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all text-body-sm font-body-sm" href="#">
+<span class="material-symbols-outlined">help</span>
+                        Support
+                    </a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full overflow-hidden bg-background">
+<!-- TopNavBar Component (Mobile Only for Shell Consistency, Content handles desktop header) -->
+<header class="md:hidden flex justify-between items-center w-full px-margin-mobile h-16 bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shrink-0 z-10">
+<div class="text-title-md font-headline-lg text-primary dark:text-primary-fixed">PriceNaija</div>
+<button class="text-primary p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<!-- Canvas Header & Actions -->
+<div class="px-margin-mobile md:px-margin-desktop py-lg shrink-0">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-md mb-md">
+<div>
+<h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-on-surface m-0 tracking-tight">Price Records</h1>
+<p class="text-body-sm font-body-sm text-secondary mt-1">Manage and verify daily commodity pricing data across markets.</p>
+</div>
+<div class="flex flex-wrap items-center gap-sm">
+<button class="flex items-center justify-center gap-xs px-md py-2 rounded-lg bg-[#F1F5F9] text-[#1E293B] border border-outline-variant hover:bg-surface-container transition-colors text-body-sm font-body-sm font-medium">
+<span class="material-symbols-outlined text-[18px]">upload</span>
+                        Import CSV
+                    </button>
+<button class="flex items-center justify-center gap-xs px-md py-2 rounded-lg bg-primary-container text-white hover:bg-surface-tint transition-colors text-body-sm font-body-sm font-medium shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                        Add Price
+                    </button>
+</div>
+</div>
+<!-- Filters & Search Bar -->
+<div class="bg-surface-container-lowest rounded-xl border border-[#E2E8F0] p-sm flex flex-col xl:flex-row gap-sm items-center justify-between shadow-sm">
+<!-- Search -->
+<div class="relative w-full xl:max-w-md group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary group-focus-within:text-primary transition-colors text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-background border border-[#E2E8F0] rounded-lg text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-secondary" placeholder="Search records by food, market, or source..." type="text"/>
+</div>
+<!-- Filters -->
+<div class="flex flex-wrap items-center gap-xs w-full xl:w-auto">
+<!-- Category Dropdown -->
+<div class="relative flex-1 min-w-[120px]">
+<select class="w-full appearance-none bg-background border border-[#E2E8F0] rounded-lg pl-3 pr-8 py-2 text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary">
+<option value="">Category</option>
+<option value="grains">Grains</option>
+<option value="tubers">Tubers</option>
+<option value="vegetables">Vegetables</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-secondary pointer-events-none text-[18px]">expand_more</span>
+</div>
+<!-- Location Dropdown -->
+<div class="relative flex-1 min-w-[120px]">
+<select class="w-full appearance-none bg-background border border-[#E2E8F0] rounded-lg pl-3 pr-8 py-2 text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary">
+<option value="">Location</option>
+<option value="lagos">Lagos</option>
+<option value="kano">Kano</option>
+<option value="abuja">Abuja</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-secondary pointer-events-none text-[18px]">expand_more</span>
+</div>
+<!-- Market Dropdown -->
+<div class="relative flex-1 min-w-[120px]">
+<select class="w-full appearance-none bg-background border border-[#E2E8F0] rounded-lg pl-3 pr-8 py-2 text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary">
+<option value="">Market</option>
+<option value="mile12">Mile 12</option>
+<option value="dawanau">Dawanau</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-secondary pointer-events-none text-[18px]">expand_more</span>
+</div>
+<!-- Status Filter -->
+<div class="relative flex-1 min-w-[110px]">
+<select class="w-full appearance-none bg-background border border-[#E2E8F0] rounded-lg pl-3 pr-8 py-2 text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary">
+<option value="">Status</option>
+<option value="pending">Pending</option>
+<option value="verified">Verified</option>
+<option value="rejected">Rejected</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-secondary pointer-events-none text-[18px]">expand_more</span>
+</div>
+<button class="p-2 border border-[#E2E8F0] rounded-lg text-secondary hover:bg-surface-container hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]">filter_list_off</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Data Table Container -->
+<div class="flex-1 overflow-auto px-margin-mobile md:px-margin-desktop pb-lg">
+<div class="bg-surface-container-lowest border border-[#E2E8F0] rounded-xl shadow-sm overflow-hidden min-w-[900px]">
+<table class="w-full text-left border-collapse">
+<thead class="bg-[#F1F5F9] border-b border-[#E2E8F0] sticky top-0 z-10">
+<tr>
+<th class="py-3 px-md text-label-caps font-label-caps text-on-surface-variant font-semibold tracking-wider">Food Item</th>
+<th class="py-3 px-md text-label-caps font-label-caps text-on-surface-variant font-semibold tracking-wider text-right">Price (₦)</th>
+<th class="py-3 px-md text-label-caps font-label-caps text-on-surface-variant font-semibold tracking-wider">Unit</th>
+<th class="py-3 px-md text-label-caps font-label-caps text-on-surface-variant font-semibold tracking-wider">Location</th>
+<th class="py-3 px-md text-label-caps font-label-caps text-on-surface-variant font-semibold tracking-wider">Market</th>
+<th class="py-3 px-md text-label-caps font-label-caps text-on-surface-variant font-semibold tracking-wider">Source</th>
+<th class="py-3 px-md text-label-caps font-label-caps text-on-surface-variant font-semibold tracking-wider">Recorded Date</th>
+<th class="py-3 px-md text-label-caps font-label-caps text-on-surface-variant font-semibold tracking-wider text-center">Status</th>
+<th class="py-3 px-md text-label-caps font-label-caps text-on-surface-variant font-semibold tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#F1F5F9] bg-white text-body-sm font-body-sm text-on-surface">
+<!-- Row 1: Pending -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="py-3 px-md font-medium">Garri (White)</td>
+<td class="py-3 px-md text-right text-data-mono font-data-mono font-medium">35,000</td>
+<td class="py-3 px-md text-secondary">50kg Bag</td>
+<td class="py-3 px-md">Lagos</td>
+<td class="py-3 px-md">Mile 12</td>
+<td class="py-3 px-md text-secondary">Agent_042</td>
+<td class="py-3 px-md text-secondary">Oct 24, 08:30</td>
+<td class="py-3 px-md text-center">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-[11px] font-medium leading-none tracking-wide">Pending</span>
+</td>
+<td class="py-3 px-md text-right">
+<div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-primary hover:bg-primary/10 rounded-md transition-colors" title="Verify">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+</button>
+<button class="p-1.5 text-secondary hover:bg-surface-container rounded-md transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 text-[#EF4444] hover:bg-error-container/50 rounded-md transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Verified -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="py-3 px-md font-medium">Rice (Local)</td>
+<td class="py-3 px-md text-right text-data-mono font-data-mono font-medium">68,500</td>
+<td class="py-3 px-md text-secondary">50kg Bag</td>
+<td class="py-3 px-md">Kano</td>
+<td class="py-3 px-md">Dawanau</td>
+<td class="py-3 px-md text-secondary">Agent_011</td>
+<td class="py-3 px-md text-secondary">Oct 24, 07:15</td>
+<td class="py-3 px-md text-center">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-primary/10 text-primary-container text-[11px] font-medium leading-none tracking-wide">Verified</span>
+</td>
+<td class="py-3 px-md text-right">
+<div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-secondary hover:bg-surface-container rounded-md transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 text-[#EF4444] hover:bg-error-container/50 rounded-md transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Rejected -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="py-3 px-md font-medium">Tomatoes</td>
+<td class="py-3 px-md text-right text-data-mono font-data-mono font-medium">42,000</td>
+<td class="py-3 px-md text-secondary">Big Basket</td>
+<td class="py-3 px-md">Abuja</td>
+<td class="py-3 px-md">Zuba</td>
+<td class="py-3 px-md text-secondary">Agent_088</td>
+<td class="py-3 px-md text-secondary">Oct 23, 16:45</td>
+<td class="py-3 px-md text-center">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-[#FEF2F2] text-[#DC2626] border border-[#FCA5A5] text-[11px] font-medium leading-none tracking-wide">Rejected</span>
+</td>
+<td class="py-3 px-md text-right">
+<div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-secondary hover:bg-surface-container rounded-md transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 text-[#EF4444] hover:bg-error-container/50 rounded-md transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Verified -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="py-3 px-md font-medium">Onions</td>
+<td class="py-3 px-md text-right text-data-mono font-data-mono font-medium">28,000</td>
+<td class="py-3 px-md text-secondary">Bag</td>
+<td class="py-3 px-md">Lagos</td>
+<td class="py-3 px-md">Mile 12</td>
+<td class="py-3 px-md text-secondary">System_API</td>
+<td class="py-3 px-md text-secondary">Oct 23, 14:20</td>
+<td class="py-3 px-md text-center">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-primary/10 text-primary-container text-[11px] font-medium leading-none tracking-wide">Verified</span>
+</td>
+<td class="py-3 px-md text-right">
+<div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-secondary hover:bg-surface-container rounded-md transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 text-[#EF4444] hover:bg-error-container/50 rounded-md transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination Footer -->
+<div class="bg-surface-container-lowest border-t border-[#E2E8F0] p-sm flex items-center justify-between text-body-sm font-body-sm text-secondary">
+<div>Showing 1 to 10 of 2,451 records</div>
+<div class="flex items-center gap-xs">
+<button class="p-1 border border-[#E2E8F0] rounded disabled:opacity-50 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<span class="px-2">Page 1 of 246</span>
+<button class="p-1 border border-[#E2E8F0] rounded hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

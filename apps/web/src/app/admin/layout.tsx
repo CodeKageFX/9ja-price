@@ -1,25 +1,16 @@
-"use client"
+import React from "react";
+import { Sidebar } from "@/components/layout/Sidebar";
 
-import { useState } from "react"
-import { Sidebar } from "@/components/layout/Sidebar"
-import { Navbar } from "@/components/layout/Navbar"
-import { Footer } from "@/components/layout/Footer"
-
-export default function AdminLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-background flex">
-      <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-      <div className="flex-1 flex flex-col min-w-0">
-        <Navbar onMenuClick={() => setSidebarOpen(true)} />
-        <main className="flex-1 p-8">{children}</main>
-        <Footer />
-      </div>
+    <div className="bg-[#F8FAFC] text-on-surface min-h-screen flex font-body-lg antialiased">
+      {/* Sidebar Navigation */}
+      <Sidebar />
+
+      {/* Main Content Canvas */}
+      <main className="lg:ml-0 flex-1 flex flex-col h-full bg-[#F8FAFC]">
+        {children}
+      </main>
     </div>
-  )
+  );
 }
