@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rice - PriceNaija</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=Geist:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "outline": "#6e7a70",
+                      "on-tertiary-container": "#fdfff8",
+                      "on-primary": "#ffffff",
+                      "primary-fixed-dim": "#70db9d",
+                      "on-secondary-fixed": "#131b2e",
+                      "primary-container": "#008751",
+                      "on-surface-variant": "#3e4a41",
+                      "on-surface": "#191c1e",
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed": "#002110",
+                      "on-background": "#191c1e",
+                      "tertiary": "#006c2e",
+                      "surface-container-highest": "#e0e3e5",
+                      "on-tertiary-fixed": "#002109",
+                      "on-secondary-container": "#5c647a",
+                      "on-secondary-fixed-variant": "#3f465c",
+                      "error": "#ba1a1a",
+                      "surface-container-low": "#f2f4f6",
+                      "surface-container-high": "#e6e8ea",
+                      "tertiary-container": "#00883c",
+                      "on-secondary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "primary-fixed": "#8df8b7",
+                      "on-tertiary-fixed-variant": "#005321",
+                      "surface-container": "#eceef0",
+                      "inverse-on-surface": "#eff1f3",
+                      "surface-tint": "#006d40",
+                      "tertiary-fixed-dim": "#4ae176",
+                      "surface-dim": "#d8dadc",
+                      "surface": "#f7f9fb",
+                      "error-container": "#ffdad6",
+                      "inverse-primary": "#70db9d",
+                      "on-primary-fixed-variant": "#00522f",
+                      "secondary-container": "#dae2fd",
+                      "surface-variant": "#e0e3e5",
+                      "primary": "#006b3f",
+                      "on-primary-container": "#fdfff9",
+                      "tertiary-fixed": "#6bff8f",
+                      "secondary": "#565e74",
+                      "secondary-fixed-dim": "#bec6e0",
+                      "background": "#f7f9fb",
+                      "secondary-fixed": "#dae2fd",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-bright": "#f7f9fb",
+                      "outline-variant": "#bdcabe",
+                      "on-tertiary": "#ffffff",
+                      "inverse-surface": "#2d3133"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sm": "16px",
+                      "margin-mobile": "16px",
+                      "base": "4px",
+                      "md": "24px",
+                      "xl": "64px",
+                      "margin-desktop": "32px",
+                      "lg": "40px",
+                      "xs": "8px",
+                      "gutter": "20px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-caps": [
+                              "Geist"
+                      ],
+                      "headline-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "data-mono": [
+                              "Geist"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "title-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "data-mono": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "title-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+            }
+          }
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .data-card {
+                @apply bg-surface-container-lowest border border-surface-container-highest rounded-xl p-md shadow-sm;
+            }
+            .data-header {
+                @apply font-title-md text-title-md text-on-surface mb-sm;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-lg">
+<!-- TopNavBar -->
+<nav class="bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-[1440px] mx-auto h-16">
+<div class="flex items-center gap-md">
+<span class="text-title-md font-headline-lg text-primary dark:text-primary-fixed tracking-tight">PriceNaija</span>
+<div class="hidden md:flex gap-md items-center ml-lg">
+<a class="text-on-surface-variant dark:text-surface-variant text-label-caps font-label-caps hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Explorer</a>
+<a class="text-on-surface-variant dark:text-surface-variant text-label-caps font-label-caps hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Developers</a>
+<a class="text-primary dark:text-primary-fixed border-b-2 border-primary dark:border-primary-fixed pb-1 text-label-caps font-label-caps opacity-80 scale-95 transition-all" href="#">Markets</a>
+<a class="text-on-surface-variant dark:text-surface-variant text-label-caps font-label-caps hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">About</a>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<button class="bg-surface-container-low text-on-surface-variant px-sm py-xs rounded-lg text-label-caps font-label-caps border border-outline-variant hover:bg-surface-container-high transition-colors">Sign In</button>
+<button class="bg-primary-container text-on-primary-container px-sm py-xs rounded-lg text-label-caps font-label-caps hover:opacity-90 transition-opacity">Get API Key</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-lg grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Header Section -->
+<header class="col-span-1 md:col-span-12 flex flex-col md:flex-row justify-between items-start md:items-end mb-lg">
+<div>
+<div class="flex items-center gap-xs mb-xs">
+<span class="bg-primary-container/10 text-primary px-xs py-base rounded-full text-label-caps font-label-caps uppercase">Grains</span>
+<span class="text-on-surface-variant text-body-sm font-body-sm flex items-center gap-base">
+<span class="material-symbols-outlined text-[16px]">location_on</span> Abuja
+                    </span>
+</div>
+<h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg md:font-headline-lg text-on-background mb-xs">Rice</h1>
+<div class="flex items-center gap-sm text-on-surface-variant text-body-sm font-body-sm">
+<span>Current Avg: <strong class="text-title-md font-title-md text-on-surface">₦2,200</strong> <span class="text-data-mono font-data-mono">/ kg</span></span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span>Updated: Aug 18, 2026</span>
+</div>
+</div>
+<button class="mt-sm md:mt-0 bg-primary-container text-on-primary-container px-md py-xs rounded-lg text-body-sm font-body-sm font-medium flex items-center gap-xs hover:opacity-90 transition-opacity shadow-sm">
+<span class="material-symbols-outlined text-[18px]">compare_arrows</span>
+                Compare locations
+            </button>
+</header>
+<!-- Main Data Area -->
+<div class="col-span-1 md:col-span-8 flex flex-col gap-lg">
+<!-- Price History Chart -->
+<section class="data-card">
+<div class="flex justify-between items-center mb-md">
+<h2 class="data-header mb-0">Price History</h2>
+<div class="flex bg-surface-container-low rounded-lg p-base gap-base">
+<button class="px-xs py-base text-label-caps font-label-caps rounded text-on-surface-variant hover:bg-surface-container-high">7D</button>
+<button class="px-xs py-base text-label-caps font-label-caps rounded bg-surface-container-lowest text-on-surface shadow-sm">30D</button>
+<button class="px-xs py-base text-label-caps font-label-caps rounded text-on-surface-variant hover:bg-surface-container-high">3M</button>
+<button class="px-xs py-base text-label-caps font-label-caps rounded text-on-surface-variant hover:bg-surface-container-high">1Y</button>
+<button class="px-xs py-base text-label-caps font-label-caps rounded text-on-surface-variant hover:bg-surface-container-high">All</button>
+</div>
+</div>
+<div class="w-full h-64 bg-surface-container-low rounded-lg relative overflow-hidden flex items-end">
+<!-- Placeholder for Chart -->
+<div class="absolute inset-0 p-sm flex items-end">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 100">
+<path d="M0 80 Q 20 70, 40 85 T 80 50 T 100 30 L 100 100 L 0 100 Z" fill="rgba(0, 135, 81, 0.1)"></path>
+<path d="M0 80 Q 20 70, 40 85 T 80 50 T 100 30" fill="none" stroke="#008751" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div class="absolute inset-x-0 bottom-0 h-px bg-outline-variant"></div>
+<div class="absolute inset-y-0 left-0 w-px bg-outline-variant ml-sm"></div>
+</div>
+</section>
+<!-- Location Comparison -->
+<section class="data-card">
+<h2 class="data-header">Regional Comparison</h2>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-surface-container-highest">
+<th class="py-xs px-sm text-label-caps font-label-caps text-on-surface-variant">Location</th>
+<th class="py-xs px-sm text-label-caps font-label-caps text-on-surface-variant text-right">Avg Price (/kg)</th>
+<th class="py-xs px-sm text-label-caps font-label-caps text-on-surface-variant text-right">Status</th>
+</tr>
+</thead>
+<tbody class="text-body-sm font-body-sm">
+<tr class="border-b border-surface-container-highest">
+<td class="py-sm px-sm font-medium">Kano</td>
+<td class="py-sm px-sm text-right font-data-mono text-data-mono">₦1,850</td>
+<td class="py-sm px-sm text-right"><span class="inline-flex items-center gap-xs text-primary-container bg-primary-container/10 px-xs py-base rounded-full text-label-caps font-label-caps"><span class="material-symbols-outlined text-[14px]">arrow_downward</span> Cheapest</span></td>
+</tr>
+<tr class="border-b border-surface-container-highest bg-surface-container-low/30">
+<td class="py-sm px-sm font-medium">Abuja (Current)</td>
+<td class="py-sm px-sm text-right font-data-mono text-data-mono">₦2,200</td>
+<td class="py-sm px-sm text-right text-on-surface-variant">-</td>
+</tr>
+<tr class="border-b border-surface-container-highest">
+<td class="py-sm px-sm font-medium">Ibadan</td>
+<td class="py-sm px-sm text-right font-data-mono text-data-mono">₦2,000</td>
+<td class="py-sm px-sm text-right text-on-surface-variant">-</td>
+</tr>
+<tr>
+<td class="py-sm px-sm font-medium">Lagos</td>
+<td class="py-sm px-sm text-right font-data-mono text-data-mono">₦2,350</td>
+<td class="py-sm px-sm text-right"><span class="inline-flex items-center gap-xs text-error bg-error/10 px-xs py-base rounded-full text-label-caps font-label-caps"><span class="material-symbols-outlined text-[14px]">arrow_upward</span> Expensive</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Sidebar Area -->
+<div class="col-span-1 md:col-span-4 flex flex-col gap-lg">
+<!-- Source Transparency -->
+<section class="data-card border-primary/20 bg-primary/5">
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary text-[24px]">verified</span>
+<div>
+<h3 class="text-body-lg font-body-lg font-semibold text-on-surface mb-base">Data Verified</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-xs">Source: Community price submission</p>
+<p class="text-label-caps font-label-caps text-primary uppercase">High Confidence</p>
+</div>
+</div>
+</section>
+<!-- Market Comparison -->
+<section class="data-card">
+<h2 class="data-header">Abuja Markets</h2>
+<div class="flex flex-col gap-sm">
+<div class="flex justify-between items-center p-sm rounded-lg bg-surface-container-lowest border border-surface-container-highest hover:shadow-sm transition-shadow">
+<span class="text-body-sm font-body-sm text-on-surface">Wuse Market</span>
+<span class="text-data-mono font-data-mono font-medium">₦2,200</span>
+</div>
+<div class="flex justify-between items-center p-sm rounded-lg bg-surface-container-lowest border border-surface-container-highest hover:shadow-sm transition-shadow">
+<span class="text-body-sm font-body-sm text-on-surface">Garki Market</span>
+<span class="text-data-mono font-data-mono font-medium text-error flex items-center gap-base"><span class="material-symbols-outlined text-[14px]">trending_up</span> ₦2,300</span>
+</div>
+<div class="flex justify-between items-center p-sm rounded-lg bg-surface-container-lowest border border-surface-container-highest hover:shadow-sm transition-shadow">
+<span class="text-body-sm font-body-sm text-on-surface">Karmo Market</span>
+<span class="text-data-mono font-data-mono font-medium text-primary flex items-center gap-base"><span class="material-symbols-outlined text-[14px]">trending_down</span> ₦2,050</span>
+</div>
+</div>
+</section>
+<!-- Related Items -->
+<section class="data-card">
+<h2 class="data-header">Related Commodities</h2>
+<div class="flex flex-wrap gap-sm">
+<a class="px-sm py-xs bg-surface-container-low border border-outline-variant rounded-full text-body-sm font-body-sm hover:border-primary transition-colors flex items-center gap-xs" href="#">
+                        Beans
+                        <span class="material-symbols-outlined text-[16px] text-on-surface-variant">arrow_forward</span>
+</a>
+<a class="px-sm py-xs bg-surface-container-low border border-outline-variant rounded-full text-body-sm font-body-sm hover:border-primary transition-colors flex items-center gap-xs" href="#">
+                        Maize
+                        <span class="material-symbols-outlined text-[16px] text-on-surface-variant">arrow_forward</span>
+</a>
+<a class="px-sm py-xs bg-surface-container-low border border-outline-variant rounded-full text-body-sm font-body-sm hover:border-primary transition-colors flex items-center gap-xs" href="#">
+                        Yam
+                        <span class="material-symbols-outlined text-[16px] text-on-surface-variant">arrow_forward</span>
+</a>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-inverse-surface border-t border-outline-variant w-full mt-auto">
+<div class="w-full py-xl px-margin-desktop flex flex-col md:flex-row justify-between items-center max-w-[1440px] mx-auto gap-md md:gap-0">
+<span class="text-title-md font-headline-lg text-primary tracking-tight">PriceNaija</span>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="text-on-surface-variant dark:text-surface-variant text-label-caps font-label-caps hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">API Docs</a>
+<a class="text-on-surface-variant dark:text-surface-variant text-label-caps font-label-caps hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Terms of Service</a>
+<a class="text-on-surface-variant dark:text-surface-variant text-label-caps font-label-caps hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant dark:text-surface-variant text-label-caps font-label-caps hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Contact Support</a>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">© 2024 PriceNaija. Data-driven food security for Nigeria.</p>
+</div>
+</footer>
+</body></html>
