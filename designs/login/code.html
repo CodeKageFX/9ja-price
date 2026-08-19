@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login - PriceNaija</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#131b2e",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#d7dff9",
+                        "tertiary-fixed": "#9bf7a8",
+                        "on-secondary-container": "#5a6278",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#565e74",
+                        "on-primary-fixed-variant": "#00522f",
+                        "surface-dim": "#d8dadc",
+                        "secondary-fixed": "#dae2fc",
+                        "surface-white": "#ffffff",
+                        "on-error": "#ffffff",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "primary": "#006b3f",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#008751",
+                        "surface-tint": "#006d40",
+                        "market-up": "#22c55e",
+                        "surface": "#f7f9fb",
+                        "tertiary-container": "#2b8644",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#eceef0",
+                        "ink-charcoal": "#191c1e",
+                        "border-subtle": "#e2e8f0",
+                        "on-surface-variant": "#3e4a41",
+                        "on-tertiary-fixed": "#002109",
+                        "surface-container-highest": "#e0e3e5",
+                        "tertiary": "#006c2e",
+                        "on-primary-fixed": "#002110",
+                        "on-primary-container": "#fdfff9",
+                        "on-background": "#191c1e",
+                        "inverse-surface": "#2d3133",
+                        "on-tertiary-container": "#fefff9",
+                        "background": "#f7f9fb",
+                        "primary-fixed-dim": "#70db9d",
+                        "primary-fixed": "#8df8b7",
+                        "inverse-primary": "#70db9d",
+                        "surface-bright": "#f7f9fb",
+                        "market-down": "#ef4444",
+                        "code-bg": "#0f172a",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-container-high": "#e6e8ea",
+                        "outline": "#6e7a70",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#005321",
+                        "outline-variant": "#bdcabe",
+                        "tertiary-fixed-dim": "#80da8e",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary-fixed-variant": "#3e465b",
+                        "surface-variant": "#e0e3e5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "doc-content-max": "800px",
+                        "margin-desktop": "32px",
+                        "gutter": "20px",
+                        "margin-mobile": "16px",
+                        "sidebar-width": "280px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-caps": ["Geist"],
+                        "code-block": ["Geist"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "data-mono": ["Geist"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "title-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "code-block": ["13px", { "lineHeight": "22px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "data-mono": ["14px", { "lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background h-full flex flex-col justify-center items-center px-margin-mobile sm:px-margin-desktop selection:bg-primary selection:text-on-primary">
+<div class="w-full max-w-md bg-surface-container-lowest border border-border-subtle rounded-xl p-8 shadow-[0px_4px_12px_rgba(0,0,0,0.05)]">
+<!-- Header -->
+<div class="text-center mb-8">
+<h1 class="font-display-lg text-title-md text-primary mb-2 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-3xl" data-icon="monitoring" data-weight="fill" style="font-variation-settings: 'FILL' 1;">monitoring</span>
+                PriceNaija
+            </h1>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">Welcome back</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Sign in to your developer account.</p>
+</div>
+<!-- Form -->
+<form class="space-y-6">
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2" for="email">Email address</label>
+<input class="w-full px-4 py-2 bg-surface-white border border-border-subtle rounded-lg font-body-sm text-body-sm text-on-surface focus:ring-2 focus:ring-primary-container/20 focus:border-primary-container transition-colors outline-none" id="email" name="email" placeholder="developer@example.com" required="" type="email"/>
+</div>
+<div>
+<div class="flex justify-between items-center mb-2">
+<label class="block font-label-caps text-label-caps text-on-surface-variant" for="password">Password</label>
+<a class="font-body-sm text-body-sm text-primary hover:text-primary-container transition-colors" href="#">Forgot password?</a>
+</div>
+<div class="relative">
+<input class="w-full px-4 py-2 bg-surface-white border border-border-subtle rounded-lg font-body-sm text-body-sm text-on-surface focus:ring-2 focus:ring-primary-container/20 focus:border-primary-container transition-colors outline-none pr-10" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center text-on-surface-variant hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-xl" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+<button class="w-full bg-primary-container hover:bg-tertiary-container text-on-primary font-body-sm text-body-sm font-semibold py-3 px-4 rounded-lg transition-colors" type="submit">
+                Sign In
+            </button>
+</form>
+<!-- Footer -->
+<div class="mt-8 text-center space-y-4">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Don't have an account? <a class="text-primary hover:text-primary-container font-medium transition-colors" href="/signup">Create one</a>
+</p>
+<div class="pt-6 border-t border-border-subtle flex items-center justify-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="code">code</span>
+<span class="font-label-caps text-label-caps">Build with Nigerian food-price data</span>
+</div>
+</div>
+</div>
+</body></html>
