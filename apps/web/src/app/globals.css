@@ -2,6 +2,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap");
 @import "tailwindcss";
 
+/* Lock dark mode to .dark class — the html element uses class="light", so dark: variants never activate */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-outline: #6e7a70;
   --color-on-tertiary-container: #fdfff8;

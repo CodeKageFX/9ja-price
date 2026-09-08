@@ -5,7 +5,7 @@ import { Menu } from "lucide-react"
 
 export function Navbar({ onMenuClick }: { onMenuClick?: () => void }) {
   return (
-    <header className="bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline flat no shadows docked full-width top-0 sticky z-50">
+    <header className="bg-surface border-b border-outline-variant sticky top-0 z-50">
       <nav className="flex justify-between items-center w-full px-margin-desktop max-w-[1440px] mx-auto h-16">
         <div className="flex items-center gap-md">
           <Link href="/" className="text-title-md font-headline-lg text-primary dark:text-primary-fixed flex items-center gap-xs">
@@ -15,16 +15,16 @@ export function Navbar({ onMenuClick }: { onMenuClick?: () => void }) {
             9jaPrice
           </Link>
           <div className="hidden md:flex items-center gap-lg ml-xl">
-            <Link href="/explorer" className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors text-body-lg font-body-lg">
+            <Link href="/explorer" className="text-on-surface-variant hover:text-primary transition-colors text-body-lg font-body-lg">
               Explorer
             </Link>
-            <Link href="/developers" className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors text-body-lg font-body-lg">
+            <Link href="/developers" className="text-on-surface-variant hover:text-primary transition-colors text-body-lg font-body-lg">
               Developers
             </Link>
-            <Link href="/docs" className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors text-body-lg font-body-lg">
+            <Link href="/docs" className="text-on-surface-variant hover:text-primary transition-colors text-body-lg font-body-lg">
               Docs
             </Link>
-            <Link href="/markets" className="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors text-body-lg font-body-lg">
+            <Link href="/markets" className="text-on-surface-variant hover:text-primary transition-colors text-body-lg font-body-lg">
               Markets
             </Link>
           </div>
