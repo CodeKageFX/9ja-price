@@ -28,7 +28,7 @@ export default async function PriceExplorerPage({ searchParams }: PageProps<"/ex
         </header>
 
         {/* Explorer Search, Filters & Price Table */}
-        <ExplorerContent initialQuery={initialQuery} />
+        <ExplorerContent key={initialQuery} initialQuery={initialQuery} />
       </main>
       <Footer />
     </div>

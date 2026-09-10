@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useCallback, useRef, useState } from "react"
 import Link from "next/link"
 import { Menu } from "lucide-react"
 import { MobileNav } from "./MobileNav"
@@ -8,6 +8,12 @@ import { PUBLIC_NAV_LINKS } from "./nav-links"
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
+
+  const closeMobileMenu = useCallback(() => {
+    setMobileOpen(false)
+    menuButtonRef.current?.focus()
+  }, [])
 
   return (
     <header className="bg-surface border-b border-outline-variant sticky top-0 z-50">
@@ -39,6 +45,7 @@ export function Navbar() {
             Get API Key
           </Link>
           <button
+            ref={menuButtonRef}
             type="button"
             onClick={() => setMobileOpen(true)}
             className="md:hidden text-on-surface-variant p-2"
@@ -50,7 +57,7 @@ export function Navbar() {
           </button>
         </div>
       </nav>
-      <MobileNav open={mobileOpen} onClose={() => setMobileOpen(false)} />
+      <MobileNav open={mobileOpen} onClose={closeMobileMenu} />
     </header>
   )
 }

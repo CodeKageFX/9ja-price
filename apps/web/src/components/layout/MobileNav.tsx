@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import Link from "next/link"
 import { X } from "lucide-react"
 import { PUBLIC_NAV_LINKS } from "./nav-links"
@@ -13,6 +13,12 @@ interface MobileNavProps {
 const MOBILE_NAV_ITEMS = [...PUBLIC_NAV_LINKS, { href: "/login", label: "Sign In" }]
 
 export function MobileNav({ open, onClose }: MobileNavProps) {
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    if (open) closeButtonRef.current?.focus()
+  }, [open])
+
   useEffect(() => {
     if (!open) return
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -37,6 +43,7 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
         <div className="flex items-center justify-between h-16 px-4 border-b border-outline-variant">
           <span className="font-semibold text-on-surface">Menu</span>
           <button
+            ref={closeButtonRef}
             type="button"
             onClick={onClose}
             className="p-1 rounded hover:bg-surface-container-low"
