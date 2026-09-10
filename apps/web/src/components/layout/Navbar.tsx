@@ -25,7 +25,7 @@ export function Navbar() {
             </span>
             9jaPrice
           </Link>
-          <div className="hidden md:flex items-center gap-lg ml-xl">
+          <div className="hidden lg:flex items-center gap-lg ml-xl">
             {PUBLIC_NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
@@ -38,7 +38,7 @@ export function Navbar() {
           </div>
         </div>
         <div className="flex items-center gap-sm">
-          <Link href="/login" className="hidden md:block text-on-surface-variant text-body-lg font-body-lg hover:text-primary transition-colors">
+          <Link href="/login" className="hidden lg:block text-on-surface-variant text-body-lg font-body-lg hover:text-primary transition-colors">
             Sign In
           </Link>
           <Link href="/signup" className="bg-primary-container text-on-primary rounded-lg px-sm py-xs font-body-lg text-body-sm hover:opacity-90 transition-opacity flex items-center gap-xs">
@@ -48,7 +48,7 @@ export function Navbar() {
             ref={menuButtonRef}
             type="button"
             onClick={() => setMobileOpen(true)}
-            className="md:hidden text-on-surface-variant p-2"
+            className="lg:hidden text-on-surface-variant p-2"
             aria-label="Open menu"
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav"

@@ -32,13 +32,13 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
 
   return (
     <>
-      <div className="fixed inset-0 z-50 bg-black/50 md:hidden" onClick={onClose} aria-hidden="true" />
+      <div className="fixed inset-0 z-50 bg-black/50 lg:hidden" onClick={onClose} aria-hidden="true" />
       <div
         id="mobile-nav"
         role="dialog"
         aria-modal="true"
         aria-label="Menu"
-        className="fixed inset-y-0 left-0 z-50 w-64 bg-surface shadow-xl md:hidden"
+        className="fixed inset-y-0 left-0 z-50 w-64 bg-surface shadow-xl lg:hidden"
       >
         <div className="flex items-center justify-between h-16 px-4 border-b border-outline-variant">
           <span className="font-semibold text-on-surface">Menu</span>
