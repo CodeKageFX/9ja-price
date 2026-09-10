@@ -1,9 +1,14 @@
 "use client"
 
+import { useState } from "react"
 import Link from "next/link"
 import { Menu } from "lucide-react"
+import { MobileNav } from "./MobileNav"
+import { PUBLIC_NAV_LINKS } from "./nav-links"
 
-export function Navbar({ onMenuClick }: { onMenuClick?: () => void }) {
+export function Navbar() {
+  const [mobileOpen, setMobileOpen] = useState(false)
+
   return (
     <header className="bg-surface border-b border-outline-variant sticky top-0 z-50">
       <nav className="flex justify-between items-center w-full px-margin-desktop max-w-[1440px] mx-auto h-16">
@@ -15,18 +20,15 @@ export function Navbar({ onMenuClick }: { onMenuClick?: () => void }) {
             9jaPrice
           </Link>
           <div className="hidden md:flex items-center gap-lg ml-xl">
-            <Link href="/explorer" className="text-on-surface-variant hover:text-primary transition-colors text-body-lg font-body-lg">
-              Explorer
-            </Link>
-            <Link href="/developers" className="text-on-surface-variant hover:text-primary transition-colors text-body-lg font-body-lg">
-              Developers
-            </Link>
-            <Link href="/docs" className="text-on-surface-variant hover:text-primary transition-colors text-body-lg font-body-lg">
-              Docs
-            </Link>
-            <Link href="/markets" className="text-on-surface-variant hover:text-primary transition-colors text-body-lg font-body-lg">
-              Markets
-            </Link>
+            {PUBLIC_NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-on-surface-variant hover:text-primary transition-colors text-body-lg font-body-lg"
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
         </div>
         <div className="flex items-center gap-sm">
@@ -37,14 +39,18 @@ export function Navbar({ onMenuClick }: { onMenuClick?: () => void }) {
             Get API Key
           </Link>
           <button
-            onClick={onMenuClick}
+            type="button"
+            onClick={() => setMobileOpen(true)}
             className="md:hidden text-on-surface-variant p-2"
             aria-label="Open menu"
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-nav"
           >
             <Menu className="h-6 w-6" />
           </button>
         </div>
       </nav>
+      <MobileNav open={mobileOpen} onClose={() => setMobileOpen(false)} />
     </header>
   )
 }

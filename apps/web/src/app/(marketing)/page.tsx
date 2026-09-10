@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Form from "next/form";
 import React from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -49,11 +50,11 @@ export default function LandingPage() {
 </div>
 {/* Search Bar */}
 <div className="flex flex-col gap-sm max-w-2xl relative">
-<div className="relative group">
+<Form action="/explorer" className="relative group">
 <Search className="absolute left-sm top-1/2 -translate-y-1/2 w-5 h-5 text-on-surface-variant group-focus-within:text-primary transition-colors z-10" />
-<input className="w-full bg-surface-container-lowest border border-outline-variant rounded-xl py-sm pl-xl pr-sm text-body-lg font-body-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary shadow-sm transition-all" placeholder="How much is rice in Abuja?" type="text"/>
-<button className="absolute right-xs top-1/2 -translate-y-1/2 bg-primary-container text-on-primary rounded-lg px-sm py-xs text-body-sm font-body-sm hover:opacity-90">Search</button>
-</div>
+<input className="w-full bg-surface-container-lowest border border-outline-variant rounded-xl py-sm pl-xl pr-sm text-body-lg font-body-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary shadow-sm transition-all" placeholder="How much is rice in Abuja?" type="text" name="q" aria-label="Search food prices"/>
+<button type="submit" className="absolute right-xs top-1/2 -translate-y-1/2 bg-primary-container text-on-primary rounded-lg px-sm py-xs text-body-sm font-body-sm hover:opacity-90">Search</button>
+</Form>
 {/* Quick Results */}
 <div className="flex flex-wrap items-center gap-sm">
 <span className="text-label-caps font-label-caps text-on-surface-variant flex items-center gap-xs">
@@ -259,7 +260,7 @@ export default function LandingPage() {
 </div>
 <h3 className="text-title-md font-headline-lg mb-xs relative z-10">Start Building Today</h3>
 <p className="text-body-sm font-body-sm opacity-90 mb-md relative z-10">Get a free developer key and make up to 1,000 requests per month.</p>
-<Link href="/api-keys" className="bg-on-primary text-primary-container rounded-lg px-md py-sm text-body-sm font-medium hover:bg-surface-container-lowest transition-colors w-max relative z-10 block">
+<Link href="/signup" className="bg-on-primary text-primary-container rounded-lg px-md py-sm text-body-sm font-medium hover:bg-surface-container-lowest transition-colors w-max relative z-10 block">
                             Get API Key
 </Link>
 </div>

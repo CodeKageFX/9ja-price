@@ -1,48 +1,61 @@
 "use client"
 
+import { useEffect } from "react"
 import Link from "next/link"
-import { X, Layout, Settings, Folder, Shield } from "lucide-react"
+import { X } from "lucide-react"
+import { PUBLIC_NAV_LINKS } from "./nav-links"
 
 interface MobileNavProps {
   open: boolean
   onClose: () => void
 }
 
-const NAV_ITEMS = [
-  { href: "/developers/dashboard", label: "Dashboard", icon: Layout },
-  { href: "/developers/api-keys", label: "API Keys", icon: Settings },
-  { href: "/developers/playground", label: "API Playground", icon: Folder },
-  { href: "/docs", label: "API Docs", icon: Shield },
-]
+const MOBILE_NAV_ITEMS = [...PUBLIC_NAV_LINKS, { href: "/login", label: "Sign In" }]
 
 export function MobileNav({ open, onClose }: MobileNavProps) {
+  useEffect(() => {
+    if (!open) return
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose()
+    }
+    document.addEventListener("keydown", handleKeyDown)
+    return () => document.removeEventListener("keydown", handleKeyDown)
+  }, [open, onClose])
+
   if (!open) return null
 
   return (
     <>
-      <div className="fixed inset-0 z-50 bg-black/50" onClick={onClose} />
-      <div className="fixed inset-y-0 left-0 z-50 w-64 bg-surface shadow-xl">
-        <div className="flex items-center justify-between h-16 px-4 border-b border-border">
-          <span className="font-semibold text-ink-primary">Menu</span>
-          <button onClick={onClose} className="p-1 rounded hover:bg-border">
+      <div className="fixed inset-0 z-50 bg-black/50 md:hidden" onClick={onClose} aria-hidden="true" />
+      <div
+        id="mobile-nav"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu"
+        className="fixed inset-y-0 left-0 z-50 w-64 bg-surface shadow-xl md:hidden"
+      >
+        <div className="flex items-center justify-between h-16 px-4 border-b border-outline-variant">
+          <span className="font-semibold text-on-surface">Menu</span>
+          <button
+            type="button"
+            onClick={onClose}
+            className="p-1 rounded hover:bg-surface-container-low"
+            aria-label="Close menu"
+          >
             <X className="h-5 w-5" />
           </button>
         </div>
         <nav className="px-3 py-4 space-y-1">
-          {NAV_ITEMS.map((item) => {
-            const Icon = item.icon
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={onClose}
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-ink-primary hover:bg-border transition-colors"
-              >
-                <Icon className="h-4 w-4" />
-                {item.label}
-              </Link>
-            )
-          })}
+          {MOBILE_NAV_ITEMS.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={onClose}
+              className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-on-surface hover:bg-surface-container-low transition-colors"
+            >
+              {item.label}
+            </Link>
+          ))}
         </nav>
       </div>
     </>
