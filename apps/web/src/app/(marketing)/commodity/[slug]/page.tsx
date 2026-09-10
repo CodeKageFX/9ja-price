@@ -51,7 +51,7 @@ export default async function CommodityDetailPage({ params }: PageProps) {
             <h1 className="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-on-surface mb-xs">
               {commodityName || "Rice"}
             </h1>
-            <div className="flex items-center gap-sm text-on-surface-variant text-body-sm font-body-sm">
+            <div className="flex flex-wrap items-center gap-sm text-on-surface-variant text-body-sm font-body-sm">
               <span>
                 Current Avg:{" "}
                 <strong className="text-title-md font-title-md text-on-surface">

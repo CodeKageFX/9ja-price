@@ -11,7 +11,7 @@ export function Footer() {
             </span>
             9jaPrice
           </Link>
-          <p className="text-body-sm font-body-sm text-on-surface-variant max-w-sm">
+          <p className="text-body-sm font-body-sm text-on-surface-variant max-w-[24rem]">
             Making Nigerian food-price data accessible.
           </p>
           <p className="text-body-sm font-body-sm text-on-surface-variant opacity-70 mt-sm">

@@ -441,7 +441,7 @@ export function ExplorerContent() {
         </div>
 
         {/* Table Footer / Pagination */}
-        <div className="bg-surface-container-lowest border-t border-outline-variant p-md flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+        <div className="bg-surface-container-lowest border-t border-outline-variant p-md flex flex-col sm:flex-row gap-sm items-start sm:items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
           <div>Showing 1 to {filteredRecords.length} of 150 entries</div>
           <div className="flex gap-xs">
             <button

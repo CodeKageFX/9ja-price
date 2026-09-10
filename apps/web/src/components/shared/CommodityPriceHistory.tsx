@@ -35,7 +35,7 @@ export function CommodityPriceHistory() {
 
   return (
     <section className="bg-surface-container-lowest rounded-xl border border-outline-variant p-md shadow-sm">
-      <div className="flex justify-between items-center mb-md">
+      <div className="flex flex-wrap justify-between items-center gap-sm mb-md">
         <h2 className="text-title-md font-headline-lg text-on-surface mb-0">Price History</h2>
         <div className="flex bg-surface-container-low rounded-lg p-base gap-base">
           {TIMEFRAMES.map((tf) => (
