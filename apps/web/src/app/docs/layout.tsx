@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { DocsSidebarToggle } from "@/components/layout/DocsSidebarToggle";
 import {
   BookOpen,
   Lock,
@@ -11,10 +12,15 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
-export default function DocsLayout({ children }: { children: React.ReactNode }) {
+export default function DocsLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <div className="min-h-screen bg-surface flex">
       {/* Left Doc Sidebar */}
+      <DocsSidebarToggle />
       <nav className="hidden md:flex h-screen w-64 fixed left-0 top-0 bg-surface border-r border-outline-variant flex-col py-6 z-40">
         {/* Brand */}
         <div className="px-6 mb-8 flex items-center gap-3">
@@ -100,20 +106,24 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
 
         {/* Footer links */}
         <div className="mt-auto px-3 pt-4 border-t border-outline-variant">
-          <Link
-            href="#"
+          <button
+            type="button"
+            disabled
             className="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-body-sm text-body-sm transition-colors"
+            title="Support route pending"
           >
             <HeadphonesIcon className="w-4 h-4" />
             Support
-          </Link>
-          <Link
-            href="#"
+          </button>
+          <button
+            type="button"
+            disabled
             className="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-body-sm text-body-sm transition-colors"
+            title="Status route pending"
           >
             <CheckCircle2 className="w-4 h-4" />
             Status
-          </Link>
+          </button>
         </div>
       </nav>
 
