@@ -15,127 +15,45 @@ import {
   ChevronRight,
   Check,
 } from "lucide-react";
+import { getPriceRecords, type PriceRecord } from "@/lib/prices";
+import { useAsyncData } from "@/hooks/useAsyncData";
 
-export interface PriceRecord {
-  id: string;
-  slug: string;
-  name: string;
-  category: string;
-  location: string;
-  market: string;
-  price: string;
-  unit: string;
-  change: string;
-  changeType: "positive" | "negative";
-  updated: string;
-  icon: string;
+const PAGE_SIZE = 10;
+
+// Filter options come from the loaded data, so they follow whatever the API returns.
+function optionsFor(allLabel: string, records: PriceRecord[], pick: (r: PriceRecord) => string) {
+  return [allLabel, ...Array.from(new Set(records.map(pick))).sort()];
 }
 
-const INITIAL_RECORDS: PriceRecord[] = [
-  {
-    id: "1",
-    slug: "rice",
-    name: "Rice (Local)",
-    category: "Grains",
-    location: "Abuja",
-    market: "Wuse Market",
-    price: "₦2,200",
-    unit: "/kg",
-    change: "+8.4%",
-    changeType: "positive",
-    updated: "Aug 18, 2026",
-    icon: "rice",
-  },
-  {
-    id: "2",
-    slug: "yam",
-    name: "Yam",
-    category: "Tubers",
-    location: "Lagos",
-    market: "Mile 12 Market",
-    price: "₦1,500",
-    unit: "/tuber",
-    change: "-2.5%",
-    changeType: "negative",
-    updated: "Aug 18, 2026",
-    icon: "yam",
-  },
-  {
-    id: "3",
-    slug: "egg",
-    name: "Egg",
-    category: "Protein",
-    location: "Abuja",
-    market: "Garki Market",
-    price: "₦3,200",
-    unit: "/crate",
-    change: "+1.2%",
-    changeType: "positive",
-    updated: "Aug 17, 2026",
-    icon: "egg",
-  },
-  {
-    id: "4",
-    slug: "beans",
-    name: "Beans (Oloyin)",
-    category: "Grains",
-    location: "Lagos",
-    market: "Mile 12 Market",
-    price: "₦2,000",
-    unit: "/kg",
-    change: "+3.2%",
-    changeType: "positive",
-    updated: "Aug 18, 2026",
-    icon: "beans",
-  },
-  {
-    id: "5",
-    slug: "tomato",
-    name: "Tomato",
-    category: "Vegetables",
-    location: "Kano",
-    market: "Dawanau Market",
-    price: "₦120",
-    unit: "/piece",
-    change: "+12.5%",
-    changeType: "positive",
-    updated: "Aug 18, 2026",
-    icon: "tomato",
-  },
-  {
-    id: "6",
-    slug: "garri",
-    name: "Garri (White)",
-    category: "Grains",
-    location: "Ibadan",
-    market: "Bodija Market",
-    price: "₦1,100",
-    unit: "/kg",
-    change: "-0.8%",
-    changeType: "negative",
-    updated: "Aug 17, 2026",
-    icon: "rice",
-  },
-  {
-    id: "7",
-    slug: "beef",
-    name: "Beef",
-    category: "Protein",
-    location: "Port Harcourt",
-    market: "Oil Mill Market",
-    price: "₦4,800",
-    unit: "/kg",
-    change: "+6.0%",
-    changeType: "positive",
-    updated: "Aug 16, 2026",
-    icon: "beef",
-  },
-];
+// Page numbers to show: all of them when there are few, otherwise first, last and the
+// neighbours of the current page, with "…" gaps between.
+function visiblePages(page: number, pageCount: number): (number | "gap")[] {
+  if (pageCount <= 5) return Array.from({ length: pageCount }, (_, i) => i + 1);
+  const pages = new Set([1, pageCount, page - 1, page, page + 1]);
+  const sorted = [...pages].filter((n) => n >= 1 && n <= pageCount).sort((a, b) => a - b);
+  return sorted.flatMap((n, i) => (i > 0 && n - sorted[i - 1] > 1 ? ["gap" as const, n] : [n]));
+}
 
-const CATEGORIES = ["All Categories", "Grains", "Tubers", "Protein", "Vegetables"];
-const LOCATIONS = ["All Locations", "Abuja", "Lagos", "Kano", "Ibadan", "Port Harcourt"];
-const MARKETS = ["All Markets", "Wuse Market", "Mile 12 Market", "Garki Market", "Dawanau Market", "Bodija Market", "Oil Mill Market"];
-const UNITS = ["All Units", "/kg", "/tuber", "/crate", "/piece"];
+function LoadingRows() {
+  return (
+    <>
+      <tr className="sr-only">
+        <td colSpan={7}>Loading prices…</td>
+      </tr>
+      {Array.from({ length: 5 }, (_, row) => (
+        <tr key={row} aria-hidden="true">
+          {Array.from({ length: 7 }, (_, col) => (
+            <td key={col} className="px-md py-md">
+              <div
+                className={`h-4 rounded bg-surface-container-high animate-pulse ${col === 0 ? "w-32" : "w-16"} ${col >= 4 ? "ml-auto" : ""}`}
+              />
+            </td>
+          ))}
+        </tr>
+      ))}
+    </>
+  );
+}
 const DATES = ["All Time", "Today", "Past 7 Days", "Past 30 Days"];
 
 export function ExplorerContent() {
@@ -148,12 +66,19 @@ export function ExplorerContent() {
 
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
+  const { status, data, retry } = useAsyncData(getPriceRecords);
+  const records = useMemo(() => data ?? [], [data]);
+  const categoryOptions = useMemo(() => optionsFor("All Categories", records, (r) => r.category), [records]);
+  const locationOptions = useMemo(() => optionsFor("All Locations", records, (r) => r.location), [records]);
+  const marketOptions = useMemo(() => optionsFor("All Markets", records, (r) => r.market), [records]);
+  const unitOptions = useMemo(() => optionsFor("All Units", records, (r) => r.unit), [records]);
+
   const toggleDropdown = (name: string) => {
     setActiveDropdown((prev) => (prev === name ? null : name));
   };
 
   const filteredRecords = useMemo(() => {
-    return INITIAL_RECORDS.filter((record) => {
+    return records.filter((record) => {
       const matchesSearch =
         searchQuery === "" ||
         record.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -175,7 +100,16 @@ export function ExplorerContent() {
 
       return matchesSearch && matchesCategory && matchesLocation && matchesMarket && matchesUnit;
     });
-  }, [searchQuery, selectedCategory, selectedLocation, selectedMarket, selectedUnit]);
+  }, [records, searchQuery, selectedCategory, selectedLocation, selectedMarket, selectedUnit]);
+
+  // Page resets to 1 whenever the filters change.
+  const filterKey = [searchQuery, selectedCategory, selectedLocation, selectedMarket, selectedUnit].join("|");
+  const [pageState, setPageState] = useState({ key: filterKey, page: 1 });
+  const pageCount = Math.max(1, Math.ceil(filteredRecords.length / PAGE_SIZE));
+  const page = pageState.key === filterKey ? Math.min(pageState.page, pageCount) : 1;
+  const setPage = (next: number) => setPageState({ key: filterKey, page: next });
+  const pageStart = (page - 1) * PAGE_SIZE;
+  const pageRecords = filteredRecords.slice(pageStart, pageStart + PAGE_SIZE);
 
   const renderIcon = (icon: string) => {
     switch (icon) {
@@ -226,7 +160,7 @@ export function ExplorerContent() {
               <>
                 <div className="fixed inset-0 z-30" onClick={() => setActiveDropdown(null)} />
                 <div className="absolute left-0 mt-1 w-48 rounded-lg border border-outline-variant bg-surface shadow-md z-40 py-xs max-h-60 overflow-auto">
-                  {CATEGORIES.map((cat) => (
+                  {categoryOptions.map((cat) => (
                     <button
                       key={cat}
                       onClick={() => {
@@ -258,7 +192,7 @@ export function ExplorerContent() {
               <>
                 <div className="fixed inset-0 z-30" onClick={() => setActiveDropdown(null)} />
                 <div className="absolute left-0 mt-1 w-48 rounded-lg border border-outline-variant bg-surface shadow-md z-40 py-xs max-h-60 overflow-auto">
-                  {LOCATIONS.map((loc) => (
+                  {locationOptions.map((loc) => (
                     <button
                       key={loc}
                       onClick={() => {
@@ -290,7 +224,7 @@ export function ExplorerContent() {
               <>
                 <div className="fixed inset-0 z-30" onClick={() => setActiveDropdown(null)} />
                 <div className="absolute left-0 mt-1 w-48 rounded-lg border border-outline-variant bg-surface shadow-md z-40 py-xs max-h-60 overflow-auto">
-                  {MARKETS.map((mkt) => (
+                  {marketOptions.map((mkt) => (
                     <button
                       key={mkt}
                       onClick={() => {
@@ -322,7 +256,7 @@ export function ExplorerContent() {
               <>
                 <div className="fixed inset-0 z-30" onClick={() => setActiveDropdown(null)} />
                 <div className="absolute left-0 mt-1 w-48 rounded-lg border border-outline-variant bg-surface shadow-md z-40 py-xs max-h-60 overflow-auto">
-                  {UNITS.map((unit) => (
+                  {unitOptions.map((unit) => (
                     <button
                       key={unit}
                       onClick={() => {
@@ -378,7 +312,7 @@ export function ExplorerContent() {
       {/* Price Table Section */}
       <section className="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-[0px_4px_12px_rgba(0,0,0,0.05)]">
         <div className="overflow-x-auto w-full">
-          <table className="w-full text-left border-collapse min-w-[800px]">
+          <table className="w-full text-left border-collapse min-w-[800px]" aria-busy={status === "loading"}>
             <thead className="bg-surface-container-low text-label-caps font-label-caps text-on-surface-variant uppercase tracking-wider border-b border-outline-variant">
               <tr>
                 <th className="px-md py-sm font-semibold">Food</th>
@@ -391,7 +325,31 @@ export function ExplorerContent() {
               </tr>
             </thead>
             <tbody className="text-body-sm font-body-sm text-on-surface divide-y divide-surface-container-high">
-              {filteredRecords.map((record) => (
+              {status === "loading" && <LoadingRows />}
+              {status === "error" && (
+                <tr>
+                  <td colSpan={7} className="px-md py-xl text-center">
+                    <p role="alert" className="text-on-surface mb-sm">
+                      We couldn&apos;t load prices right now.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={retry}
+                      className="rounded-lg border border-outline-variant bg-surface px-sm py-xs text-body-sm font-body-sm text-on-surface hover:bg-surface-container-low focus:outline-none focus:ring-1 focus:ring-primary"
+                    >
+                      Try again
+                    </button>
+                  </td>
+                </tr>
+              )}
+              {status === "success" && records.length === 0 && (
+                <tr>
+                  <td colSpan={7} className="px-md py-xl text-center text-on-surface-variant">
+                    No food prices are available yet. Check back soon.
+                  </td>
+                </tr>
+              )}
+              {status === "success" && pageRecords.map((record) => (
                 <tr
                   key={record.id}
                   className="hover:bg-surface-container-low cursor-pointer transition-colors group"
@@ -429,7 +387,7 @@ export function ExplorerContent() {
                   </td>
                 </tr>
               ))}
-              {filteredRecords.length === 0 && (
+              {status === "success" && records.length > 0 && filteredRecords.length === 0 && (
                 <tr>
                   <td colSpan={7} className="px-md py-xl text-center text-on-surface-variant">
                     No food price records found matching your filters.
@@ -441,26 +399,49 @@ export function ExplorerContent() {
         </div>
 
         {/* Table Footer / Pagination */}
-        <div className="bg-surface-container-lowest border-t border-outline-variant p-md flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
-          <div>Showing 1 to {filteredRecords.length} of 150 entries</div>
+        <div className="bg-surface-container-lowest border-t border-outline-variant p-md flex flex-col sm:flex-row gap-sm items-start sm:items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+          <div aria-live="polite">
+            {status !== "success"
+              ? "\u00a0"
+              : filteredRecords.length === 0
+                ? "Showing 0 entries"
+                : `Showing ${pageStart + 1} to ${pageStart + pageRecords.length} of ${filteredRecords.length} entries`}
+          </div>
           <div className="flex gap-xs">
             <button
+              type="button"
+              onClick={() => setPage(page - 1)}
               className="p-xs border border-outline-variant rounded hover:bg-surface-container-low disabled:opacity-50"
-              disabled
+              disabled={status !== "success" || page <= 1}
+              aria-label="Previous page"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
-            <button className="p-xs border border-outline-variant rounded hover:bg-surface-container-low bg-surface-container-low font-medium">
-              1
-            </button>
-            <button className="p-xs border border-outline-variant rounded hover:bg-surface-container-low">
-              2
-            </button>
-            <button className="p-xs border border-outline-variant rounded hover:bg-surface-container-low">
-              3
-            </button>
-            <span className="p-xs">...</span>
-            <button className="p-xs border border-outline-variant rounded hover:bg-surface-container-low">
+            {visiblePages(page, pageCount).map((n, i) =>
+              n === "gap" ? (
+                <span key={`gap-${i}`} className="p-xs">
+                  ...
+                </span>
+              ) : (
+              <button
+                key={n}
+                type="button"
+                onClick={() => setPage(n)}
+                className={`p-xs border border-outline-variant rounded hover:bg-surface-container-low ${n === page ? "bg-surface-container-low font-medium" : ""}`}
+                aria-current={n === page ? "page" : undefined}
+                disabled={status !== "success"}
+              >
+                {n}
+              </button>
+              ),
+            )}
+            <button
+              type="button"
+              onClick={() => setPage(page + 1)}
+              className="p-xs border border-outline-variant rounded hover:bg-surface-container-low disabled:opacity-50"
+              disabled={status !== "success" || page >= pageCount}
+              aria-label="Next page"
+            >
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
