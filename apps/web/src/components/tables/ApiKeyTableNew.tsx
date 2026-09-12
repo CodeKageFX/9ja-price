@@ -55,7 +55,7 @@ function ApiKeyTableNew({
               <TableCell>
                 <div className="flex flex-col gap-1">
                   <span
-                    className={`font-body-lg text-body-lg text-on-surface font-medium ${
+                    className={`font-body-lg text-body-sm text-on-surface font-medium ${
                       item.status === "Revoked"
                         ? "text-on-surface-variant line-through decoration-outline-variant"
                         : ""
