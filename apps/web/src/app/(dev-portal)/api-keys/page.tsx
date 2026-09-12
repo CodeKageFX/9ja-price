@@ -16,11 +16,11 @@ export default function ApiKeysPage() {
       <DeveloperSidebarToggle />
 
       {/* Main Content Canvas */}
-      <main className="lg:ml-0 flex-1 flex flex-col h-full">
+      <main className="lg:ml-0 flex-1 flex flex-col h-full min-w-0">
         <DevHeader pageTitle="API Keys" />
 
         {/* Scrollable Content */}
-        <div className="flex-1 overflow-y-auto p-margin-desktop space-y-lg">
+        <div className="flex-1 overflow-y-auto p-margin-desktop space-y-lg min-w-0">
           <ApiKeysContent />
         </div>
       </main>

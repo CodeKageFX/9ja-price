@@ -1,13 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  ArrowLeftRight,
-  BarChart3,
-  TrendingUp,
-  Zap,
-  Star,
-  ArrowRight,
-} from "lucide-react";
+import { ArrowLeftRight, BarChart3, TrendingUp, Zap, Star } from "lucide-react";
 import { DeveloperSidebarToggle } from "@/components/layout/DeveloperSidebarToggle";
 import { DashboardAnalyticsChart } from "@/components/charts/DashboardAnalyticsChart";
 import DevHeader from "@/components/dev-portal/DevHeader";
@@ -26,12 +19,12 @@ export default function DeveloperDashboardPage() {
       <DeveloperSidebarToggle />
 
       {/* Main Content Canvas */}
-      <main className="lg:ml-0 flex-1 flex flex-col grow">
+      <main className="lg:ml-0 flex-1 flex flex-col grow min-w-0">
         {/* Header */}
         <DevHeader pageTitle="Dashboard Overview" />
 
         {/* Scrollable Content */}
-        <div className="flex-1 p-margin-mobile space-y-lg">
+        <div className="flex-1 p-margin-mobile space-y-lg ">
           {/* Stat Cards Bento Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
             {/* Card 1 */}
