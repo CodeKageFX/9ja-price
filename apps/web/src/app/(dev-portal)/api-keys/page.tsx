@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DeveloperSidebarToggle } from "@/components/layout/DeveloperSidebarToggle";
 import { ApiKeysContent } from "@/components/shared/ApiKeysContent";
 import DevHeader from "@/components/dev-portal/DevHeader";
+import DevWrapper from "@/components/dev-portal/DevWrapper";
 
 export const metadata: Metadata = {
   title: "API Keys | 9jaPrice",
@@ -11,13 +12,11 @@ export const metadata: Metadata = {
 
 export default function ApiKeysPage() {
   return (
-    <div className="bg-[#F8FAFC] text-on-surface min-h-screen flex font-body-lg antialiased">
-      {/* Sidebar Navigation */}
+    <DevWrapper>
       <DeveloperSidebarToggle />
 
       {/* Main Content Canvas */}
       <main className="lg:ml-0 flex-1 flex flex-col h-full">
-        {/* Header */}
         <DevHeader pageTitle="API Keys" />
 
         {/* Scrollable Content */}
@@ -25,6 +24,6 @@ export default function ApiKeysPage() {
           <ApiKeysContent />
         </div>
       </main>
-    </div>
+    </DevWrapper>
   );
 }

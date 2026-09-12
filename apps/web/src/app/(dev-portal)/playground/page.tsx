@@ -3,6 +3,7 @@ import React from "react";
 import { DeveloperSidebarToggle } from "@/components/layout/DeveloperSidebarToggle";
 import { PlaygroundContent } from "@/components/shared/PlaygroundContent";
 import DevHeader from "@/components/dev-portal/DevHeader";
+import DevWrapper from "@/components/dev-portal/DevWrapper";
 
 export const metadata: Metadata = {
   title: "API Playground | 9jaPrice",
@@ -12,8 +13,7 @@ export const metadata: Metadata = {
 
 export default function PlaygroundPage() {
   return (
-    <div className="bg-[#F8FAFC] text-on-surface min-h-screen flex font-body-lg antialiased">
-      {/* Sidebar Navigation */}
+    <DevWrapper>
       <DeveloperSidebarToggle />
 
       {/* Main Content Canvas — full viewport height, flex column */}
@@ -24,6 +24,6 @@ export default function PlaygroundPage() {
           <PlaygroundContent />
         </div>
       </main>
-    </div>
+    </DevWrapper>
   );
 }

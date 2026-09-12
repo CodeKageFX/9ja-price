@@ -12,6 +12,7 @@ import {
 import { DeveloperSidebarToggle } from "@/components/layout/DeveloperSidebarToggle";
 import { DashboardAnalyticsChart } from "@/components/charts/DashboardAnalyticsChart";
 import DevHeader from "@/components/dev-portal/DevHeader";
+import DevWrapper from "@/components/dev-portal/DevWrapper";
 
 export const metadata: Metadata = {
   title: "Dashboard Overview | 9jaPrice",
@@ -21,8 +22,7 @@ export const metadata: Metadata = {
 
 export default function DeveloperDashboardPage() {
   return (
-    <div className="bg-[#F8FAFC] text-on-surface min-h-screen flex ">
-      {/* Sidebar Navigation */}
+    <DevWrapper>
       <DeveloperSidebarToggle />
 
       {/* Main Content Canvas */}
@@ -268,6 +268,6 @@ export default function DeveloperDashboardPage() {
           </div>
         </div>
       </main>
-    </div>
+    </DevWrapper>
   );
 }

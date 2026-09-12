@@ -3,6 +3,7 @@ import React from "react";
 import { DeveloperSidebarToggle } from "@/components/layout/DeveloperSidebarToggle";
 import { UsageContent } from "./UsageContent";
 import DevHeader from "@/components/dev-portal/DevHeader";
+import DevWrapper from "@/components/dev-portal/DevWrapper";
 
 export const metadata: Metadata = {
   title: "API Usage — 9jaPrice Dev Portal",
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function UsagePage() {
   return (
-    <div className="bg-[#f7f9fb] text-on-surface min-h-screen flex font-body-lg antialiased">
+    <DevWrapper>
       <DeveloperSidebarToggle />
 
       <main className="lg:ml-0 flex-1 flex flex-col h-full">
@@ -22,6 +23,6 @@ export default function UsagePage() {
           <UsageContent />
         </div>
       </main>
-    </div>
+    </DevWrapper>
   );
 }

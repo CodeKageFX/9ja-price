@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DeveloperSidebarToggle } from "@/components/layout/DeveloperSidebarToggle";
 import { SettingsContent } from "./SettingsContent";
 import DevHeader from "@/components/dev-portal/DevHeader";
+import DevWrapper from "@/components/dev-portal/DevWrapper";
 
 export const metadata: Metadata = {
   title: "Settings — 9jaPrice Dev Portal",
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function SettingsPage() {
   return (
-    <div className="bg-[#f7f9fb] text-on-surface min-h-screen flex font-body-lg antialiased">
+    <DevWrapper>
       <DeveloperSidebarToggle />
 
       <main className="lg:ml-0 flex-1 flex flex-col h-full">
@@ -28,6 +29,6 @@ export default function SettingsPage() {
           <SettingsContent />
         </div>
       </main>
-    </div>
+    </DevWrapper>
   );
 }
