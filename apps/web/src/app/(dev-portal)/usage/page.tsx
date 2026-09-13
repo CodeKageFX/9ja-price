@@ -4,6 +4,7 @@ import { DeveloperSidebarToggle } from "@/components/layout/DeveloperSidebarTogg
 import { UsageContent } from "./UsageContent";
 import DevHeader from "@/components/dev-portal/DevHeader";
 import DevWrapper from "@/components/dev-portal/DevWrapper";
+import DevMain from "@/components/dev-portal/DevMain";
 
 export const metadata: Metadata = {
   title: "API Usage — 9jaPrice Dev Portal",
@@ -16,13 +17,13 @@ export default function UsagePage() {
     <DevWrapper>
       <DeveloperSidebarToggle />
 
-      <main className="lg:ml-0 flex-1 flex flex-col h-full">
+      <DevMain>
         <DevHeader pageTitle="API Usage" />
 
         <div className="flex-1 overflow-y-auto p-margin-desktop space-y-lg">
           <UsageContent />
         </div>
-      </main>
+      </DevMain>
     </DevWrapper>
   );
 }

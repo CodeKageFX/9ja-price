@@ -3,6 +3,7 @@ import { DeveloperSidebarToggle } from "@/components/layout/DeveloperSidebarTogg
 import { ApiKeysContent } from "@/components/shared/ApiKeysContent";
 import DevHeader from "@/components/dev-portal/DevHeader";
 import DevWrapper from "@/components/dev-portal/DevWrapper";
+import DevMain from "@/components/dev-portal/DevMain";
 
 export const metadata: Metadata = {
   title: "API Keys | 9jaPrice",
@@ -16,14 +17,15 @@ export default function ApiKeysPage() {
       <DeveloperSidebarToggle />
 
       {/* Main Content Canvas */}
-      <main className="lg:ml-0 flex-1 flex flex-col h-full min-w-0">
+
+      <DevMain>
         <DevHeader pageTitle="API Keys" />
 
         {/* Scrollable Content */}
-        <div className="flex-1 overflow-y-auto p-margin-desktop space-y-lg min-w-0">
+        <div className="flex-1 overflow-y-auto p-sm space-y-lg min-w-0">
           <ApiKeysContent />
         </div>
-      </main>
+      </DevMain>
     </DevWrapper>
   );
 }

@@ -3,6 +3,7 @@ import { DeveloperSidebarToggle } from "@/components/layout/DeveloperSidebarTogg
 import { SettingsContent } from "./SettingsContent";
 import DevHeader from "@/components/dev-portal/DevHeader";
 import DevWrapper from "@/components/dev-portal/DevWrapper";
+import DevMain from "@/components/dev-portal/DevMain";
 
 export const metadata: Metadata = {
   title: "Settings — 9jaPrice Dev Portal",
@@ -14,21 +15,22 @@ export default function SettingsPage() {
     <DevWrapper>
       <DeveloperSidebarToggle />
 
-      <main className="lg:ml-0 flex-1 flex flex-col h-full">
+      <DevMain>
         <DevHeader pageTitle="settings" />
 
-        <div className="flex-1 overflow-y-auto p-margin-desktop space-y-lg">
+        <div className="flex-1 overflow-y-auto p-sm space-y-lg">
           <div>
-            <h1 className="text-[28px] sm:text-[32px] font-bold text-[#191c1e] leading-tight">
+            <h1 className="text-[28px] sm:text-[32px] font-bold text-on-background leading-tight">
               Settings
             </h1>
-            <p className="text-[16px] text-[#3e4a41] mt-2">
+            <p className="text-[16px] text-on-surface-variant mt-2">
               Manage your developer account preferences and security.
             </p>
           </div>
+
           <SettingsContent />
         </div>
-      </main>
+      </DevMain>
     </DevWrapper>
   );
 }

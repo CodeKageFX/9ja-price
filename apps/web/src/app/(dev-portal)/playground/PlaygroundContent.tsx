@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Play,
   History,
@@ -121,8 +121,8 @@ export function PlaygroundContent() {
   return (
     <div className="flex flex-col h-full">
       {/* Header */}
-      <header className="h-20 px-margin-desktop flex items-center justify-between border-b border-outline-variant/50 bg-surface-container-lowest shrink-0">
-        <div className="pl-12 lg:pl-0">
+      <div className="flex items-center justify-between gap-6 flex-wrap">
+        <div>
           <h2 className="font-headline-lg text-headline-lg text-on-surface">
             API Playground
           </h2>
@@ -144,14 +144,14 @@ export function PlaygroundContent() {
             {isRunning ? "Running..." : "Run Request"}
           </button>
         </div>
-      </header>
+      </div>
 
       {/* Split Pane */}
-      <div className="flex-1 flex overflow-hidden">
+      <div className="mt-6 grid gap-6 md:grid-cols-2">
         {/* Left Pane: Request Builder */}
-        <div className="w-1/2 flex flex-col border-r border-outline-variant/50 bg-surface-container-lowest overflow-y-auto">
+        <div className="flex flex-col bg-surface-container-lowest overflow-y-auto">
           {/* URL Builder */}
-          <div className="p-md border-b border-outline-variant/50">
+          <div className="p-md border-b border-border-subtle">
             <h3 className="font-label-caps text-label-caps text-on-surface-variant mb-4 flex items-center gap-2">
               <Link2 className="w-4 h-4" />
               Request URL
@@ -160,7 +160,7 @@ export function PlaygroundContent() {
               <select
                 value={method}
                 onChange={(e) => setMethod(e.target.value)}
-                className="bg-surface-container-low text-on-surface font-data-mono text-data-mono border-none focus:ring-0 py-3 pl-4 pr-8 border-r border-outline-variant cursor-pointer"
+                className="bg-surface-container-low text-on-surface font-data-mono text-data-mono border-none focus:ring-0 py-3 px-4 border-r border-outline-variant cursor-pointer"
               >
                 <option value="GET">GET</option>
                 <option value="POST">POST</option>
@@ -269,7 +269,7 @@ export function PlaygroundContent() {
         </div>
 
         {/* Right Pane: Response */}
-        <div className="w-1/2 flex flex-col bg-[#0d1117] relative">
+        <div className="flex flex-col bg-[#0d1117] relative">
           {/* Response Header */}
           <div className="h-12 border-b border-white/10 flex items-center justify-between px-4 bg-[#161b22] shrink-0">
             {hasResponse && !isRunning ? (

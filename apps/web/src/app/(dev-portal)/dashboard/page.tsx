@@ -6,6 +6,7 @@ import { DashboardAnalyticsChart } from "@/components/charts/DashboardAnalyticsC
 import DevHeader from "@/components/dev-portal/DevHeader";
 import DevWrapper from "@/components/dev-portal/DevWrapper";
 import RecentApiRequestsTable from "@/components/tables/RecentApiRequests";
+import DevMain from "@/components/dev-portal/DevMain";
 
 export const metadata: Metadata = {
   title: "Dashboard Overview | 9jaPrice",
@@ -19,10 +20,10 @@ export default function DeveloperDashboardPage() {
       <DeveloperSidebarToggle />
 
       {/* Main Content Canvas */}
-      <main className="lg:ml-0 flex-1 flex flex-col grow min-w-0">
+
+      <DevMain>
         {/* Header */}
         <DevHeader pageTitle="Dashboard Overview" />
-
         {/* Scrollable Content */}
         <div className="flex-1 p-margin-mobile space-y-lg ">
           {/* Stat Cards Bento Grid */}
@@ -134,8 +135,8 @@ export default function DeveloperDashboardPage() {
           {/* Table Section */}
 
           <RecentApiRequestsTable />
-        </div>
-      </main>
+        </div>{" "}
+      </DevMain>
     </DevWrapper>
   );
 }
