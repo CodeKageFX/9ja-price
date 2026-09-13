@@ -38,7 +38,7 @@ const BOTTOM_ITEMS = [
 
 export function DocsSidebar() {
   return (
-    <nav className="hidden md:flex h-screen w-64 fixed left-0 top-0 bg-surface border-r border-outline-variant flex-col py-6 z-40">
+    <nav className="hidden lg:flex h-screen w-64 fixed left-0 top-0 bg-surface border-r border-outline-variant flex-col py-6 z-40">
       <div className="px-6 mb-8 flex items-center gap-3">
         <div className="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center">
           <BookOpen className="w-4 h-4 text-on-primary" />
