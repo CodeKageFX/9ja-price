@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Globe, Play, Copy } from "lucide-react";
 import DocsHeader from "@/components/docs/DocsHeader";
 import DocsContainer from "@/components/docs/DocsContainer";
+import DocsBreadcrumb from "@/components/docs/DocsBreadcrumb";
 
 export const metadata: Metadata = {
   title: "API Documentation | 9jaPrice",
@@ -14,6 +15,7 @@ export default function DocsIntroPage() {
   return (
     <>
       <DocsHeader pageTitle="Introduction" />
+      <DocsBreadcrumb currentPage="Introduction" />
 
       <DocsContainer>
         <section className="w-full min-w-0">

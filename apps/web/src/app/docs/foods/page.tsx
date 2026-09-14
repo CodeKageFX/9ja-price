@@ -4,6 +4,7 @@ import { ArrowRight, Utensils } from "lucide-react";
 import { CopyButton } from "@/components/code/CopyButton";
 import DocsHeader from "@/components/docs/DocsHeader";
 import DocsContainer from "@/components/docs/DocsContainer";
+import DocsBreadcrumb from "@/components/docs/DocsBreadcrumb";
 import { FoodQueryParametersTable } from "@/components/tables/FoodQueryParametersTable";
 
 export const metadata: Metadata = {
@@ -51,6 +52,7 @@ export default function DocsFoodsPage() {
   return (
     <>
       <DocsHeader pageTitle="Foods API" />
+      <DocsBreadcrumb currentPage="Foods API" />
 
       <DocsContainer>
         {/* Prose Column */}

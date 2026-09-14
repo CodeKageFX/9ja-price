@@ -5,6 +5,7 @@ import { Key, AlertTriangle, ArrowRight } from "lucide-react";
 import { CopyButton } from "@/components/code/CopyButton";
 import DevHeader from "@/components/dev-portal/DevHeader";
 import DocsContainer from "@/components/docs/DocsContainer";
+import DocsBreadcrumb from "@/components/docs/DocsBreadcrumb";
 
 export const metadata: Metadata = {
   title: "Authentication — 9jaPrice Documentation",
@@ -20,6 +21,7 @@ export default function DocsAuthenticationPage() {
   return (
     <>
       <DevHeader pageTitle="Authentication" />
+      <DocsBreadcrumb currentPage="Authentication" />
 
       <DocsContainer>
         {/* Prose Column */}
