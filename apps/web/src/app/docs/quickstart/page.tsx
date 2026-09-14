@@ -171,7 +171,7 @@ export default function DocsQuickstartPage() {
         </div>
 
         {/* Right Column: Code Snippet & Interactive Response */}
-        <aside className="bg-white p-4 border-l border-border-subtle sticky top-0 h-screen overflow-y-auto space-y-6">
+        <aside className="bg-white p-4 border-l border-border-subtle sticky top-22 h-screen overflow-y-auto space-y-6">
           {/* Request Module */}
           <div className="rounded-xl overflow-hidden border border-border-subtle bg-[#0f172a] shadow-sm">
             <div className="flex items-center justify-between px-4 py-2.5 bg-[#0f172a] border-b border-[#334155]">
