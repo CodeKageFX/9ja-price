@@ -3,6 +3,7 @@ import React from "react";
 import { DeveloperSidebarToggle } from "@/components/layout/DeveloperSidebarToggle";
 import { UsageContent } from "./UsageContent";
 import DevHeader from "@/components/dev-portal/DevHeader";
+import DevBreadcrumb from "@/components/dev-portal/DevBreadcrumb";
 import DevWrapper from "@/components/dev-portal/DevWrapper";
 import DevMain from "@/components/dev-portal/DevMain";
 
@@ -19,6 +20,7 @@ export default function UsagePage() {
 
       <DevMain>
         <DevHeader pageTitle="API Usage" />
+        <DevBreadcrumb currentPage="API Usage" />
 
         <div className="flex-1 overflow-y-auto p-margin-desktop space-y-lg">
           <UsageContent />
