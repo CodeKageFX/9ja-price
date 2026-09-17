@@ -72,7 +72,7 @@ export default function DevelopersLandingPage() {
 
         {/* API Preview Bento Grid */}
         <section className="max-w-7xl mx-auto px-4 sm:px-8 py-12">
-          <div className="grid lg:grid-cols-2 gap-8 items-stretch bg-white border border-[#e2e8f0] rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.02)] overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch bg-white border border-[#e2e8f0] rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.02)] overflow-hidden">
             {/* Left: Info */}
             <div className="p-8 md:p-12 flex flex-col justify-center">
               <div className="inline-flex items-center justify-center w-12 h-12 bg-[#006b3f]/10 rounded-lg mb-6 text-[#006b3f]">
@@ -86,11 +86,11 @@ export default function DevelopersLandingPage() {
                 via Bearer token and receive structured, standardized JSON
                 responses covering all major local markets.
               </p>
-              <div className="bg-[#eceef0] px-4 py-3 rounded-lg border border-[#e2e8f0] inline-flex items-center gap-3 w-fit">
+              <div className="bg-[#eceef0] px-4 py-3 rounded-lg border border-[#e2e8f0] inline-flex items-center gap-3 w-fit max-w-full">
                 <span className="text-[12px] font-semibold tracking-wider text-[#006b3f] uppercase">
                   GET
                 </span>
-                <span className="text-[14px] font-mono text-[#191c1e]">
+                <span className="text-[14px] font-mono text-[#191c1e] break-all">
                   https://api.9japrice.com/v1/prices
                 </span>
               </div>

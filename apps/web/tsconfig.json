@@ -10,26 +10,13 @@
     "noEmit": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@web/*": [
-        "./src/*"
-      ]
+      "@/*": ["./src/*"],
+      "@web/*": ["./src/*"]
     },
-    "types": [
-      "next/jest",
-      "react",
-      "react-dom"
-    ],
+    "types": ["next/jest", "react", "react-dom"],
     "target": "ES2022",
-    "lib": [
-      "es2022",
-      "DOM",
-      "DOM.Iterable"
-    ],
+    "lib": ["es2022", "DOM", "DOM.Iterable"],
     "strict": false,
     "incremental": true,
     "isolatedModules": true,
@@ -47,7 +34,5 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

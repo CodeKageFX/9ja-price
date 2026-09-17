@@ -1,9 +1,20 @@
 "use client"
 
+import { useCallback, useRef, useState } from "react"
 import Link from "next/link"
 import { Menu } from "lucide-react"
+import { MobileNav } from "./MobileNav"
+import { PUBLIC_NAV_LINKS } from "./nav-links"
 
-export function Navbar({ onMenuClick }: { onMenuClick?: () => void }) {
+export function Navbar() {
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
+
+  const closeMobileMenu = useCallback(() => {
+    setMobileOpen(false)
+    menuButtonRef.current?.focus()
+  }, [])
+
   return (
     <header className="bg-surface border-b border-outline-variant sticky top-0 z-50">
       <nav className="flex justify-between items-center w-full px-margin-desktop max-w-[1440px] mx-auto h-16">
@@ -14,37 +25,39 @@ export function Navbar({ onMenuClick }: { onMenuClick?: () => void }) {
             </span>
             9jaPrice
           </Link>
-          <div className="hidden md:flex items-center gap-lg ml-xl">
-            <Link href="/explorer" className="text-on-surface-variant hover:text-primary transition-colors text-body-lg font-body-lg">
-              Explorer
-            </Link>
-            <Link href="/developers" className="text-on-surface-variant hover:text-primary transition-colors text-body-lg font-body-lg">
-              Developers
-            </Link>
-            <Link href="/docs" className="text-on-surface-variant hover:text-primary transition-colors text-body-lg font-body-lg">
-              Docs
-            </Link>
-            <Link href="/markets" className="text-on-surface-variant hover:text-primary transition-colors text-body-lg font-body-lg">
-              Markets
-            </Link>
+          <div className="hidden lg:flex items-center gap-lg ml-xl">
+            {PUBLIC_NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-on-surface-variant hover:text-primary transition-colors text-body-lg font-body-lg"
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
         </div>
         <div className="flex items-center gap-sm">
-          <Link href="/login" className="hidden md:block text-on-surface-variant text-body-lg font-body-lg hover:text-primary transition-colors">
+          <Link href="/login" className="hidden lg:block text-on-surface-variant text-body-lg font-body-lg hover:text-primary transition-colors">
             Sign In
           </Link>
           <Link href="/signup" className="bg-primary-container text-on-primary rounded-lg px-sm py-xs font-body-lg text-body-sm hover:opacity-90 transition-opacity flex items-center gap-xs">
             Get API Key
           </Link>
           <button
-            onClick={onMenuClick}
-            className="md:hidden text-on-surface-variant p-2"
+            ref={menuButtonRef}
+            type="button"
+            onClick={() => setMobileOpen(true)}
+            className="lg:hidden text-on-surface-variant p-2"
             aria-label="Open menu"
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-nav"
           >
             <Menu className="h-6 w-6" />
           </button>
         </div>
       </nav>
+      <MobileNav open={mobileOpen} onClose={closeMobileMenu} />
     </header>
   )
 }
