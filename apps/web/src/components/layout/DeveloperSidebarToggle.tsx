@@ -14,7 +14,7 @@ export function DeveloperSidebarToggle() {
         type="button"
         onClick={() => setSidebarOpen(true)}
         aria-label="Open navigation"
-        className="fixed left-4 top-5 z-31 flex h-10 w-10 items-center justify-center rounded-full bg-surface-container-low text-on-surface-variant shadow-sm transition-colors hover:bg-surface-container-high focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary lg:hidden"
+        className="fixed left-4 top-5 z-31 flex h-10 w-10 items-center justify-center rounded-full text-on-surface-variant shadow-sm transition-colors hover:bg-surface-container-high focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary lg:hidden"
       >
         <Menu className="h-5 w-5" aria-hidden="true" />
       </button>

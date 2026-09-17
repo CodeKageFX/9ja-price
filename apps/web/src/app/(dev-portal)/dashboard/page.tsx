@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
-import React from "react";
 import Link from "next/link";
-import {
-  Bell,
-  ArrowLeftRight,
-  BarChart3,
-  TrendingUp,
-  Zap,
-  Star,
-  ArrowRight,
-} from "lucide-react";
+import { ArrowLeftRight, BarChart3, TrendingUp, Zap, Star } from "lucide-react";
 import { DeveloperSidebarToggle } from "@/components/layout/DeveloperSidebarToggle";
 import { DashboardAnalyticsChart } from "@/components/charts/DashboardAnalyticsChart";
+import DevHeader from "@/components/dev-portal/DevHeader";
+import DevWrapper from "@/components/dev-portal/DevWrapper";
+import RecentApiRequestsTable from "@/components/tables/RecentApiRequests";
+import DevMain from "@/components/dev-portal/DevMain";
 
 export const metadata: Metadata = {
   title: "Dashboard Overview | 9jaPrice",
@@ -21,41 +16,16 @@ export const metadata: Metadata = {
 
 export default function DeveloperDashboardPage() {
   return (
-    <div className="bg-[#F8FAFC] text-on-surface min-h-screen flex ">
-      {/* Sidebar Navigation */}
+    <DevWrapper>
       <DeveloperSidebarToggle />
 
       {/* Main Content Canvas */}
-      <main className="lg:ml-0 flex-1 flex flex-col h-full bg-[#F8FAFC]">
-        {/* Header */}
-        <header className="h-20 bg-surface-container-lowest border-b border-border-subtle px-margin-desktop flex items-center justify-between shrink-0 sticky top-0 z-30">
-          <div className="pl-12 lg:pl-0">
-            <h2 className="font-headline-lg text-title-md text-on-surface">
-              Dashboard Overview
-            </h2>
-          </div>
-          <div className="flex items-center gap-4">
-            <button className="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">
-              <Bell className="w-5 h-5 text-on-surface-variant" />
-            </button>
-            <div className="flex items-center gap-3 pl-4 border-l border-outline-variant/30">
-              <div className="w-10 h-10 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold text-sm shadow-sm">
-                OA
-              </div>
-              <div className="hidden md:block">
-                <p className="font-title-md text-body-sm font-semibold text-on-surface leading-tight">
-                  Oluwaseun A.
-                </p>
-                <p className="font-label-caps text-[10px] text-on-surface-variant uppercase">
-                  Admin
-                </p>
-              </div>
-            </div>
-          </div>
-        </header>
 
+      <DevMain>
+        {/* Header */}
+        <DevHeader pageTitle="Dashboard Overview" />
         {/* Scrollable Content */}
-        <div className="flex-1 overflow-y-auto p-margin-desktop space-y-lg">
+        <div className="flex-1 p-margin-mobile space-y-lg ">
           {/* Stat Cards Bento Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
             {/* Card 1 */}
@@ -163,135 +133,10 @@ export default function DeveloperDashboardPage() {
           <DashboardAnalyticsChart />
 
           {/* Table Section */}
-          <div className="bg-surface-container-lowest rounded-xl border border-border-subtle overflow-hidden">
-            <div className="p-md border-b border-border-subtle flex justify-between items-center bg-white">
-              <h3 className="font-title-md text-title-md text-on-surface">
-                Recent API Requests
-              </h3>
-              <Link
-                href="/playground"
-                className="text-primary font-label-caps text-label-caps uppercase hover:underline flex items-center gap-1"
-              >
-                View Logs
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-            <div className="overflow-x-auto w-full">
-              <table className="w-full text-left border-collapse">
-                <thead>
-                  <tr className="bg-[#F1F5F9] border-b border-border-subtle">
-                    <th className="py-3 px-md font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">
-                      Timestamp
-                    </th>
-                    <th className="py-3 px-md font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">
-                      Endpoint
-                    </th>
-                    <th className="py-3 px-md font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">
-                      Method
-                    </th>
-                    <th className="py-3 px-md font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">
-                      Status
-                    </th>
-                    <th className="py-3 px-md font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider text-right">
-                      Response Time
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="font-data-mono text-data-mono">
-                  <tr className="bg-white border-b border-[#F1F5F9] hover:bg-surface-container-lowest/50 transition-colors">
-                    <td className="py-3 px-md text-on-surface-variant">
-                      2026-08-18 14:32:01
-                    </td>
-                    <td className="py-3 px-md text-on-surface">
-                      /v1/prices/maize
-                    </td>
-                    <td className="py-3 px-md">
-                      <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#E0F2FE] text-[#0284C7]">
-                        GET
-                      </span>
-                    </td>
-                    <td className="py-3 px-md">
-                      <span className="flex items-center gap-1.5 text-[#22C55E]">
-                        <span className="w-2 h-2 rounded-full bg-[#22C55E]" />
-                        200 OK
-                      </span>
-                    </td>
-                    <td className="py-3 px-md text-right text-on-surface-variant">
-                      120ms
-                    </td>
-                  </tr>
-                  <tr className="bg-white border-b border-[#F1F5F9] hover:bg-surface-container-lowest/50 transition-colors">
-                    <td className="py-3 px-md text-on-surface-variant">
-                      2026-08-18 14:31:45
-                    </td>
-                    <td className="py-3 px-md text-on-surface">
-                      /v1/logistics/routes
-                    </td>
-                    <td className="py-3 px-md">
-                      <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#E0F2FE] text-[#0284C7]">
-                        GET
-                      </span>
-                    </td>
-                    <td className="py-3 px-md">
-                      <span className="flex items-center gap-1.5 text-[#22C55E]">
-                        <span className="w-2 h-2 rounded-full bg-[#22C55E]" />
-                        200 OK
-                      </span>
-                    </td>
-                    <td className="py-3 px-md text-right text-on-surface-variant">
-                      145ms
-                    </td>
-                  </tr>
-                  <tr className="bg-white border-b border-[#F1F5F9] hover:bg-surface-container-lowest/50 transition-colors">
-                    <td className="py-3 px-md text-on-surface-variant">
-                      2026-08-18 14:28:10
-                    </td>
-                    <td className="py-3 px-md text-on-surface">
-                      /v1/prices/invalid_crop
-                    </td>
-                    <td className="py-3 px-md">
-                      <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#E0F2FE] text-[#0284C7]">
-                        GET
-                      </span>
-                    </td>
-                    <td className="py-3 px-md">
-                      <span className="flex items-center gap-1.5 text-[#EF4444]">
-                        <span className="w-2 h-2 rounded-full bg-[#EF4444]" />
-                        404 Not Found
-                      </span>
-                    </td>
-                    <td className="py-3 px-md text-right text-on-surface-variant">
-                      85ms
-                    </td>
-                  </tr>
-                  <tr className="bg-white hover:bg-surface-container-lowest/50 transition-colors">
-                    <td className="py-3 px-md text-on-surface-variant">
-                      2026-08-18 14:25:33
-                    </td>
-                    <td className="py-3 px-md text-on-surface">
-                      /v1/user/keys
-                    </td>
-                    <td className="py-3 px-md">
-                      <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#DCFCE7] text-[#166534]">
-                        POST
-                      </span>
-                    </td>
-                    <td className="py-3 px-md">
-                      <span className="flex items-center gap-1.5 text-[#22C55E]">
-                        <span className="w-2 h-2 rounded-full bg-[#22C55E]" />
-                        201 Created
-                      </span>
-                    </td>
-                    <td className="py-3 px-md text-right text-on-surface-variant">
-                      210ms
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </main>
-    </div>
+
+          <RecentApiRequestsTable />
+        </div>{" "}
+      </DevMain>
+    </DevWrapper>
   );
 }

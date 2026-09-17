@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import React from "react";
 import { DeveloperSidebarToggle } from "@/components/layout/DeveloperSidebarToggle";
 import { SettingsContent } from "./SettingsContent";
+import DevHeader from "@/components/dev-portal/DevHeader";
+import DevWrapper from "@/components/dev-portal/DevWrapper";
+import DevMain from "@/components/dev-portal/DevMain";
 
 export const metadata: Metadata = {
   title: "Settings — 9jaPrice Dev Portal",
@@ -10,21 +12,25 @@ export const metadata: Metadata = {
 
 export default function SettingsPage() {
   return (
-    <div className="bg-[#f7f9fb] text-[#191c1e] font-body-lg antialiased min-h-screen flex">
+    <DevWrapper>
       <DeveloperSidebarToggle />
 
-      <main className="flex-grow p-6 sm:p-10 bg-[#f7f9fb] min-h-screen">
-        <header className="mb-10 pl-12 lg:pl-0">
-          <h1 className="text-[28px] sm:text-[32px] font-bold text-[#191c1e] leading-tight">
-            Settings
-          </h1>
-          <p className="text-[16px] text-[#3e4a41] mt-2">
-            Manage your developer account preferences and security.
-          </p>
-        </header>
+      <DevMain>
+        <DevHeader pageTitle="settings" />
 
-        <SettingsContent />
-      </main>
-    </div>
+        <div className="flex-1 overflow-y-auto p-sm space-y-lg">
+          <div>
+            <h1 className="text-[28px] sm:text-[32px] font-bold text-on-background leading-tight">
+              Settings
+            </h1>
+            <p className="text-[16px] text-on-surface-variant mt-2">
+              Manage your developer account preferences and security.
+            </p>
+          </div>
+
+          <SettingsContent />
+        </div>
+      </DevMain>
+    </DevWrapper>
   );
 }

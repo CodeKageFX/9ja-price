@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import React from "react";
 import { DeveloperSidebarToggle } from "@/components/layout/DeveloperSidebarToggle";
 import { UsageContent } from "./UsageContent";
+import DevHeader from "@/components/dev-portal/DevHeader";
+import DevWrapper from "@/components/dev-portal/DevWrapper";
+import DevMain from "@/components/dev-portal/DevMain";
 
 export const metadata: Metadata = {
   title: "API Usage — 9jaPrice Dev Portal",
@@ -11,12 +14,16 @@ export const metadata: Metadata = {
 
 export default function UsagePage() {
   return (
-    <div className="bg-[#f7f9fb] text-[#191c1e] font-body-lg antialiased min-h-screen flex">
+    <DevWrapper>
       <DeveloperSidebarToggle />
 
-      <main className="flex-grow p-6 sm:p-10 bg-[#f7f9fb] min-h-screen">
-        <UsageContent />
-      </main>
-    </div>
+      <DevMain>
+        <DevHeader pageTitle="API Usage" />
+
+        <div className="flex-1 overflow-y-auto p-margin-desktop space-y-lg">
+          <UsageContent />
+        </div>
+      </DevMain>
+    </DevWrapper>
   );
 }

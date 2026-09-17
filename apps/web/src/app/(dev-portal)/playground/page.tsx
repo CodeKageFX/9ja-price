@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import React from "react";
 import { DeveloperSidebarToggle } from "@/components/layout/DeveloperSidebarToggle";
-import { PlaygroundContent } from "@/components/shared/PlaygroundContent";
+import { PlaygroundContent } from "@/app/(dev-portal)/playground/PlaygroundContent";
+import DevHeader from "@/components/dev-portal/DevHeader";
+import DevWrapper from "@/components/dev-portal/DevWrapper";
+import DevMain from "@/components/dev-portal/DevMain";
 
 export const metadata: Metadata = {
   title: "API Playground | 9jaPrice",
@@ -11,14 +13,16 @@ export const metadata: Metadata = {
 
 export default function PlaygroundPage() {
   return (
-    <div className="bg-[#F8FAFC] text-on-surface min-h-screen flex font-body-lg antialiased">
-      {/* Sidebar Navigation */}
+    <DevWrapper>
       <DeveloperSidebarToggle />
 
-      {/* Main Content Canvas — full viewport height, flex column */}
-      <main className="lg:ml-0 flex-1 flex flex-col h-screen overflow-hidden bg-[#F8FAFC]">
-        <PlaygroundContent />
-      </main>
-    </div>
+      <DevMain>
+        <DevHeader pageTitle="API Playground" />
+
+        <div className="flex-1 overflow-y-auto p-sm space-y-lg">
+          <PlaygroundContent />
+        </div>
+      </DevMain>
+    </DevWrapper>
   );
 }
