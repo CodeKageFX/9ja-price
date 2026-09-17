@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DeveloperSidebarToggle } from "@/components/layout/DeveloperSidebarToggle";
 import { SettingsContent } from "./SettingsContent";
 import DevHeader from "@/components/dev-portal/DevHeader";
+import DevBreadcrumb from "@/components/dev-portal/DevBreadcrumb";
 import DevWrapper from "@/components/dev-portal/DevWrapper";
 import DevMain from "@/components/dev-portal/DevMain";
 
@@ -17,6 +18,7 @@ export default function SettingsPage() {
 
       <DevMain>
         <DevHeader pageTitle="settings" />
+        <DevBreadcrumb currentPage="Settings" />
 
         <div className="flex-1 overflow-y-auto p-sm space-y-lg">
           <div>

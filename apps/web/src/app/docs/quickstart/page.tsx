@@ -4,6 +4,7 @@ import { ArrowRight, CreditCard, Terminal } from "lucide-react";
 import { CopyButton } from "@/components/code/CopyButton";
 import DocsHeader from "@/components/docs/DocsHeader";
 import DocsContainer from "@/components/docs/DocsContainer";
+import DocsBreadcrumb from "@/components/docs/DocsBreadcrumb";
 
 export const metadata: Metadata = {
   title: "API Quickstart — 9jaPrice Documentation",
@@ -34,6 +35,7 @@ export default function DocsQuickstartPage() {
   return (
     <>
       <DocsHeader pageTitle="Quickstart" />
+      <DocsBreadcrumb currentPage="Quickstart" />
       <DocsContainer>
         {/* Center Column: Prose */}
         <div className="w-full min-w-0">

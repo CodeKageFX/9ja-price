@@ -4,6 +4,7 @@ import { ArrowLeftRight, BarChart3, TrendingUp, Zap, Star } from "lucide-react";
 import { DeveloperSidebarToggle } from "@/components/layout/DeveloperSidebarToggle";
 import { DashboardAnalyticsChart } from "@/components/charts/DashboardAnalyticsChart";
 import DevHeader from "@/components/dev-portal/DevHeader";
+import DevBreadcrumb from "@/components/dev-portal/DevBreadcrumb";
 import DevWrapper from "@/components/dev-portal/DevWrapper";
 import RecentApiRequestsTable from "@/components/tables/RecentApiRequests";
 import DevMain from "@/components/dev-portal/DevMain";
@@ -24,6 +25,7 @@ export default function DeveloperDashboardPage() {
       <DevMain>
         {/* Header */}
         <DevHeader pageTitle="Dashboard Overview" />
+        <DevBreadcrumb currentPage="Dashboard Overview" />
         {/* Scrollable Content */}
         <div className="flex-1 p-margin-mobile space-y-lg ">
           {/* Stat Cards Bento Grid */}

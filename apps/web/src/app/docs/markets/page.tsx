@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import React from "react";
 import { ArrowRight, Lightbulb } from "lucide-react";
 import { CopyButton } from "@/components/code/CopyButton";
 import DocsContainer from "@/components/docs/DocsContainer";
 import DocsHeader from "@/components/docs/DocsHeader";
+import DocsBreadcrumb from "@/components/docs/DocsBreadcrumb";
 
 export const metadata: Metadata = {
   title: "Markets Endpoint — 9jaPrice Documentation",
@@ -59,6 +59,7 @@ export default function DocsMarketsPage() {
   return (
     <>
       <DocsHeader pageTitle="Markets" />
+      <DocsBreadcrumb currentPage="Markets" />
 
       <DocsContainer>
         {/* Prose Column */}
