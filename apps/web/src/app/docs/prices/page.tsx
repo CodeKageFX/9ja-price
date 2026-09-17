@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { PricesDocsContent } from "@/components/shared/PricesDocsContent";
+import DocsHeader from "@/components/docs/DocsHeader";
+import DocsContainer from "@/components/docs/DocsContainer";
 
 export const metadata: Metadata = {
   title: "Commodity Prices Endpoint | 9jaPrice API Docs",
@@ -8,5 +10,13 @@ export const metadata: Metadata = {
 };
 
 export default function DocsPricesPage() {
-  return <PricesDocsContent />;
+  return (
+    <>
+      <DocsHeader pageTitle="Commodity Prices" />
+
+      <DocsContainer>
+        <PricesDocsContent />
+      </DocsContainer>
+    </>
+  );
 }

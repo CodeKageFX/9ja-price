@@ -102,20 +102,20 @@ export function DocsSidebarToggle() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Open documentation navigation"
-        className="fixed left-4 top-4 z-30 flex h-10 w-10 items-center justify-center rounded-full bg-surface-container-low text-on-surface-variant shadow-sm transition-colors hover:bg-surface-container-high focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:hidden"
+        className="fixed left-4 top-4 z-31 flex h-10 w-10 items-center justify-center rounded-full text-on-surface-variant shadow-sm transition-colors hover:bg-surface-container-high focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary lg:hidden"
       >
         <Menu className="h-5 w-5" aria-hidden="true" />
       </button>
 
       {open && (
         <div
-          className="fixed inset-0 z-40 bg-black/50 md:hidden"
+          className="fixed inset-0 z-40 bg-black/50 lg:hidden"
           onClick={() => setOpen(false)}
         />
       )}
 
       <aside
-        className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col bg-surface py-6 shadow-xl transition-transform duration-200 md:hidden ${
+        className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col bg-surface py-6 shadow-xl transition-transform duration-200 lg:hidden ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >

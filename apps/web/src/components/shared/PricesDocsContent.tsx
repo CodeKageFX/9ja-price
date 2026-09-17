@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { Copy, Check } from "lucide-react";
 
 export function PricesDocsContent() {
@@ -20,15 +20,15 @@ const options = {
     'Authorization': 'Bearer YOUR_API_KEY',
     'Accept': 'application/json'
   }
-};
+};`;
 
-try {
-  const response = await fetch(url, options);
-  const data = await response.json();
-  console.log(data);
-} catch (error) {
-  console.error(error);
-}`;
+  // try {
+  //   const response = await fetch(url, options);
+  //   const data = await response.json();
+  //   console.log(data);
+  // } catch (error) {
+  //   console.error(error);
+  // }
 
   const responseJson = `{
   "status": "success",
@@ -53,7 +53,7 @@ try {
   return (
     <>
       {/* Middle Column: Endpoint Details */}
-      <div className="flex-1 overflow-y-auto px-margin-desktop py-lg max-w-4xl border-r border-outline-variant">
+      <div className="flex-1 overflow-y-auto px-margin-desktop py-lg max-w-4xl lg:border-r lg:border-outline-variant">
         <header className="mb-xl">
           <h2 className="font-display-lg text-display-lg text-on-surface mb-sm">
             Commodity Prices
@@ -67,9 +67,9 @@ try {
             </span>
           </div>
           <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
-            Retrieve the latest prices for specific food items across different locations.
-            This endpoint provides real-time market intelligence critical for agricultural
-            planning and trade.
+            Retrieve the latest prices for specific food items across different
+            locations. This endpoint provides real-time market intelligence
+            critical for agricultural planning and trade.
           </p>
         </header>
 
@@ -78,7 +78,7 @@ try {
           <h3 className="font-title-md text-title-md text-on-surface mb-md">
             Query Parameters
           </h3>
-          <div className="bg-surface-container-lowest rounded-lg border border-outline-variant overflow-hidden">
+          <div className="bg-surface-container-lowest rounded-lg border border-outline-variant overflow-x-auto">
             <table className="w-full text-left">
               <thead className="bg-surface-container font-label-caps text-label-caps text-on-surface-variant border-b border-outline-variant">
                 <tr>
@@ -92,27 +92,33 @@ try {
                   <td className="px-md py-sm font-data-mono text-data-mono text-primary">
                     food
                   </td>
-                  <td className="px-md py-sm text-on-surface-variant">string</td>
+                  <td className="px-md py-sm text-on-surface-variant">
+                    string
+                  </td>
                   <td className="px-md py-sm">
-                    The name of the commodity (e.g., &quot;rice&quot;, &quot;beans&quot;).
-                    Optional.
+                    The name of the commodity (e.g., &quot;rice&quot;,
+                    &quot;beans&quot;). Optional.
                   </td>
                 </tr>
                 <tr>
                   <td className="px-md py-sm font-data-mono text-data-mono text-primary">
                     location
                   </td>
-                  <td className="px-md py-sm text-on-surface-variant">string</td>
+                  <td className="px-md py-sm text-on-surface-variant">
+                    string
+                  </td>
                   <td className="px-md py-sm">
-                    The specific state or region to filter by (e.g., &quot;Kano&quot;,
-                    &quot;Lagos&quot;). Optional.
+                    The specific state or region to filter by (e.g.,
+                    &quot;Kano&quot;, &quot;Lagos&quot;). Optional.
                   </td>
                 </tr>
                 <tr>
                   <td className="px-md py-sm font-data-mono text-data-mono text-primary">
                     market
                   </td>
-                  <td className="px-md py-sm text-on-surface-variant">string</td>
+                  <td className="px-md py-sm text-on-surface-variant">
+                    string
+                  </td>
                   <td className="px-md py-sm">
                     Specific market name for hyper-local pricing. Optional.
                   </td>
@@ -121,10 +127,12 @@ try {
                   <td className="px-md py-sm font-data-mono text-data-mono text-primary">
                     unit
                   </td>
-                  <td className="px-md py-sm text-on-surface-variant">string</td>
+                  <td className="px-md py-sm text-on-surface-variant">
+                    string
+                  </td>
                   <td className="px-md py-sm">
-                    Measurement unit (e.g., &quot;kg&quot;, &quot;bag&quot;). Defaults to
-                    standard regional unit if omitted. Optional.
+                    Measurement unit (e.g., &quot;kg&quot;, &quot;bag&quot;).
+                    Defaults to standard regional unit if omitted. Optional.
                   </td>
                 </tr>
               </tbody>
@@ -192,19 +200,29 @@ try {
                   <span className="text-blue-400">const</span>
                   {` options = {`}
                 </div>
-                <div>{`  method: `}<span className="text-green-400">&apos;GET&apos;</span>,</div>
+                <div>
+                  {`  method: `}
+                  <span className="text-green-400">&apos;GET&apos;</span>,
+                </div>
                 <div>{`  headers: {`}</div>
                 <div>
                   {`    `}
-                  <span className="text-green-400">&apos;Authorization&apos;</span>
+                  <span className="text-green-400">
+                    &apos;Authorization&apos;
+                  </span>
                   {`: `}
-                  <span className="text-green-400">&apos;Bearer YOUR_API_KEY&apos;</span>,
+                  <span className="text-green-400">
+                    &apos;Bearer YOUR_API_KEY&apos;
+                  </span>
+                  ,
                 </div>
                 <div>
                   {`    `}
                   <span className="text-green-400">&apos;Accept&apos;</span>
                   {`: `}
-                  <span className="text-green-400">&apos;application/json&apos;</span>
+                  <span className="text-green-400">
+                    &apos;application/json&apos;
+                  </span>
                 </div>
                 <div>{`  }`}</div>
                 <div>{`};`}</div>
@@ -273,7 +291,9 @@ try {
                   {`,\n      `}
                   <span className="text-blue-400">&quot;commodity&quot;</span>
                   {`: `}
-                  <span className="text-green-400">&quot;Rice (Local)&quot;</span>
+                  <span className="text-green-400">
+                    &quot;Rice (Local)&quot;
+                  </span>
                   {`,\n      `}
                   <span className="text-blue-400">&quot;location&quot;</span>
                   {`: `}
@@ -281,7 +301,9 @@ try {
                   {`,\n      `}
                   <span className="text-blue-400">&quot;market&quot;</span>
                   {`: `}
-                  <span className="text-green-400">&quot;Dawanau Market&quot;</span>
+                  <span className="text-green-400">
+                    &quot;Dawanau Market&quot;
+                  </span>
                   {`,\n      `}
                   <span className="text-blue-400">&quot;price&quot;</span>
                   {`: `}
@@ -297,11 +319,15 @@ try {
                   {`,\n      `}
                   <span className="text-blue-400">&quot;timestamp&quot;</span>
                   {`: `}
-                  <span className="text-green-400">&quot;2024-05-14T08:30:00Z&quot;</span>
+                  <span className="text-green-400">
+                    &quot;2024-05-14T08:30:00Z&quot;
+                  </span>
                   {`\n    }\n  ],\n  `}
                   <span className="text-blue-400">&quot;meta&quot;</span>
                   {`: {\n    `}
-                  <span className="text-blue-400">&quot;total_results&quot;</span>
+                  <span className="text-blue-400">
+                    &quot;total_results&quot;
+                  </span>
                   {`: `}
                   <span className="text-orange-400">1</span>
                   {`,\n    `}
