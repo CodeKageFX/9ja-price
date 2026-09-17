@@ -1,14 +1,23 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { cn } from "@/lib/utils"
-import { LayoutDashboard, Key, BarChart2, Terminal, FileText, Settings, X, Database } from "lucide-react"
-import { ScrollArea } from "@/components/ui/scroll-area"
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+import {
+  LayoutDashboard,
+  Key,
+  BarChart2,
+  Terminal,
+  FileText,
+  Settings,
+  X,
+  Database,
+} from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface SidebarProps {
-  open?: boolean
-  onClose?: () => void
+  open?: boolean;
+  onClose?: () => void;
 }
 
 const NAV_ITEMS = [
@@ -24,21 +33,23 @@ const NAV_ITEMS = [
   },
   {
     group: "Documentation",
-    items: [
-      { href: "/docs", label: "API Docs", icon: FileText },
-    ],
+    items: [{ href: "/docs", label: "API Docs", icon: FileText }],
   },
   {
     group: "Admin",
     items: [
       { href: "/admin", label: "Price Management", icon: Database },
-      { href: "/admin/observations/new", label: "Record Price", icon: Settings },
+      {
+        href: "/admin/observations/new",
+        label: "Record Price",
+        icon: Settings,
+      },
     ],
   },
-]
+];
 
 export function Sidebar({ open, onClose }: SidebarProps) {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
     <>
@@ -52,7 +63,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
       <aside
         className={cn(
           "fixed inset-y-0 left-0 z-50 w-64 bg-surface border-r border-outline-variant transform transition-transform duration-200 ease-in-out lg:translate-x-0 lg:static lg:z-auto",
-          open ? "translate-x-0" : "-translate-x-full"
+          open ? "translate-x-0" : "-translate-x-full",
         )}
       >
         <div className="flex items-center justify-between h-16 px-4 border-b border-outline-variant">
@@ -61,11 +72,18 @@ export function Sidebar({ open, onClose }: SidebarProps) {
               9
             </div>
             <div>
-              <h1 className="font-headline-lg text-title-md font-bold text-primary leading-tight">9jaPrice</h1>
-              <p className="font-label-caps text-label-caps text-on-surface-variant/70 uppercase">Dev Portal</p>
+              <h1 className="font-headline-lg text-title-md font-bold text-primary leading-tight">
+                9jaPrice
+              </h1>
+              <p className="font-label-caps text-label-caps text-on-surface-variant/70 uppercase">
+                Dev Portal
+              </p>
             </div>
           </div>
-          <button onClick={onClose} className="lg:hidden p-1 rounded hover:bg-surface-container-high">
+          <button
+            onClick={onClose}
+            className="lg:hidden p-1 rounded hover:bg-surface-container-high"
+          >
             <X className="h-5 w-5 text-on-surface-variant" />
           </button>
         </div>
@@ -79,23 +97,26 @@ export function Sidebar({ open, onClose }: SidebarProps) {
                 </h4>
                 <div className="space-y-1">
                   {group.items.map((item) => {
-                    const Icon = item.icon
-                    const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href))
+                    const Icon = item.icon;
+                    const isActive =
+                      pathname === item.href ||
+                      (item.href !== "/" && pathname.startsWith(item.href));
                     return (
                       <Link
                         key={item.href}
                         href={item.href}
+                        onClick={onClose}
                         className={cn(
                           "flex items-center gap-3 rounded-lg px-3 py-2 text-body-sm font-medium transition-colors",
                           isActive
                             ? "bg-primary-container/10 text-primary font-semibold border-r-4 border-primary"
-                            : "text-on-surface-variant hover:bg-surface-container-high"
+                            : "text-on-surface-variant hover:bg-surface-container-high",
                         )}
                       >
                         <Icon className="h-4 w-4" />
                         {item.label}
                       </Link>
-                    )
+                    );
                   })}
                 </div>
               </div>
@@ -104,5 +125,5 @@ export function Sidebar({ open, onClose }: SidebarProps) {
         </ScrollArea>
       </aside>
     </>
-  )
+  );
 }

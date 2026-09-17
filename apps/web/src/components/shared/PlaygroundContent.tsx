@@ -65,7 +65,7 @@ function syntaxHighlight(json: string): string {
           cls = "text-[#d2a8ff]"; // null
         }
         return `<span class="${cls}">${match}</span>`;
-      }
+      },
     );
 }
 
@@ -95,7 +95,11 @@ export function PlaygroundContent() {
     setParams(params.filter((p) => p.id !== id));
   };
 
-  const updateParam = (id: string, field: keyof QueryParam, value: string | boolean) => {
+  const updateParam = (
+    id: string,
+    field: keyof QueryParam,
+    value: string | boolean,
+  ) => {
     setParams(params.map((p) => (p.id === id ? { ...p, [field]: value } : p)));
   };
 
@@ -118,7 +122,7 @@ export function PlaygroundContent() {
     <div className="flex flex-col h-full">
       {/* Header */}
       <header className="h-20 px-margin-desktop flex items-center justify-between border-b border-outline-variant/50 bg-surface-container-lowest shrink-0">
-        <div>
+        <div className="pl-12 lg:pl-0">
           <h2 className="font-headline-lg text-headline-lg text-on-surface">
             API Playground
           </h2>
@@ -197,7 +201,9 @@ export function PlaygroundContent() {
                   <input
                     type="checkbox"
                     checked={param.enabled}
-                    onChange={(e) => updateParam(param.id, "enabled", e.target.checked)}
+                    onChange={(e) =>
+                      updateParam(param.id, "enabled", e.target.checked)
+                    }
                     className="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4 cursor-pointer"
                   />
                   <input
@@ -205,7 +211,9 @@ export function PlaygroundContent() {
                     placeholder="Key"
                     type="text"
                     value={param.key}
-                    onChange={(e) => updateParam(param.id, "key", e.target.value)}
+                    onChange={(e) =>
+                      updateParam(param.id, "key", e.target.value)
+                    }
                   />
                   <span className="text-outline-variant">=</span>
                   <input
@@ -213,7 +221,9 @@ export function PlaygroundContent() {
                     placeholder="Value"
                     type="text"
                     value={param.value}
-                    onChange={(e) => updateParam(param.id, "value", e.target.value)}
+                    onChange={(e) =>
+                      updateParam(param.id, "value", e.target.value)
+                    }
                   />
                   <button
                     onClick={() => removeParam(param.id)}
@@ -268,8 +278,12 @@ export function PlaygroundContent() {
                   <span className="w-2 h-2 rounded-full bg-[#70db9d] shadow-[0_0_8px_rgba(112,219,157,0.5)]" />
                   200 OK
                 </span>
-                <span className="text-[#8b949e] font-data-mono text-[12px]">245ms</span>
-                <span className="text-[#8b949e] font-data-mono text-[12px]">1.2KB</span>
+                <span className="text-[#8b949e] font-data-mono text-[12px]">
+                  245ms
+                </span>
+                <span className="text-[#8b949e] font-data-mono text-[12px]">
+                  1.2KB
+                </span>
               </div>
             ) : (
               <div className="flex items-center gap-2">
@@ -302,9 +316,7 @@ export function PlaygroundContent() {
               </div>
             ) : hasResponse ? (
               <pre className="font-data-mono text-data-mono leading-relaxed text-[#e6edf3] whitespace-pre-wrap">
-                <code
-                  dangerouslySetInnerHTML={{ __html: highlighted }}
-                />
+                <code dangerouslySetInnerHTML={{ __html: highlighted }} />
               </pre>
             ) : (
               <div className="flex items-center justify-center h-full text-[#8b949e] font-data-mono text-data-mono">

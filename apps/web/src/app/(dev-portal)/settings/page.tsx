@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import React from "react";
-import { Sidebar } from "@/components/layout/Sidebar";
+import { DeveloperSidebarToggle } from "@/components/layout/DeveloperSidebarToggle";
 import { SettingsContent } from "./SettingsContent";
 
 export const metadata: Metadata = {
@@ -11,10 +11,10 @@ export const metadata: Metadata = {
 export default function SettingsPage() {
   return (
     <div className="bg-[#f7f9fb] text-[#191c1e] font-body-lg antialiased min-h-screen flex">
-      <Sidebar />
+      <DeveloperSidebarToggle />
 
       <main className="flex-grow p-6 sm:p-10 bg-[#f7f9fb] min-h-screen">
-        <header className="mb-10">
+        <header className="mb-10 pl-12 lg:pl-0">
           <h1 className="text-[28px] sm:text-[32px] font-bold text-[#191c1e] leading-tight">
             Settings
           </h1>
