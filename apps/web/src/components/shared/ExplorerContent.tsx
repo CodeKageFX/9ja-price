@@ -138,8 +138,8 @@ const MARKETS = ["All Markets", "Wuse Market", "Mile 12 Market", "Garki Market",
 const UNITS = ["All Units", "/kg", "/tuber", "/crate", "/piece"];
 const DATES = ["All Time", "Today", "Past 7 Days", "Past 30 Days"];
 
-export function ExplorerContent() {
-  const [searchQuery, setSearchQuery] = useState("");
+export function ExplorerContent({ initialQuery = "" }: { initialQuery?: string }) {
+  const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const [selectedLocation, setSelectedLocation] = useState("All Locations");
   const [selectedMarket, setSelectedMarket] = useState("All Markets");

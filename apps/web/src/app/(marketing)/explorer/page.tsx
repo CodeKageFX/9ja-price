@@ -9,7 +9,10 @@ export const metadata: Metadata = {
   description: "Explore Nigerian food prices by item, category, location, and market.",
 };
 
-export default function PriceExplorerPage() {
+export default async function PriceExplorerPage({ searchParams }: PageProps<"/explorer">) {
+  const { q } = await searchParams;
+  const initialQuery = typeof q === "string" ? q : "";
+
   return (
     <div className="bg-surface text-on-surface antialiased font-body-lg text-body-lg min-h-screen flex flex-col">
       <Navbar />
@@ -25,7 +28,7 @@ export default function PriceExplorerPage() {
         </header>
 
         {/* Explorer Search, Filters & Price Table */}
-        <ExplorerContent />
+        <ExplorerContent key={initialQuery} initialQuery={initialQuery} />
       </main>
       <Footer />
     </div>
