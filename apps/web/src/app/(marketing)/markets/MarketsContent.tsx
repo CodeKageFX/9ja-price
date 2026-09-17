@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import {
   Search,
@@ -11,68 +11,58 @@ import {
   ChevronRight,
   ChevronDown,
 } from "lucide-react";
+import { getMarkets, type MarketItem } from "@/lib/markets";
+import { useAsyncData } from "@/hooks/useAsyncData";
 
-interface MarketItem {
-  id: string;
-  name: string;
-  location: string;
-  state: string;
-  city: string;
-  status: "Active Data" | "Delayed";
-  foods: string[];
-  moreFoodsCount: number;
-  lastUpdate: string;
-  image: string;
+const PAGE_SIZE = 9;
+
+// Unique value/label pairs for a select, built from the loaded markets.
+function optionsFor(markets: MarketItem[], value: (m: MarketItem) => string, label: (m: MarketItem) => string) {
+  const map = new Map<string, string>();
+  for (const m of markets) map.set(value(m), label(m));
+  return [...map].map(([v, l]) => ({ value: v, label: l })).sort((a, b) => a.label.localeCompare(b.label));
 }
 
-const MARKETS_DATA: MarketItem[] = [
-  {
-    id: "wuse",
-    name: "Wuse Market",
-    location: "Abuja, FCT",
-    state: "fct",
-    city: "abuja",
-    status: "Active Data",
-    foods: ["Rice", "Garri", "Tomatoes"],
-    moreFoodsCount: 12,
-    lastUpdate: "2 hours ago",
-    image:
-      "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    id: "mile12",
-    name: "Mile 12 Market",
-    location: "Kosofe, Lagos",
-    state: "lagos",
-    city: "ikeja",
-    status: "Active Data",
-    foods: ["Onions", "Peppers", "Yam"],
-    moreFoodsCount: 24,
-    lastUpdate: "15 mins ago",
-    image:
-      "https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    id: "dawanau",
-    name: "Dawanau Market",
-    location: "Dawakin Tofa, Kano",
-    state: "kano",
-    city: "kano",
-    status: "Delayed",
-    foods: ["Maize", "Sorghum", "Millet"],
-    moreFoodsCount: 8,
-    lastUpdate: "1 day ago",
-    image:
-      "https://images.unsplash.com/photo-1578916171728-46686eac8d58?q=80&w=800&auto=format&fit=crop",
-  },
-];
+// Page numbers to show: all when few, otherwise first, last and neighbours of the current page.
+function visiblePages(page: number, pageCount: number): (number | "gap")[] {
+  if (pageCount <= 5) return Array.from({ length: pageCount }, (_, i) => i + 1);
+  const pages = new Set([1, pageCount, page - 1, page, page + 1]);
+  const sorted = [...pages].filter((n) => n >= 1 && n <= pageCount).sort((a, b) => a - b);
+  return sorted.flatMap((n, i) => (i > 0 && n - sorted[i - 1] > 1 ? ["gap" as const, n] : [n]));
+}
+
+function LoadingCards() {
+  return (
+    <>
+      <p className="sr-only">Loading markets…</p>
+      {Array.from({ length: 3 }, (_, i) => (
+        <div key={i} aria-hidden="true" className="bg-white border border-[#e2e8f0] rounded-xl overflow-hidden flex flex-col">
+          <div className="h-48 bg-[#eceef0] animate-pulse" />
+          <div className="p-6 flex flex-col gap-3">
+            <div className="h-5 w-2/3 rounded bg-[#eceef0] animate-pulse" />
+            <div className="h-4 w-1/2 rounded bg-[#eceef0] animate-pulse" />
+            <div className="h-4 w-full rounded bg-[#eceef0] animate-pulse mt-4" />
+          </div>
+        </div>
+      ))}
+    </>
+  );
+}
 
 export function MarketsContent() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedState, setSelectedState] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
 
-  const filteredMarkets = MARKETS_DATA.filter((market) => {
+  const { status, data, retry } = useAsyncData(getMarkets);
+  const markets = useMemo(() => data ?? [], [data]);
+  const stateOptions = useMemo(() => optionsFor(markets, (m) => m.state, (m) => m.stateName), [markets]);
+  const cityOptions = useMemo(
+    () => optionsFor(markets.filter((m) => !selectedState || m.state === selectedState), (m) => m.city, (m) => m.cityName),
+    [markets, selectedState],
+  );
+
+  const filteredMarkets = markets.filter((market) => {
     const matchesSearch =
       market.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       market.location.toLowerCase().includes(searchQuery.toLowerCase());
@@ -80,6 +70,20 @@ export function MarketsContent() {
     const matchesCity = selectedCity ? market.city === selectedCity : true;
     return matchesSearch && matchesState && matchesCity;
   });
+
+  // Page resets to 1 whenever the filters change.
+  const filterKey = [searchQuery, selectedState, selectedCity].join("|");
+  const [pageState, setPageState] = useState({ key: filterKey, page: 1 });
+  const pageCount = Math.max(1, Math.ceil(filteredMarkets.length / PAGE_SIZE));
+  const page = pageState.key === filterKey ? Math.min(pageState.page, pageCount) : 1;
+  const setPage = (next: number) => setPageState({ key: filterKey, page: next });
+  const pageMarkets = filteredMarkets.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+  const resetFilters = () => {
+    setSearchQuery("");
+    setSelectedState("");
+    setSelectedCity("");
+  };
 
   return (
     <>
@@ -94,6 +98,7 @@ export function MarketsContent() {
             <input
               className="w-full pl-10 pr-4 py-3 bg-white border border-[#e2e8f0] rounded-lg focus:outline-none focus:border-[#006b3f] focus:ring-1 focus:ring-[#006b3f] text-[16px] text-[#191c1e] transition-all shadow-sm"
               placeholder="e.g. Wuse, Mile 12..."
+              aria-label="Search market"
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -109,13 +114,18 @@ export function MarketsContent() {
             <select
               className="w-full appearance-none pl-4 pr-10 py-3 bg-white border border-[#e2e8f0] rounded-lg focus:outline-none focus:border-[#006b3f] focus:ring-1 focus:ring-[#006b3f] text-[16px] text-[#191c1e] transition-all shadow-sm"
               value={selectedState}
-              onChange={(e) => setSelectedState(e.target.value)}
+              onChange={(e) => {
+                setSelectedState(e.target.value);
+                setSelectedCity("");
+              }}
+              aria-label="State"
             >
               <option value="">All States</option>
-              <option value="fct">FCT Abuja</option>
-              <option value="lagos">Lagos</option>
-              <option value="kano">Kano</option>
-              <option value="rivers">Rivers</option>
+              {stateOptions.map((o) => (
+                <option key={o.value} value={o.value}>
+                  {o.label}
+                </option>
+              ))}
             </select>
             <ChevronDown className="w-5 h-5 absolute right-3 top-1/2 -translate-y-1/2 text-[#3e4a41]/50 pointer-events-none" />
           </div>
@@ -130,11 +140,14 @@ export function MarketsContent() {
               className="w-full appearance-none pl-4 pr-10 py-3 bg-white border border-[#e2e8f0] rounded-lg focus:outline-none focus:border-[#006b3f] focus:ring-1 focus:ring-[#006b3f] text-[16px] text-[#191c1e] transition-all shadow-sm"
               value={selectedCity}
               onChange={(e) => setSelectedCity(e.target.value)}
+              aria-label="City"
             >
               <option value="">All Cities</option>
-              <option value="abuja">Abuja</option>
-              <option value="ikeja">Ikeja</option>
-              <option value="port-harcourt">Port Harcourt</option>
+              {cityOptions.map((o) => (
+                <option key={o.value} value={o.value}>
+                  {o.label}
+                </option>
+              ))}
             </select>
             <ChevronDown className="w-5 h-5 absolute right-3 top-1/2 -translate-y-1/2 text-[#3e4a41]/50 pointer-events-none" />
           </div>
@@ -142,12 +155,9 @@ export function MarketsContent() {
 
         <div className="w-full md:w-auto">
           <button
-            className="w-full md:w-auto bg-[#eceef0] hover:bg-[#e6e8ea] text-[#191c1e] text-[14px] font-medium px-6 py-3 rounded-lg transition-colors border border-[#e2e8f0] flex items-center justify-center gap-2 shadow-sm"
-            onClick={() => {
-              setSearchQuery("");
-              setSelectedState("");
-              setSelectedCity("");
-            }}
+            type="button"
+            className="w-full md:w-auto whitespace-nowrap bg-[#eceef0] hover:bg-[#e6e8ea] text-[#191c1e] text-[14px] font-medium px-6 py-3 rounded-lg transition-colors border border-[#e2e8f0] flex items-center justify-center gap-2 shadow-sm"
+            onClick={resetFilters}
           >
             <Filter className="w-4 h-4" />
             Reset Filters
@@ -156,8 +166,43 @@ export function MarketsContent() {
       </section>
 
       {/* Markets Grid */}
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredMarkets.map((market) => (
+      {status === "error" && (
+        <section className="bg-white border border-[#e2e8f0] rounded-xl p-10 text-center">
+          <p role="alert" className="text-[16px] text-[#191c1e] mb-4">
+            We couldn&apos;t load markets right now.
+          </p>
+          <button
+            type="button"
+            onClick={retry}
+            className="bg-[#eceef0] hover:bg-[#e6e8ea] text-[#191c1e] text-[14px] font-medium px-6 py-3 rounded-lg transition-colors border border-[#e2e8f0] shadow-sm"
+          >
+            Try again
+          </button>
+        </section>
+      )}
+
+      {status === "success" && markets.length === 0 && (
+        <section className="bg-white border border-[#e2e8f0] rounded-xl p-10 text-center text-[16px] text-[#3e4a41]">
+          No markets are available yet. Check back soon.
+        </section>
+      )}
+
+      {status === "success" && markets.length > 0 && filteredMarkets.length === 0 && (
+        <section className="bg-white border border-[#e2e8f0] rounded-xl p-10 text-center">
+          <p className="text-[16px] text-[#3e4a41] mb-4">No markets match your search or filters.</p>
+          <button
+            type="button"
+            onClick={resetFilters}
+            className="bg-[#eceef0] hover:bg-[#e6e8ea] text-[#191c1e] text-[14px] font-medium px-6 py-3 rounded-lg transition-colors border border-[#e2e8f0] shadow-sm"
+          >
+            Reset Filters
+          </button>
+        </section>
+      )}
+
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" aria-busy={status === "loading"}>
+        {status === "loading" && <LoadingCards />}
+        {status === "success" && pageMarkets.map((market) => (
           <article
             key={market.id}
             className="bg-white border border-[#e2e8f0] rounded-xl overflow-hidden hover:shadow-md transition-shadow flex flex-col h-full group"
@@ -222,7 +267,7 @@ export function MarketsContent() {
                 </div>
                 <Link
                   className="text-[#006b3f] text-[14px] font-semibold hover:text-[#008751] flex items-center gap-1"
-                  href="/explorer"
+                  href={`/explorer?q=${encodeURIComponent(market.name)}`}
                 >
                   View Market
                   <ArrowRight className="w-4 h-4" />
@@ -234,29 +279,51 @@ export function MarketsContent() {
       </section>
 
       {/* Pagination */}
-      <div className="mt-12 flex justify-center">
-        <nav className="flex items-center gap-2">
-          <button
-            className="w-10 h-10 flex items-center justify-center rounded-lg border border-[#e2e8f0] text-[#3e4a41] hover:bg-[#f2f4f6] transition-colors disabled:opacity-50"
-            disabled
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <button className="w-10 h-10 flex items-center justify-center rounded-lg bg-[#006b3f] text-white text-[14px] font-medium">
-            1
-          </button>
-          <button className="w-10 h-10 flex items-center justify-center rounded-lg border border-[#e2e8f0] text-[#191c1e] hover:bg-[#f2f4f6] transition-colors text-[14px] font-medium">
-            2
-          </button>
-          <button className="w-10 h-10 flex items-center justify-center rounded-lg border border-[#e2e8f0] text-[#191c1e] hover:bg-[#f2f4f6] transition-colors text-[14px] font-medium">
-            3
-          </button>
-          <span className="text-[#3e4a41] mx-2">...</span>
-          <button className="w-10 h-10 flex items-center justify-center rounded-lg border border-[#e2e8f0] text-[#3e4a41] hover:bg-[#f2f4f6] transition-colors">
-            <ChevronRight className="w-5 h-5" />
-          </button>
-        </nav>
-      </div>
+      {status === "success" && filteredMarkets.length > 0 && (
+        <div className="mt-12 flex justify-center">
+          <nav className="flex items-center gap-2" aria-label="Markets pages">
+            <button
+              type="button"
+              onClick={() => setPage(page - 1)}
+              className="w-10 h-10 flex items-center justify-center rounded-lg border border-[#e2e8f0] hover:bg-[#f2f4f6] transition-colors text-[#3e4a41] disabled:opacity-50"
+              disabled={page <= 1}
+              aria-label="Previous page"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            {visiblePages(page, pageCount).map((n, i) =>
+              n === "gap" ? (
+                <span key={`gap-${i}`} className="text-[#3e4a41] mx-2">
+                  ...
+                </span>
+              ) : (
+                <button
+                  key={n}
+                  type="button"
+                  onClick={() => setPage(n)}
+                  aria-current={n === page ? "page" : undefined}
+                  className={
+                    n === page
+                      ? "w-10 h-10 flex items-center justify-center rounded-lg bg-[#006b3f] text-white text-[14px] font-medium"
+                      : "w-10 h-10 flex items-center justify-center rounded-lg border border-[#e2e8f0] hover:bg-[#f2f4f6] transition-colors text-[#191c1e] text-[14px] font-medium"
+                  }
+                >
+                  {n}
+                </button>
+              ),
+            )}
+            <button
+              type="button"
+              onClick={() => setPage(page + 1)}
+              className="w-10 h-10 flex items-center justify-center rounded-lg border border-[#e2e8f0] hover:bg-[#f2f4f6] transition-colors text-[#3e4a41] disabled:opacity-50"
+              disabled={page >= pageCount}
+              aria-label="Next page"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </nav>
+        </div>
+      )}
     </>
   );
 }
