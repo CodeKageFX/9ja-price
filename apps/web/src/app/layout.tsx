@@ -4,7 +4,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 
 export const metadata: Metadata = {
   title: "9jaPrice - Know What Food Costs in Nigeria",
-  description: "Reliable, structured Nigerian food-price data for people, businesses and developers.",
+  description:
+    "Reliable, structured Nigerian food-price data for people, businesses and developers.",
 };
 
 export default function RootLayout({
@@ -14,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="light">
-      <body className="bg-background text-on-background font-body-lg antialiased min-h-screen flex flex-col">
+      <body className="bg-background text-on-background font-body-lg antialiased min-h-screen flex flex-col selection:bg-primary selection:text-white">
         <TooltipProvider>{children}</TooltipProvider>
       </body>
     </html>
