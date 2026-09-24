@@ -1,23 +1,170 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider              = "prisma-client"
+  output                = "../src/generated/prisma"
+  moduleFormat          = "cjs"
+  generatedFileExtension = "ts"
+  importFileExtension   = ""
 }
 
 datasource db {
   provider = "postgresql"
 }
 
-model Product {
-  id          Int      @id @default(autoincrement())
+enum UserRole {
+  USER
+  RESEARCHER
+  ADMIN
+}
+
+enum UnitType {
+  MASS
+  VOLUME
+  COUNT
+  MARKET_MEASURE
+}
+
+enum SourceType {
+  FIELD_SURVEY
+  GOVERNMENT_DATA
+  PARTNER_DATA
+  PUBLIC_REPORT
+  USER_SUBMISSION
+  OTHER
+}
+
+enum PriceStatus {
+  PENDING
+  VERIFIED
+  REJECTED
+}
+
+model User {
+  id                    Int                @id @default(autoincrement())
+  name                  String
+  email                 String             @unique
+  password              String
+  role                  UserRole           @default(USER)
+
+  observationsSubmitted PriceObservation[] @relation("SubmittedObservations")
+  observationsVerified  PriceObservation[] @relation("VerifiedObservations")
+
+  createdAt             DateTime           @default(now())
+  updatedAt             DateTime           @updatedAt
+
+  @@map("user")
+}
+
+model Category {
+  id          Int         @id @default(autoincrement())
   name        String
-  price       Float
-  currency    String   @default("NGN")
-  url         String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  slug        String      @unique
+  description String?
+
+  commodities Commodity[]
+
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@map("category")
+}
+
+model Unit {
+  id            Int               @id @default(autoincrement())
+  name          String
+  symbol        String            @unique
+  type          UnitType
+  description   String?
+
+  observations  PriceObservation[]
+
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+
+  @@map("unit")
+}
+
+model Commodity {
+  id           Int               @id @default(autoincrement())
+  name         String
+  slug         String            @unique
+
+  categoryId   Int
+  category     Category          @relation(fields: [categoryId], references: [id])
+
+  observations PriceObservation[]
+
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+
+  @@index([categoryId])
+  @@map("commodity")
+}
+
+model Market {
+  id            Int               @id @default(autoincrement())
+  name          String
+  city          String
+  state         String
+  region        String
+
+  observations  PriceObservation[]
+
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+
+  @@map("market")
+  @@unique([name, city, state], name: "marketIdentity")
+}
+
+model Source {
+  id            Int               @id @default(autoincrement())
+  name          String
+  type          SourceType
+  url           String?
+
+  observations  PriceObservation[]
+
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+
+  @@unique([name, type])
+  @@map("source")
+}
+
+model PriceObservation {
+  id               Int          @id @default(autoincrement())
+
+  commodityId      Int
+  marketId         Int
+  unitId           Int
+  submittedBy      Int
+  sourceId         Int?
+
+  price            Decimal      @db.Decimal(12, 2)
+  quantity         Decimal      @db.Decimal(12, 3)
+
+  status           PriceStatus  @default(PENDING)
+
+  observedAt       DateTime
+
+  verifiedBy       Int?
+  verifiedAt       DateTime?
+  verificationNote String?
+
+  commodity        Commodity    @relation(fields: [commodityId], references: [id])
+  market           Market       @relation(fields: [marketId], references: [id])
+  unit             Unit         @relation(fields: [unitId], references: [id])
+  source           Source?      @relation(fields: [sourceId], references: [id])
+
+  submitter        User         @relation("SubmittedObservations", fields: [submittedBy], references: [id])
+  verifier         User?        @relation("VerifiedObservations", fields: [verifiedBy], references: [id])
+
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+
+  @@index([commodityId, marketId, observedAt])
+  @@index([marketId, observedAt])
+  @@index([commodityId, observedAt])
+  @@index([status])
+  @@map("priceObservation")
 }
