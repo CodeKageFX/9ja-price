@@ -22,7 +22,8 @@ const PAGE_SIZE = 10;
 
 // Filter options come from the loaded data, so they follow whatever the API returns.
 function optionsFor(allLabel: string, records: PriceRecord[], pick: (r: PriceRecord) => string) {
-  return [allLabel, ...Array.from(new Set(records.map(pick))).sort()];
+  const values = records.map(pick).filter((value) => value !== "");
+  return [allLabel, ...Array.from(new Set(values)).sort()];
 }
 
 // Page numbers to show: all of them when there are few, otherwise first, last and the
@@ -363,9 +364,13 @@ export function ExplorerContent({ initialQuery = "" }: { initialQuery?: string }
                     </Link>
                   </td>
                   <td className="px-md py-md">
-                    <span className="bg-surface-container-high px-2 py-1 rounded text-xs text-on-surface-variant">
-                      {record.category}
-                    </span>
+                    {record.category ? (
+                      <span className="bg-surface-container-high px-2 py-1 rounded text-xs text-on-surface-variant">
+                        {record.category}
+                      </span>
+                    ) : (
+                      <span className="text-on-surface-variant">—</span>
+                    )}
                   </td>
                   <td className="px-md py-md text-on-surface-variant">{record.location}</td>
                   <td className="px-md py-md text-on-surface-variant">{record.market}</td>
@@ -377,10 +382,14 @@ export function ExplorerContent({ initialQuery = "" }: { initialQuery?: string }
                   </td>
                   <td
                     className={`px-md py-md text-right font-data-mono text-data-mono ${
-                      record.changeType === "positive" ? "text-[#22C55E]" : "text-[#EF4444]"
+                      record.changeType === "positive"
+                        ? "text-[#22C55E]"
+                        : record.changeType === "negative"
+                          ? "text-[#EF4444]"
+                          : "text-on-surface-variant"
                     }`}
                   >
-                    {record.change}
+                    {record.change ?? "—"}
                   </td>
                   <td className="px-md py-md text-right text-on-surface-variant text-xs">
                     {record.updated}
