@@ -1,57 +1,79 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "https://api.pricenaija.ng/v1"
+// Client for the 9jaPrice API (apps/api). Base URL comes from NEXT_PUBLIC_API_URL;
+// see .env.example. The API has no global prefix, so paths start at the root.
+const API_BASE = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001").replace(/\/+$/, "")
 
-interface ApiResponse<T> {
-  status: string
+// Every response is wrapped by the API's ResponseInterceptor.
+interface ApiEnvelope<T> {
+  statusCode: number
+  message: string
   data: T
 }
 
-async function request<T>(endpoint: string, options?: RequestInit): Promise<T> {
-  const res = await fetch(`${API_BASE}${endpoint}`, {
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options?.headers,
-    },
-  })
+export class ApiError extends Error {
+  constructor(
+    message: string,
+    readonly status: number,
+  ) {
+    super(message)
+    this.name = "ApiError"
+  }
+}
 
-  if (!res.ok) {
-    throw new Error(`API error: ${res.status} ${res.statusText}`)
+async function request<T>(endpoint: string, options?: RequestInit): Promise<T> {
+  let res: Response
+  try {
+    res = await fetch(`${API_BASE}${endpoint}`, {
+      ...options,
+      // Only send Content-Type when there is a body: on a GET it would turn a
+      // simple cross-origin request into a preflighted one for no reason.
+      headers: {
+        ...(options?.body ? { "Content-Type": "application/json" } : {}),
+        ...options?.headers,
+      },
+    })
+  } catch {
+    // Network failure, API not running, or the browser blocked the request (CORS).
+    throw new ApiError(`Could not reach the API at ${API_BASE}`, 0)
   }
 
-  const json: ApiResponse<T> = await res.json()
+  if (!res.ok) {
+    const body: unknown = await res.json().catch(() => null)
+    const message =
+      body && typeof body === "object" && "message" in body ? String((body as { message: unknown }).message) : res.statusText
+    throw new ApiError(message || `Request failed with status ${res.status}`, res.status)
+  }
+
+  const json = (await res.json()) as ApiEnvelope<T>
   return json.data
+}
+
+// One verified price observation, exactly as GET /prices returns it.
+// price and quantity are decimal strings (e.g. "2600.00" per "1.000" kg).
+export interface ApiPriceObservation {
+  id: number
+  price: string
+  quantity: string
+  observedAt: string
+  commodity: { name: string; slug: string }
+  market: { name: string; city: string; state: string }
+  unit: { symbol: string }
+}
+
+export interface ApiPriceList {
+  prices: ApiPriceObservation[]
+  length: number
 }
 
 export const api = {
   prices: {
+    // GET /prices — optional filters: commodity (slug), market (exact name).
     list: (params?: { commodity?: string; market?: string }) => {
-      const query = new URLSearchParams(params).toString()
-      return request<Array<{
-        commodity: string
-        market: string
-        unit: string
-        price: number
-        date: string
-        change_pct: number
-      }>>(`/prices${query ? `?${query}` : ""}`)
-    },
-    get: (commodity: string, market?: string) => {
-      const query = market ? `?market=${market}` : ""
-      return request<{
-        commodity: string
-        market: string
-        unit: string
-        price: number
-        date: string
-        historical: Array<{ date: string; price: number }>
-      }>(`/prices/${commodity}${query}`)
+      const query = new URLSearchParams(
+        Object.entries(params ?? {}).filter(([, v]) => v) as [string, string][],
+      ).toString()
+      return request<ApiPriceList>(`/prices${query ? `?${query}` : ""}`)
     },
   },
-  commodities: {
-    list: () => request<Array<{ slug: string; name: string; category: string }>>("/commodities"),
-    get: (slug: string) => request<{ slug: string; name: string; category: string; markets: string[] }>(`/commodities/${slug}`),
-  },
-  markets: {
-    list: () => request<Array<{ id: string; name: string; city: string; region: string }>>("/markets"),
-  },
+  // PENDING: /commodities and /markets don't exist yet. The markets page still uses
+  // its isolated mock (src/lib/markets.ts) until those endpoints land.
 }
